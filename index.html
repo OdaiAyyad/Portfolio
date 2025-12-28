@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odai Ayyad - AI Engineer</title>
+    <link rel="stylesheet" href="css/prism-flux-custom.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-prism">
+                <div class="prism-face"></div>
+                <div class="prism-face"></div>
+                <div class="prism-face"></div>
+            </div>
+            <div class="loader-text">Loading Portfolio...</div>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <a href="#home" class="logo">
+                <span class="logo-text">ODAI AYYAD</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#volunteering" class="nav-link">Volunteering</a></li>
+                <li><a href="#learning" class="nav-link">Learning</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Animated Background -->
+    <div class="bg-animation" id="bgAnimation"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-name">ODAI AYYAD</h1>
+            <h2 class="hero-title">AI Engineer</h2>
+            <p class="hero-slogan">Transforming Ideas into Intelligent Solutions</p>
+            
+            <div class="hero-social">
+                <a href="https://linkedin.com/in/odai-ayyad" target="_blank" class="social-btn" aria-label="LinkedIn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/odaiayyad" target="_blank" class="social-btn" aria-label="GitHub">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="mailto:odaiayyad24@ieee.org" class="social-btn" aria-label="Email">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="hero-actions">
+                <a href="assets/Odai_Ayyad_Resume.pdf" download class="btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download Resume
+                </a>
+                <a href="#contact" class="btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm an AI Engineer and Data Scientist based in Amman, Jordan, with a passion for building intelligent systems that solve real-world problems. With expertise in machine learning, deep learning, and agentic AI workflows, I transform complex challenges into elegant, data-driven solutions.</p>
+                    
+                    <p>My journey in artificial intelligence has led me to work on diverse projects ranging from computer vision systems for traffic safety to AI agents that automate content strategy. I specialize in LangChain, LangGraph, and modern AI frameworks, combining technical excellence with practical problem-solving.</p>
+                    
+                    <p>Currently pursuing opportunities in AI engineering and data science, I'm driven by continuous learning and the desire to push the boundaries of what's possible with artificial intelligence.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">AI Projects</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects-section" id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/images/yolo-traffic.jpg" alt="YOLOv11 Traffic Safety System">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">YOLOv11 Traffic Safety System</h3>
+                        <p class="project-description">Real-time traffic safety system trained on 14,800+ images for driver monitoring and traffic sign detection. Achieved 94.7% mAP50 and 89.2% mAP50-95, ranking in top 7 among 125 interns.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">YOLOv11</span>
+                            <span class="tech-tag">Computer Vision</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/images/youtube-agent.jpg" alt="YouTube AI Agent">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">YouTube AI Agent</h3>
+                        <p class="project-description">Multi-tool AI agent automating content strategy generation including titles, descriptions, thumbnails, posting times, and analytics using GPT-4o and GPT-3.5.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">LangChain</span>
+                            <span class="tech-tag">GPT-4</span>
+                            <span class="tech-tag">AI Agents</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/images/ml-models.jpg" alt="Machine Learning Models">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">ML Model Collection</h3>
+                        <p class="project-description">Developed comprehensive machine learning models including regression, classification, clustering, and association rules using Pandas, NumPy, and Scikit-learn.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Deep Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience-section" id="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Nov 2024 - Jun 2025</div>
+                        <h3 class="timeline-title">AI Intern</h3>
+                        <h4 class="timeline-company">Unihance - Jordan</h4>
+                        <ul class="timeline-description">
+                            <li>Developed machine learning models (regression, classification, clustering, association rules) using Pandas, NumPy, and Scikit-learn</li>
+                            <li>Built applied AI solutions using LangChain, LangGraph, and OpenAI APIs, integrating tool-chaining, memory, and prompt engineering</li>
+                            <li>Engineered real-time YOLOv11 traffic safety system achieving 94.7% mAP50, ranked top 7 among 125 interns</li>
+                            <li>Created multi-tool YouTube AI Agent automating content strategy generation using GPT-4o</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Mar 2025 - Nov 2025</div>
+                        <h3 class="timeline-title">Fab Lab Intern</h3>
+                        <h4 class="timeline-company">The Makerspace - Crown Prince Foundation - Jordan</h4>
+                        <ul class="timeline-description">
+                            <li>Designed and modeled 20+ complex 2D and 3D projects using Fusion 360</li>
+                            <li>Operated laser cutters, vinyl cutters, CNC machines, and 3D printers</li>
+                            <li>Applied digital fabrication techniques for rapid prototyping and manufacturing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jan 2025 - Oct 2025</div>
+                        <h3 class="timeline-title">Data Annotator Freelance</h3>
+                        <h4 class="timeline-company">Alignerr - Labelbox - Remote</h4>
+                        <ul class="timeline-description">
+                            <li>Executed high-precision annotation projects including real-time video stream labeling</li>
+                            <li>Evaluated and compared LLM responses using structured rubrics across multiple categories</li>
+                            <li>Improved model reliability and accuracy for major AI evaluation projects</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Oct 2024 - Jan 2025</div>
+                        <h3 class="timeline-title">Professional Development Training</h3>
+                        <h4 class="timeline-company">Correlation One - USAID, Remote</h4>
+                        <ul class="timeline-description">
+                            <li>Completed comprehensive training for tech roles</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills-section" id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="category-title">AI Engineering</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">AI Agents</span>
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">LangGraph</span>
+                        <span class="skill-tag">LLMs</span>
+                        <span class="skill-tag">RAG</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">Transformers</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">Programming & Technologies</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">YOLO</span>
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Section -->
+    <section class="section learning-section" id="learning">
+        <div class="container">
+            <h2 class="section-title">Courses & Certifications</h2>
+            <div class="learning-grid">
+                <div class="course-card">
+                    <div class="course-content">
+                        <h3 class="course-title">AI and Machine Learning Program</h3>
+                        <div class="course-provider">Samsung Innovation Campus (SIC)</div>
+                        <div class="course-date">Aug 2025 - Oct 2025</div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-content">
+                        <h3 class="course-title">AI Agents & Transformers</h3>
+                        <div class="course-provider">Unihance</div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-content">
+                        <h3 class="course-title">Machine and Deep Learning</h3>
+                        <div class="course-provider">Unihance</div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-content">
+                        <h3 class="course-title">LLMs & GPT</h3>
+                        <div class="course-provider">Unihance</div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-content">
+                        <h3 class="course-title">Statistics and Data Modeling</h3>
+                        <div class="course-provider">Unihance</div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-content">
+                        <h3 class="course-title">Python Basics for Data Science</h3>
+                        <div class="course-provider">edX</div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-content">
+                        <h3 class="course-title">Introduction to Power BI</h3>
+                        <div class="course-provider">Qafza</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Volunteering Section -->
+    <section class="section volunteering-section" id="volunteering">
+        <div class="container">
+            <h2 class="section-title">Volunteering Experience</h2>
+            <div class="volunteering-content">
+                <div class="volunteer-card">
+                    <div class="volunteer-header">
+                        <h3 class="volunteer-title">IEEE Young Professionals Jordan Affinity Group</h3>
+                        <div class="volunteer-date">Feb 2021 - Present</div>
+                    </div>
+                    <div class="volunteer-role">Leadership Roles</div>
+                    <ul class="volunteer-achievements">
+                        <li><strong>Directed Large-Scale Events:</strong> Led logistical and program coordination for 10+ major local and regional congresses (including MESYP Congress and YP Mentoring-Meet), ensuring smooth operations and achieving 95% attendee satisfaction</li>
+                        <li><strong>Team Development & Mentorship:</strong> Recruited, onboarded, and formally mentored 100+ committee members and volunteers, guiding organizational structure and building team capabilities across multiple chapters</li>
+                        <li><strong>Strategic Outreach:</strong> Represented the organization at 10+ major industry events (e.g., Xpand Conferences, IEEE Day), engaging with 2,500+ attendees to promote strategic initiatives and drive membership growth</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p class="contact-text">I'm always interested in hearing about new opportunities, collaborations, or just connecting with fellow AI enthusiasts. Feel free to reach out!</p>
+                    
+                    <div class="contact-methods">
+                        <a href="mailto:odaiayyad24@ieee.org" class="contact-method">
+                            <div class="method-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+                                </svg>
+                            </div>
+                            <div class="method-details">
+                                <div class="method-label">Email</div>
+                                <div class="method-value">odaiayyad24@ieee.org</div>
+                            </div>
+                        </a>
+
+                        <a href="tel:+962782923077" class="contact-method">
+                            <div class="method-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"/>
+                                </svg>
+                            </div>
+                            <div class="method-details">
+                                <div class="method-label">Phone</div>
+                                <div class="method-value">+962 782 923 077</div>
+                            </div>
+                        </a>
+
+                        <a href="https://linkedin.com/in/odai-ayyad" target="_blank" class="contact-method">
+                            <div class="method-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                            </div>
+                            <div class="method-details">
+                                <div class="method-label">LinkedIn</div>
+                                <div class="method-value">linkedin.com/in/odai-ayyad</div>
+                            </div>
+                        </a>
+
+                        <a href="https://github.com/odaiayyad" target="_blank" class="contact-method">
+                            <div class="method-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </div>
+                            <div class="method-details">
+                                <div class="method-label">GitHub</div>
+                                <div class="method-value">github.com/odaiayyad</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Odai Ayyad. All rights reserved.</p>
+            <p class="footer-location">Amman, Jordan</p>
+        </div>
+    </footer>
+
+    <script src="js/prism-flux-custom.js"></script>
+</body>
+</html>
