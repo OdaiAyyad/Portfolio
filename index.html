@@ -155,67 +155,56 @@
     <section class="section projects-section" id="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/images/yolo-traffic.jpg" alt="YOLOv11 Traffic Signs Detection System">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">YOLOv11 Traffic Signs Detection System</h3>
-                        <p class="project-description">Real-time traffic safety system trained on 14,800+ images for driver monitoring and traffic sign detection. Achieved 94.7% mAP50 and 89.2% mAP50-95, ranking in top 7 among 125 interns.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">YOLOv11</span>
-                            <span class="tech-tag">Computer Vision</span>
-                            <span class="tech-tag">Python</span>
+            <div class="carousel-container">
+                <div class="project-carousel" id="projectCarousel">
+                    
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="assets/images/yolo-traffic.jpg" alt="YOLOv11 Traffic Signs Detection">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">YOLOv11 Traffic Detection</h3>
+                            <p class="project-description">Real-time safety system trained on 14,800+ images. Achieved 94.7% mAP50, ranking top 7 among 125 interns.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">YOLOv11</span><span class="tech-tag">Python</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/images/youtube-agent.jpg" alt="YouTube AI Agent">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">YouTube AI Agent</h3>
-                        <p class="project-description">Multi-tool AI agent automating content strategy generation including titles, descriptions, thumbnails, posting times, and analytics using GPT-4o and GPT-3.5.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">LangChain</span>
-                            <span class="tech-tag">GPT-4o</span>
-                            <span class="tech-tag">GPT-3.5 Turbo</span>
-                            <span class="tech-tag">AI Agents</span>
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="assets/images/youtube-agent.jpg" alt="YouTube AI Agent">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">YouTube AI Agent</h3>
+                            <p class="project-description">Multi-tool agent automating content strategy using GPT-4o and LangChain.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">LangChain</span><span class="tech-tag">GPT-4o</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/images/youtube-agent.jpg" alt="XXXXXXXXXx">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">XXXXXXXXXXXXX</h3>
-                        <p class="project-description">Multi-tool AI agent automating content strategy generation including titles, descriptions, thumbnails, posting times, and analytics using GPT-4o and GPT-3.5.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">LangChain</span>
-                            <span class="tech-tag">GPT-4o</span>
-                            <span class="tech-tag">GPT-3.5 Turbo</span>
-                            <span class="tech-tag">AI Agents</span>
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="assets/images/ml-models.jpg" alt="ML Model Collection">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">ML Model Collection</h3>
+                            <p class="project-description">Comprehensive models including regression, classification, and clustering using Scikit-learn.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Scikit-learn</span><span class="tech-tag">TensorFlow</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/images/ml-models.jpg" alt="Machine Learning Models">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">ML Model Collection</h3>
-                        <p class="project-description">Developed comprehensive machine learning models including regression, classification, clustering, and association rules using Pandas, NumPy, and Scikit-learn.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Scikit-learn</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">Deep Learning</span>
-                        </div>
-                    </div>
+                </div>
+                <!-- Carousel Controls -->
+                <div class="carousel-nav">
+                    <button id="prevProject" class="nav-btn">PREV</button>
+                    <button id="nextProject" class="nav-btn">NEXT</button>
                 </div>
             </div>
         </div>
