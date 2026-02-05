@@ -7,8 +7,8 @@
 }
 
 :root {
-    --primary-black: #080808;      /* Deep black for high contrast */
-    --carbon-dark: #121212;       /* Dark gray for surfaces */
+    --primary-black: #0a0a0a;
+    --carbon-dark: #0d0d0d;
     --carbon-medium: #1a1a1a;
     --carbon-light: #242424;
     --petronas-cyan: #01F5D1;
@@ -16,9 +16,8 @@
     --cyan-bright: #00FFFF;
     --cyan-alt: #00FFEF;
     --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
+    --text-secondary: #b8b8b8;
     --text-dim: #808080;
-    --transition-speed: 0.4s;
 }
 
 html {
