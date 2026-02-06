@@ -308,7 +308,12 @@ body::before {
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
-/* Hero Section */
+/* ====================================
+   SECTION 8: HERO SECTION
+   - Homepage banner
+   - CUSTOMIZABLE: Adjust gradient
+==================================== */
+
 .hero {
     min-height: 100vh;
     display: flex;
@@ -317,7 +322,7 @@ body::before {
     position: relative;
     padding: 140px 30px 80px;
     background: radial-gradient(ellipse at center,
-        rgba(1, 245, 209, 0.05) 0%,
+        rgba(0, 207, 193, 0.03) 0%,
         transparent 70%);
 }
 
@@ -345,7 +350,7 @@ body::before {
     margin-bottom: 20px;
     background: linear-gradient(135deg, 
         var(--text-primary) 0%, 
-        var(--petronas-cyan) 50%, 
+        var(--amg-silver) 50%, 
         var(--text-primary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -369,9 +374,10 @@ body::before {
 
 .hero-slogan {
     font-size: clamp(16px, 2vw, 20px);
-    color: var(--text-dim);
+    color: var(--amg-cyan);
     margin-bottom: 40px;
     font-style: italic;
+    font-weight: 300;
 }
 
 .hero-social {
@@ -384,21 +390,22 @@ body::before {
 .social-btn {
     width: 50px;
     height: 50px;
-    background: rgba(1, 245, 209, 0.05);
-    border: 1px solid rgba(1, 245, 209, 0.3);
+    background: rgba(192, 192, 192, 0.05);
+    border: 1px solid rgba(192, 192, 192, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--petronas-cyan);
+    color: var(--amg-silver);
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .social-btn:hover {
-    background: rgba(1, 245, 209, 0.1);
-    border-color: var(--petronas-cyan);
-    box-shadow: 0 0 20px rgba(1, 245, 209, 0.3);
+    background: rgba(0, 207, 193, 0.1);
+    border-color: var(--amg-cyan);
+    color: var(--amg-cyan);
+    box-shadow: 0 0 20px var(--glow-cyan);
     transform: translateY(-3px);
 }
 
@@ -424,27 +431,28 @@ body::before {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--petronas-cyan), var(--petronas-light));
+    background: linear-gradient(135deg, var(--amg-silver), var(--amg-dark-silver));
     color: var(--primary-black);
     border: none;
-    box-shadow: 0 5px 20px rgba(1, 245, 209, 0.3);
+    box-shadow: 0 5px 20px var(--glow-silver);
 }
 
 .btn-primary:hover {
-    box-shadow: 0 8px 30px rgba(1, 245, 209, 0.5);
+    box-shadow: 0 8px 30px rgba(192, 192, 192, 0.4);
     transform: translateY(-3px);
+    background: linear-gradient(135deg, var(--amg-cyan), var(--amg-silver));
 }
 
 .btn-secondary {
     background: transparent;
-    color: var(--petronas-cyan);
-    border: 2px solid var(--petronas-cyan);
+    color: var(--amg-cyan);
+    border: 2px solid var(--amg-cyan);
 }
 
 .btn-secondary:hover {
-    background: rgba(1, 245, 209, 0.1);
-    border-color: var(--cyan-bright);
-    color: var(--cyan-bright);
+    background: rgba(0, 207, 193, 0.1);
+    border-color: var(--amg-cyan-light);
+    color: var(--amg-cyan-light);
 }
 
 /* Sections */
