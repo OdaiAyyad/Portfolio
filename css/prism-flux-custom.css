@@ -69,7 +69,11 @@ body {
     line-height: 1.6;
 }
 
-/* Carbon Fiber Background */
+/* ====================================
+   SECTION 4: CARBON FIBER BACKGROUND
+   - Subtle texture overlay
+   - STATIC: Background effect
+==================================== */
 body::before {
     content: '';
     position: fixed;
@@ -81,13 +85,13 @@ body::before {
         repeating-linear-gradient(0deg,
             transparent,
             transparent 2px,
-            rgba(1, 245, 209, 0.02) 2px,
-            rgba(1, 245, 209, 0.02) 4px),
+            rgba(192, 192, 192, 0.015) 2px,
+            rgba(192, 192, 192, 0.015) 4px),
         repeating-linear-gradient(90deg,
             transparent,
             transparent 2px,
-            rgba(1, 245, 209, 0.02) 2px,
-            rgba(1, 245, 209, 0.02) 4px),
+            rgba(192, 192, 192, 0.015) 2px,
+            rgba(192, 192, 192, 0.015) 4px),
         linear-gradient(135deg,
             var(--primary-black) 0%,
             var(--carbon-dark) 50%,
