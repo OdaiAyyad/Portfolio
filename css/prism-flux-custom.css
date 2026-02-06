@@ -45,6 +45,11 @@
     --text-primary: #ffffff;
     --text-secondary: #b8b8b8;
     --text-dim: #808080;
+
+   /* Utility Colors */
+    --border-color: rgba(192, 192, 192, 0.1);
+    --glow-cyan: rgba(0, 207, 193, 0.3);
+    --glow-silver: rgba(192, 192, 192, 0.2);
 }
 
 /* ====================================
