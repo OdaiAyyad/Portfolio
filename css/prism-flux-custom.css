@@ -186,17 +186,21 @@ body::before {
     letter-spacing: 3px;
 }
 
-/* Header */
+/* ====================================
+   SECTION 7: HEADER / NAVIGATION
+   - Fixed header at top
+   - CUSTOMIZABLE: Adjust transparency
+==================================== */
 .header {
     position: fixed;
     top: 0;
     width: 100%;
     background: linear-gradient(180deg,
-        rgba(13, 13, 13, 0.98) 0%,
-        rgba(13, 13, 13, 0.9) 50%,
+        rgba(13, 13, 13, 0.95) 0%,
+        rgba(13, 13, 13, 0.85) 50%,
         rgba(13, 13, 13, 0) 100%);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(1, 245, 209, 0.1);
+    border-bottom: 1px solid var(--border-color);
     z-index: 1000;
     transition: all 0.3s ease;
 }
@@ -225,7 +229,7 @@ body::before {
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
-    background: linear-gradient(135deg, var(--petronas-cyan), var(--cyan-bright));
+    background: linear-gradient(135deg, var(--amg-silver), var(--amg-cyan));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -258,12 +262,12 @@ body::before {
     transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background: var(--petronas-cyan);
+    background: var(--amg-cyan);
     transition: width 0.3s ease;
 }
 
 .nav-link:hover {
-    color: var(--petronas-cyan);
+    color: var(--amg-cyan);
 }
 
 .nav-link:hover::before,
@@ -272,9 +276,10 @@ body::before {
 }
 
 .nav-link.active {
-    color: var(--petronas-cyan);
+    color: var(--amg-cyan);
 }
 
+/* Mobile Menu Toggle */
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -285,10 +290,22 @@ body::before {
 .menu-toggle span {
     width: 30px;
     height: 3px;
-    background: var(--petronas-cyan);
+    background: var(--amg-cyan);
     margin: 3px 0;
     transition: 0.3s;
     border-radius: 2px;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* Hero Section */
