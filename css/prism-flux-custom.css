@@ -16,13 +16,17 @@
    - Browser normalization
    - STATIC: Do not modify
 ==================================== */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ====================================
+   SECTION 2: COLOR VARIABLES
+   - CUSTOMIZABLE: Adjust theme colors here
+   - All colors referenced throughout CSS
+==================================== */
 :root {
     --primary-black: #0a0a0a;
     --carbon-dark: #0d0d0d;
