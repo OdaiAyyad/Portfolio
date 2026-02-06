@@ -1,5 +1,22 @@
 @charset "utf-8";
 
+/* ====================================
+   ODAI AYYAD PORTFOLIO
+   AMG GT Black Series P1 Edition Theme
+   
+   COLOR PHILOSOPHY:
+   - Darker muted cyan (less eye strain)
+   - Silver/chrome accents (AMG luxury)
+   - Subtle gold highlights (P1 Edition)
+   - Deep black background
+==================================== */
+
+/* ====================================
+   SECTION 1: RESET & BASE STYLES
+   - Browser normalization
+   - STATIC: Do not modify
+==================================== */
+
 * {
     margin: 0;
     padding: 0;
