@@ -28,19 +28,29 @@
    - All colors referenced throughout CSS
 ==================================== */
 :root {
+   /* Background Colors */
     --primary-black: #0a0a0a;
     --carbon-dark: #0d0d0d;
     --carbon-medium: #1a1a1a;
     --carbon-light: #242424;
+
+   /* AMG-Inspired Accent Colors */
     --petronas-cyan: #01F5D1;
     --petronas-light: #34E4CB;
     --cyan-bright: #00FFFF;
     --cyan-alt: #00FFEF;
+
+   /* Text Colors */
     --text-primary: #ffffff;
     --text-secondary: #b8b8b8;
     --text-dim: #808080;
 }
 
+/* ====================================
+   SECTION 3: HTML & BODY SETUP
+   - Base typography and scrolling
+   - STATIC
+==================================== */
 html {
     scroll-behavior: smooth;
 }
