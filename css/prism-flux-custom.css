@@ -914,7 +914,11 @@ body::before {
     transform: translateY(-2px);
 }
 
-/* Volunteering Section */
+/* ====================================
+   SECTION 14: VOLUNTEERING SECTION
+   - With "Show More" functionality
+   - CUSTOMIZABLE: Add more volunteer cards
+==================================== */
 .volunteering-content {
     max-width: 900px;
     margin: 0 auto;
@@ -922,15 +926,21 @@ body::before {
 
 .volunteer-card {
     background: var(--carbon-medium);
-    border: 1px solid rgba(1, 245, 209, 0.1);
+    border: 1px solid var(--border-color);
     border-radius: 15px;
     padding: 40px;
     transition: all 0.3s ease;
+    margin-bottom: 30px;
 }
 
 .volunteer-card:hover {
-    border-color: var(--petronas-cyan);
-    box-shadow: 0 5px 20px rgba(1, 245, 209, 0.15);
+    border-color: var(--amg-cyan);
+    box-shadow: 0 5px 20px rgba(0, 207, 193, 0.15);
+}
+
+/* Hidden volunteer cards - DATA ENTRY SECTION */
+.volunteer-card.hidden {
+    display: none;
 }
 
 .volunteer-header {
@@ -945,7 +955,7 @@ body::before {
 .volunteer-title {
     font-size: 24px;
     font-weight: 700;
-    color: var(--petronas-cyan);
+    color: var(--amg-cyan);
 }
 
 .volunteer-date {
@@ -978,9 +988,41 @@ body::before {
     content: '▸';
     position: absolute;
     left: 0;
-    color: var(--petronas-cyan);
+    color: var(--amg-cyan);
 }
 
+/* Show More Button - CUSTOMIZABLE */
+.show-more-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-show-more {
+    padding: 15px 40px;
+    background: transparent;
+    color: var(--amg-cyan);
+    border: 2px solid var(--amg-cyan);
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-show-more:hover {
+   <parameter name="command">update</parameter>
+   <parameter name="id">updated_portfolio_css</parameter>
+   <parameter name="old_str">.btn-show-more:hover {
+   </parameter>
+   <parameter name="new_str">.btn-show-more:hover {
+   background: rgba(0, 207, 193, 0.1);
+   border-color: var(--amg-cyan-light);
+   color: var(--amg-cyan-light);
+   transform: translateY(-2px);
+}
+   
 /* Learning Section */
 .learning-section {
     background: linear-gradient(180deg, var(--carbon-dark), var(--primary-black));
