@@ -490,12 +490,14 @@ body::before {
     background-clip: text;
 }
 
-/* About Section */
+/* ====================================
+   SECTION 10: ABOUT SECTION
+   - Bio and GitHub contributions
+   - CUSTOMIZABLE: Adjust layout
+==================================== */
 .about-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 60px;
-    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .about-text p {
@@ -505,39 +507,35 @@ body::before {
     font-size: 16px;
 }
 
-.about-stats {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-}
-
-.stat-item {
-    text-align: center;
+/* GitHub Contributions Chart */
+.github-contributions {
+    margin-top: 50px;
     padding: 30px;
-    background: linear-gradient(135deg, rgba(1, 245, 209, 0.05), rgba(1, 245, 209, 0.02));
-    border: 1px solid rgba(1, 245, 209, 0.2);
+    background: var(--carbon-medium);
+    border: 1px solid var(--border-color);
     border-radius: 15px;
-    transition: all 0.3s ease;
+    text-align: center;
 }
 
-.stat-item:hover {
-    border-color: var(--petronas-cyan);
-    box-shadow: 0 5px 20px rgba(1, 245, 209, 0.2);
-    transform: translateY(-5px);
-}
-
-.stat-number {
-    font-size: 48px;
-    font-weight: 900;
-    color: var(--petronas-cyan);
-    margin-bottom: 10px;
-}
-
-.stat-label {
-    font-size: 14px;
-    color: var(--text-secondary);
+.contributions-title {
+    font-size: 20px;
+    color: var(--amg-cyan);
+    margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.contributions-chart {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.contributions-note {
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--text-dim);
+    font-style: italic;
 }
 
 /* Projects Section */
