@@ -915,7 +915,72 @@ body::before {
 }
 
 /* ====================================
-   SECTION 14: VOLUNTEERING SECTION
+SECTION 14: LEARNING/COURSES SECTION
+
+Course certifications
+DATA ENTRY SECTION
+==================================== */
+.learning-section {
+   background: linear-gradient(180deg, var(--carbon-dark), var(--primary-black));
+}
+
+.learning-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+   gap: 30px;
+}
+
+.course-card {
+   background: var(--carbon-medium);
+   border: 1px solid var(--border-color);
+   border-radius: 12px;
+   padding: 25px;
+   transition: all 0.3s ease;
+   position: relative;
+   overflow: hidden;
+}
+
+.course-card::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: -100%;
+   width: 100%;
+   height: 2px;
+   background: linear-gradient(90deg, transparent, var(--amg-cyan), transparent);
+   transition: left 0.5s ease;
+}
+
+.course-card:hover::before {
+   left: 100%;
+}
+
+.course-card:hover {
+   border-color: var(--amg-cyan);
+   box-shadow: 0 5px 20px rgba(0, 207, 193, 0.15);
+   transform: translateY(-5px);
+}
+
+.course-title {
+   font-size: 18px;
+   font-weight: 700;
+   margin-bottom: 10px;
+   color: var(--text-primary);
+}
+
+.course-provider {
+   font-size: 14px;
+   color: var(--amg-cyan);
+   margin-bottom: 8px;
+}
+
+.course-date {
+   font-size: 13px;
+   color: var(--text-dim);
+}
+
+/* ====================================
+   SECTION 15: VOLUNTEERING SECTION
    - With "Show More" functionality
    - CUSTOMIZABLE: Add more volunteer cards
 ==================================== */
@@ -1016,71 +1081,6 @@ body::before {
    border-color: var(--amg-cyan-light);
    color: var(--amg-cyan-light);
    transform: translateY(-2px);
-}
-   
-//* ====================================
-SECTION 15: LEARNING/COURSES SECTION
-
-Course certifications
-DATA ENTRY SECTION
-==================================== */
-.learning-section {
-   background: linear-gradient(180deg, var(--carbon-dark), var(--primary-black));
-}
-
-.learning-grid {
-   display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-   gap: 30px;
-}
-
-.course-card {
-   background: var(--carbon-medium);
-   border: 1px solid var(--border-color);
-   border-radius: 12px;
-   padding: 25px;
-   transition: all 0.3s ease;
-   position: relative;
-   overflow: hidden;
-}
-
-.course-card::before {
-   content: '';
-   position: absolute;
-   top: 0;
-   left: -100%;
-   width: 100%;
-   height: 2px;
-   background: linear-gradient(90deg, transparent, var(--amg-cyan), transparent);
-   transition: left 0.5s ease;
-}
-
-.course-card:hover::before {
-   left: 100%;
-}
-
-.course-card:hover {
-   border-color: var(--amg-cyan);
-   box-shadow: 0 5px 20px rgba(0, 207, 193, 0.15);
-   transform: translateY(-5px);
-}
-
-.course-title {
-   font-size: 18px;
-   font-weight: 700;
-   margin-bottom: 10px;
-   color: var(--text-primary);
-}
-
-.course-provider {
-   font-size: 14px;
-   color: var(--amg-cyan);
-   margin-bottom: 8px;
-}
-
-.course-date {
-   font-size: 13px;
-   color: var(--text-dim);
 }
 
 /* Contact Section */
