@@ -1183,92 +1183,171 @@ STATIC
    color: var(--text-secondary);
 }
 
-/* Responsive Design */
+/* ====================================
+SECTION 18: RESPONSIVE DESIGN
+Mobile & tablet adjustments
+CUSTOMIZABLE: Adjust breakpoints
+==================================== */
 @media (max-width: 1024px) {
-    .about-content {
-        grid-template-columns: 1fr;
-    }
+   .carousel-item {
+   width: 350px;
+   height: 480px;
+}
 
-    .projects-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
+.carousel-controls {
+    bottom: -60px;
+}
+
+.card-image {
+    height: 170px;
+}
+
+.card-title {
+    font-size: 22px;
+}
+
+.card-description {
+    font-size: 13px;
+}
 }
 
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: flex;
-    }
-
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 85px;
-        flex-direction: column;
-        background: rgba(13, 13, 13, 0.98);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        padding: 40px 0;
-        border-bottom: 1px solid rgba(1, 245, 209, 0.2);
-        gap: 0;
-    }
-
-    .nav-menu li {
-        margin: 15px 0;
-    }
-
-    .nav-menu.active {
-        left: 0;
-    }
-
-    .hero {
-        padding: 120px 20px 80px;
-    }
-
-    .section {
-        padding: 60px 20px;
-    }
-
-    .section-title {
-        margin-bottom: 40px;
-    }
-
-    .about-stats {
-        grid-template-columns: 1fr;
-    }
-
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .timeline {
-        padding-left: 30px;
-    }
-
-    .timeline-marker {
-        left: -36px;
-    }
-
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .volunteer-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .contact-methods {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .btn-primary, .btn-secondary {
-        width: 100%;
-        justify-content: center;
-    }
+   .menu-toggle {
+      display: flex;
 }
+   
+.nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 85px;
+    flex-direction: column;
+    background: rgba(13, 13, 13, 0.98);
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--border-color);
+    gap: 0;
+}
+
+.nav-menu li {
+    margin: 15px 0;
+}
+
+.nav-menu.active {
+    left: 0;
+}
+
+.hero {
+    padding: 120px 20px 80px;
+}
+
+.section {
+    padding: 60px 20px;
+}
+
+.section-title {
+    margin-bottom: 40px;
+}
+
+.carousel-item {
+    width: 300px;
+    height: 460px;
+}
+
+.carousel-item .card {
+    padding: 20px;
+}
+
+.card-image {
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.card-title {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.card-description {
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.card-tech {
+    margin-bottom: 15px;
+    gap: 6px;
+}
+
+.tech-badge {
+    padding: 4px 10px;
+    font-size: 11px;
+}
+
+.card-number {
+    font-size: 50px;
+    top: 15px;
+    right: 20px;
+}
+
+.card-cta {
+    padding: 10px 25px;
+    font-size: 14px;
+}
+
+.carousel-controls {
+    bottom: -60px;
+    gap: 15px;
+}
+
+.carousel-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+}
+
+.carousel-indicators {
+    top: 20px;
+    gap: 12px;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+}
+
+.timeline {
+    padding-left: 30px;
+}
+
+.timeline-marker {
+    left: -36px;
+}
+
+.skills-grid {
+    grid-template-columns: 1fr;
+}
+
+.volunteer-header {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contact-methods {
+    grid-template-columns: 1fr;
+}
+
+.hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+}
+}
+/* ====================================
+END OF STYLESHEET
+Last updated: FEB-2026
+==================================== */
