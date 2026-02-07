@@ -1012,11 +1012,6 @@ body::before {
 }
 
 .btn-show-more:hover {
-   <parameter name="command">update</parameter>
-   <parameter name="id">updated_portfolio_css</parameter>
-   <parameter name="old_str">.btn-show-more:hover {
-   </parameter>
-   <parameter name="new_str">.btn-show-more:hover {
    background: rgba(0, 207, 193, 0.1);
    border-color: var(--amg-cyan-light);
    color: var(--amg-cyan-light);
