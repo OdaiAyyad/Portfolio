@@ -853,7 +853,12 @@ body::before {
     left: 0;
     color: var(--amg-cyan);
 }
-/* Skills Section */
+
+/* ====================================
+   SECTION 13: SKILLS SECTION
+   - Categorized skill tags
+   - CUSTOMIZABLE: Add categories
+==================================== */
 .skills-section {
     background: var(--carbon-dark);
 }
@@ -866,22 +871,22 @@ body::before {
 
 .skill-category {
     background: var(--carbon-medium);
-    border: 1px solid rgba(1, 245, 209, 0.1);
+    border: 1px solid var(--border-color);
     border-radius: 15px;
     padding: 30px;
     transition: all 0.3s ease;
 }
 
 .skill-category:hover {
-    border-color: var(--petronas-cyan);
-    box-shadow: 0 5px 20px rgba(1, 245, 209, 0.15);
+    border-color: var(--amg-cyan);
+    box-shadow: 0 5px 20px rgba(0, 207, 193, 0.15);
 }
 
 .category-title {
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 20px;
-    color: var(--petronas-cyan);
+    color: var(--amg-cyan);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -894,8 +899,8 @@ body::before {
 
 .skill-tag {
     padding: 8px 16px;
-    background: rgba(1, 245, 209, 0.1);
-    border: 1px solid rgba(1, 245, 209, 0.3);
+    background: rgba(0, 207, 193, 0.1);
+    border: 1px solid rgba(0, 207, 193, 0.3);
     border-radius: 25px;
     font-size: 13px;
     color: var(--text-secondary);
@@ -903,9 +908,10 @@ body::before {
 }
 
 .skill-tag:hover {
-    background: rgba(1, 245, 209, 0.2);
-    color: var(--petronas-cyan);
-    border-color: var(--petronas-cyan);
+    background: rgba(0, 207, 193, 0.2);
+    color: var(--amg-cyan);
+    border-color: var(--amg-cyan);
+    transform: translateY(-2px);
 }
 
 /* Volunteering Section */
