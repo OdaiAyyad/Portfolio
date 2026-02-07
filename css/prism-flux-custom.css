@@ -313,7 +313,6 @@ body::before {
    - Homepage banner
    - CUSTOMIZABLE: Adjust gradient
 ==================================== */
-
 .hero {
     min-height: 100vh;
     display: flex;
@@ -455,7 +454,11 @@ body::before {
     color: var(--amg-cyan-light);
 }
 
-/* Sections */
+/* ====================================
+   SECTION 9: COMMON SECTION STYLES
+   - Applied to all main sections
+   - ANIMATION: Scroll reveal effect
+==================================== */
 .section {
     padding: 100px 30px;
     position: relative;
@@ -481,7 +484,7 @@ body::before {
     letter-spacing: 3px;
     margin-bottom: 60px;
     text-align: center;
-    background: linear-gradient(135deg, var(--text-primary), var(--petronas-cyan));
+    background: linear-gradient(135deg, var(--text-primary), var(--amg-cyan));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
