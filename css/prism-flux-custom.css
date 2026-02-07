@@ -1161,22 +1161,26 @@ CUSTOMIZABLE: Update details
    color: var(--text-secondary);
 }
 
-/* Footer */
+/* ====================================
+SECTION 17: FOOTER
+Bottom copyright
+STATIC
+==================================== */
 .footer {
-    padding: 40px 30px;
-    background: var(--primary-black);
-    border-top: 1px solid rgba(1, 245, 209, 0.1);
-    text-align: center;
+   padding: 40px 30px;
+   background: var(--primary-black);
+   border-top: 1px solid var(--border-color);
+   text-align: center;
 }
 
 .footer-content {
-    color: var(--text-dim);
-    font-size: 14px;
+   color: var(--text-dim);
+   font-size: 14px;
 }
 
 .footer-location {
-    margin-top: 10px;
-    color: var(--text-secondary);
+   margin-top: 10px;
+   color: var(--text-secondary);
 }
 
 /* Responsive Design */
