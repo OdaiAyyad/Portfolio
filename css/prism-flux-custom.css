@@ -1018,64 +1018,69 @@ body::before {
    transform: translateY(-2px);
 }
    
-/* Learning Section */
+//* ====================================
+SECTION 15: LEARNING/COURSES SECTION
+
+Course certifications
+DATA ENTRY SECTION
+==================================== */
 .learning-section {
-    background: linear-gradient(180deg, var(--carbon-dark), var(--primary-black));
+   background: linear-gradient(180deg, var(--carbon-dark), var(--primary-black));
 }
 
 .learning-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+   gap: 30px;
 }
 
 .course-card {
-    background: var(--carbon-medium);
-    border: 1px solid rgba(1, 245, 209, 0.1);
-    border-radius: 12px;
-    padding: 25px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+   background: var(--carbon-medium);
+   border: 1px solid var(--border-color);
+   border-radius: 12px;
+   padding: 25px;
+   transition: all 0.3s ease;
+   position: relative;
+   overflow: hidden;
 }
 
 .course-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--petronas-cyan), transparent);
-    transition: left 0.5s ease;
+   content: '';
+   position: absolute;
+   top: 0;
+   left: -100%;
+   width: 100%;
+   height: 2px;
+   background: linear-gradient(90deg, transparent, var(--amg-cyan), transparent);
+   transition: left 0.5s ease;
 }
 
 .course-card:hover::before {
-    left: 100%;
+   left: 100%;
 }
 
 .course-card:hover {
-    border-color: var(--petronas-cyan);
-    box-shadow: 0 5px 20px rgba(1, 245, 209, 0.15);
-    transform: translateY(-5px);
+   border-color: var(--amg-cyan);
+   box-shadow: 0 5px 20px rgba(0, 207, 193, 0.15);
+   transform: translateY(-5px);
 }
 
 .course-title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: var(--text-primary);
+   font-size: 18px;
+   font-weight: 700;
+   margin-bottom: 10px;
+   color: var(--text-primary);
 }
 
 .course-provider {
-    font-size: 14px;
-    color: var(--petronas-cyan);
-    margin-bottom: 8px;
+   font-size: 14px;
+   color: var(--amg-cyan);
+   margin-bottom: 8px;
 }
 
 .course-date {
-    font-size: 13px;
-    color: var(--text-dim);
+   font-size: 13px;
+   color: var(--text-dim);
 }
 
 /* Contact Section */
