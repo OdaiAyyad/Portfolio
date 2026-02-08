@@ -99,6 +99,68 @@ function initBackgroundAnimation() {
     }
 }
 
+// ====================================
+// SECTION 3: 3D CAROUSEL INITIALIZATION
+// Creates rotating 3D project carousel
+// DYNAMIC: Auto-generates from portfolioData
+// ====================================
+
+let currentIndex = 0;
+const carousel = document.getElementById('carousel');
+const indicatorsContainer = document.getElementById('indicators');
+
+function createCarouselItem(data, index) {
+    const item = document.createElement('div');
+    item.className = 'carousel-item';
+    item.dataset.index = index;
+    
+    // Generate tech badges HTML
+    const techBadges = data.tech.map(tech => 
+        `<span class="tech-badge">${tech}</span>`
+    ).join('');
+    
+    // Create link button if URL exists
+    const linkButton = data.link 
+        ? `<a href="${data.link}" target="_blank" class="card-cta">View Project</a>`
+        : `<button class="card-cta" onclick="alert('Project details coming soon!')">Learn More</button>`;
+    
+    // Build card HTML
+    item.innerHTML = `
+        <div class="card">
+            <div class="card-number">0${data.id}</div>
+            <div class="card-image">
+                <img src="${data.image}" alt="${data.title}">
+            </div>
+            <h3 class="card-title">${data.title}</h3>
+            <p class="card-description">${data.description}</p>
+            <div class="card-tech">${techBadges}</div>
+            ${linkButton}
+        </div>
+    `;
+    
+    return item;
+}
+
+function initCarousel() {
+    if (!carousel) return; // Safety check
+    
+    // Create carousel items from data
+    portfolioData.forEach((data, index) => {
+        const item = createCarouselItem(data, index);
+        carousel.appendChild(item);
+        
+        // Create indicator dot
+        const indicator = document.createElement('div');
+        indicator.className = 'indicator';
+        if (index === 0) indicator.classList.add('active');
+        indicator.dataset.index = index;
+        indicator.addEventListener('click', () => goToSlide(index));
+        indicatorsContainer.appendChild(indicator);
+    });
+    
+    updateCarousel();
+}
+
 
 
 // ====================================
