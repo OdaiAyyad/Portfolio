@@ -49,18 +49,19 @@ const portfolioData = [
 // Creates floating particles and AMG tri-star
 // EFFECT: Subtle background movement
 // ====================================
-const bgAnimation = document.getElementById('bgAnimation');
+function initBackgroundAnimation() {
+    const bgAnimation = document.getElementById('bgAnimation');
 
     // Create floating particles
     const particleCount = 50; // Reduced for performance
 
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
-@@ -62,41 +62,39 @@ function initBackgroundAnimation() {
+@@ -62,62 +62,60 @@
         particle.style.position = 'absolute';
         particle.style.width = Math.random() * 3 + 1 + 'px';
         particle.style.height = particle.style.width;
-        particle.style.background = 'rgba(1, 245, 209, 0.2)';
+        particle.style.background = 'rgba(1, 245, 209, 0.25)';
         particle.style.borderRadius = '50%';
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = Math.random() * 100 + '%';
