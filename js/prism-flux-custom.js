@@ -7,6 +7,43 @@
 // SECTION 1: PROJECT DATA (CUSTOMIZABLE)
 // Add, edit, or remove projects here
 // ====================================
+const portfolioData = [
+    {
+        id: 1,
+        title: 'YOLOv11 Traffic Safety System',
+        description: 'Real-time traffic safety system trained on 14,800+ images for driver monitoring and traffic sign detection. Achieved 94.7% mAP50 and 89.2% mAP50-95, ranking in top 7 among 125 interns.',
+        image: 'assets/images/yolo-traffic.jpg',
+        tech: ['YOLOv11', 'Computer Vision', 'Python', 'Deep Learning'],
+        link: '' // Optional: Add GitHub or demo link
+    },
+    {
+        id: 2,
+        title: 'YouTube AI Agent',
+        description: 'Multi-tool AI agent automating content strategy generation including titles, descriptions, thumbnails, posting times, and analytics using GPT-4o and GPT-3.5.',
+        image: 'assets/images/youtube-agent.jpg',
+        tech: ['LangChain', 'GPT-4o', 'GPT-3.5', 'AI Agents'],
+        link: ''
+    },
+    {
+        id: 3,
+        title: 'ML Model Collection',
+        description: 'Comprehensive machine learning models including regression, classification, clustering, and association rules using Pandas, NumPy, and Scikit-learn with hands-on work in ANNs, CNNs, and RNNs.',
+        image: 'assets/images/ml-models.jpg',
+        tech: ['Scikit-learn', 'TensorFlow', 'Keras', 'Deep Learning'],
+        link: ''
+    }
+    // TO ADD MORE PROJECTS:
+    // Copy the above object structure and modify:
+    // {
+    //     id: 4,
+    //     title: 'Your Project Title',
+    //     description: 'Project description here...',
+    //     image: 'assets/images/your-image.jpg',
+    //     tech: ['Tech1', 'Tech2', 'Tech3'],
+    //     link: 'https://github.com/...' // Optional
+    // }
+];
+
 function initBackgroundAnimation() {
     const bgAnimation = document.getElementById('bgAnimation');
     const particleCount = 50;
