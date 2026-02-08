@@ -294,6 +294,25 @@ if (menuToggle && navMenu) {
     });
 }
 
+// ====================================
+// SECTION 7: HEADER SCROLL EFFECT
+// Makes header transparent on scroll
+// ====================================
+const header = document.getElementById('header');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 100) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+});
+
 
 
 // ====================================
