@@ -62,7 +62,7 @@ function initBackgroundAnimation() {
         particle.style.position = 'absolute';
         particle.style.width = Math.random() * 3 + 1 + 'px';
         particle.style.height = particle.style.width;
-        particle.style.background = 'rgba(1, 245, 209, 0)';
+        particle.style.background = 'rgba(1, 245, 209, 0.2)';
         particle.style.borderRadius = '50%';
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = Math.random() * 100 + '%';
@@ -99,31 +99,22 @@ function initBackgroundAnimation() {
     }
 }
 
-// Add CSS animations dynamically
+
+
+// ====================================
+// CSS ANIMATIONS - INJECTED
+// Float animation for particles
+// ====================================
 const style = document.createElement('style');
 style.textContent = `
     @keyframes float {
         0%, 100% {
             transform: translate(0, 0);
-            opacity: 0.3;
+            opacity: 0.2;
         }
         50% {
-            transform: translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px);
-            opacity: 0.8;
-        }
-    }
-    
-    @keyframes drift {
-        0% {
-            transform: translateX(-100%) rotate(0deg);
-            opacity: 0;
-        }
-        50% {
-            opacity: 0.5;
-        }
-        100% {
-            transform: translateX(200vw) rotate(360deg);
-            opacity: 0;
+            transform: translate(${Math.random() * 30 - 15}px, ${Math.random() * 30 - 15}px);
+            opacity: 0.6;
         }
     }
 `;
