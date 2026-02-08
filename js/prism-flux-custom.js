@@ -526,6 +526,32 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') nextSlide();
 });
 
+// ====================================
+// SECTION 17: CAROUSEL RESPONSIVE UPDATE
+// Updates carousel on window resize
+// ====================================
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        updateCarousel();
+    }, 250);
+});
+
+// ====================================
+// SECTION 18: PARALLAX EFFECT
+// Hero section parallax on scroll
+// EFFECT: Subtle depth on homepage
+// ====================================
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent && scrolled < window.innerHeight) {
+        heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+        heroContent.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
+    }
+});
+
 
 
 // ====================================
