@@ -1,6 +1,12 @@
-// Odai Ayyad Portfolio - Custom JavaScript
+// ====================================
+// ODAI AYYAD PORTFOLIO - JAVASCRIPT
+// AMG GT Black Series P1 Theme
+// ====================================
 
-// Initialize background animation
+// ====================================
+// SECTION 1: PROJECT DATA (CUSTOMIZABLE)
+// Add, edit, or remove projects here
+// ====================================
 function initBackgroundAnimation() {
     const bgAnimation = document.getElementById('bgAnimation');
     const particleCount = 50;
