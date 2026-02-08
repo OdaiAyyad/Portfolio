@@ -336,6 +336,33 @@ navLinks.forEach(link => {
     });
 });
 
+// ====================================
+// SECTION 9: ACTIVE NAVIGATION UPDATE
+// Highlights current section in menu
+// ====================================
+function updateActiveNav() {
+    const sections = document.querySelectorAll('section[id]');
+    const scrollPosition = window.pageYOffset + 150;
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href').substring(1);
+                if (href === sectionId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+}
+
+window.addEventListener('scroll', updateActiveNav);
+
 
 
 // ====================================
