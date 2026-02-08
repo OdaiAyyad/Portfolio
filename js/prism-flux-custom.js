@@ -453,6 +453,61 @@ courseCards.forEach((card, index) => {
     courseObserver.observe(card);
 });
 
+// ====================================
+// SECTION 14: SCROLL TO TOP BUTTON
+// Floating button to return to top
+// ====================================
+
+const scrollTopBtn = document.createElement('button');
+scrollTopBtn.innerHTML = '↑';
+scrollTopBtn.setAttribute('aria-label', 'Scroll to top');
+scrollTopBtn.style.cssText = `
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #C0C0C0, #A8A8A8);
+    color: #0a0a0a;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 5px 20px rgba(192, 192, 192, 0.3);
+`;
+document.body.appendChild(scrollTopBtn);
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 500) {
+        scrollTopBtn.style.opacity = '1';
+        scrollTopBtn.style.visibility = 'visible';
+    } else {
+        scrollTopBtn.style.opacity = '0';
+        scrollTopBtn.style.visibility = 'hidden';
+    }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+scrollTopBtn.addEventListener('mouseenter', () => {
+    scrollTopBtn.style.transform = 'translateY(-5px) scale(1.1)';
+    scrollTopBtn.style.boxShadow = '0 8px 30px rgba(192, 192, 192, 0.5)';
+});
+
+scrollTopBtn.addEventListener('mouseleave', () => {
+    scrollTopBtn.style.transform = 'translateY(0) scale(1)';
+    scrollTopBtn.style.boxShadow = '0 5px 20px rgba(192, 192, 192, 0.3)';
+});
+
 
 
 // ====================================
