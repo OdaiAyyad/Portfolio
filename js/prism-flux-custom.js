@@ -508,6 +508,24 @@ scrollTopBtn.addEventListener('mouseleave', () => {
     scrollTopBtn.style.boxShadow = '0 5px 20px rgba(192, 192, 192, 0.3)';
 });
 
+// ====================================
+// SECTION 15: CAROUSEL AUTO-ROTATION
+// Optional: Auto-advance carousel
+// Comment out if you don't want auto-rotation
+// ====================================
+
+// Auto-rotate every 5 seconds
+// setInterval(nextSlide, 5000);
+
+// ====================================
+// SECTION 16: KEYBOARD NAVIGATION
+// Arrow keys control carousel
+// ====================================
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') prevSlide();
+    if (e.key === 'ArrowRight') nextSlide();
+});
+
 
 
 // ====================================
