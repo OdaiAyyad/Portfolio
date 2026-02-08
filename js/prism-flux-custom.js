@@ -49,52 +49,52 @@ const portfolioData = [
 // Creates floating particles and AMG tri-star
 // EFFECT: Subtle background movement
 // ====================================
-function initBackgroundAnimation() {
-    const bgAnimation = document.getElementById('bgAnimation');
-    
+const bgAnimation = document.getElementById('bgAnimation');
+
     // Create floating particles
-    const particleCount = 40; // Reduced for performance
-    
+    const particleCount = 50; // Reduced for performance
+
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
-        
-        // Particle styling
+@@ -62,41 +62,39 @@ function initBackgroundAnimation() {
         particle.style.position = 'absolute';
         particle.style.width = Math.random() * 3 + 1 + 'px';
         particle.style.height = particle.style.width;
-        particle.style.background = 'rgba(192, 192, 192, 0.2)'; // Silver glow
+        particle.style.background = 'rgba(1, 245, 209, 0.2)';
         particle.style.borderRadius = '50%';
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = Math.random() * 100 + '%';
         particle.style.pointerEvents = 'none';
-        
+
         // Animation properties
         const duration = Math.random() * 20 + 15;
+
         const delay = Math.random() * 5;
-        
+        const xMovement = (Math.random() - 0.5) * 200;
+        const yMovement = (Math.random() - 0.5) * 200;
+
         particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
-        
+
         bgAnimation.appendChild(particle);
     }
-    
-    // Create AMG tri-star subtle background element
-    const triStar = document.createElement('div');
-    triStar.className = 'amg-tristar';
-    triStar.innerHTML = `
-        <svg width="300" height="300" viewBox="0 0 100 100" style="opacity: 0.03;">
-            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="0.5"/>
-            <path d="M50 15 L58 45 L88 45 L64 61 L72 91 L50 75 L28 91 L36 61 L12 45 L42 45 Z" 
-                  fill="none" stroke="currentColor" stroke-width="0.5"/>
-        </svg>
-    `;
-    triStar.style.position = 'fixed';
-    triStar.style.top = '50%';
-    triStar.style.left = '50%';
-    triStar.style.transform = 'translate(-50%, -50%)';
-    triStar.style.pointerEvents = 'none';
-    triStar.style.color = '#C0C0C0';
-    
-    bgAnimation.appendChild(triStar);
+
+    // Create animated lines
+    for (let i = 0; i < 5; i++) {
+        const line = document.createElement('div');
+        line.style.position = 'absolute';
+        line.style.width = Math.random() * 200 + 100 + 'px';
+        line.style.height = '1px';
+        line.style.background = 'linear-gradient(90deg, transparent, rgba(1, 245, 209, 0.3), transparent)';
+        line.style.left = Math.random() * 100 + '%';
+        line.style.top = Math.random() * 100 + '%';
+        line.style.transform = `rotate(${Math.random() * 360}deg)`;
+        line.style.pointerEvents = 'none';
+
+        const duration = Math.random() * 15 + 10;
+        line.style.animation = `drift ${duration}s linear infinite`;
+
+        bgAnimation.appendChild(line);
+    }
 }
 
 // ====================================
