@@ -552,6 +552,38 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// ====================================
+// SECTION 19: LOADING SCREEN
+// Hides loader after page loads
+// ====================================
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loader.classList.add('hidden');
+        }
+        
+        // Initialize background animation after loading
+        initBackgroundAnimation();
+    }, 1500);
+});
+
+// ====================================
+// SECTION 20: EVENT LISTENERS SETUP
+// Initialize carousel controls
+// ====================================
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize carousel
+    initCarousel();
+    
+    // Carousel button controls
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+});
+
 
 
 // ====================================
