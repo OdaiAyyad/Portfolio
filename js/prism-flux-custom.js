@@ -7,6 +7,7 @@
 // SECTION 1: PROJECT DATA (CUSTOMIZABLE)
 // Add, edit, or remove projects here
 // ====================================
+
 const portfolioData = [
     {
         id: 1,
@@ -49,53 +50,53 @@ const portfolioData = [
 // Creates floating particles and AMG tri-star
 // EFFECT: Subtle background movement
 // ====================================
+
 function initBackgroundAnimation() {
     const bgAnimation = document.getElementById('bgAnimation');
-
+    
     // Create floating particles
-    const particleCount = 50; // Reduced for performance
-
+    const particleCount = 40; // Reduced for performance
+    
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
-@@ -62,62 +62,60 @@
+        
+        // Particle styling
         particle.style.position = 'absolute';
         particle.style.width = Math.random() * 3 + 1 + 'px';
         particle.style.height = particle.style.width;
-        particle.style.background = 'rgba(1, 245, 209, 0.25)';
+        particle.style.background = 'rgba(192, 192, 192, 0.2)'; // Silver glow
         particle.style.borderRadius = '50%';
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = Math.random() * 100 + '%';
         particle.style.pointerEvents = 'none';
-
+        
         // Animation properties
         const duration = Math.random() * 20 + 15;
-
         const delay = Math.random() * 5;
-        const xMovement = (Math.random() - 0.5) * 200;
-        const yMovement = (Math.random() - 0.5) * 200;
-
+        
         particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
-
+        
         bgAnimation.appendChild(particle);
     }
-
-    // Create animated lines
-    for (let i = 0; i < 5; i++) {
-        const line = document.createElement('div');
-        line.style.position = 'absolute';
-        line.style.width = Math.random() * 200 + 100 + 'px';
-        line.style.height = '1px';
-        line.style.background = 'linear-gradient(90deg, transparent, rgba(1, 245, 209, 0.3), transparent)';
-        line.style.left = Math.random() * 100 + '%';
-        line.style.top = Math.random() * 100 + '%';
-        line.style.transform = `rotate(${Math.random() * 360}deg)`;
-        line.style.pointerEvents = 'none';
-
-        const duration = Math.random() * 15 + 10;
-        line.style.animation = `drift ${duration}s linear infinite`;
-
-        bgAnimation.appendChild(line);
-    }
+    
+    // Create AMG tri-star subtle background element
+    const triStar = document.createElement('div');
+    triStar.className = 'amg-tristar';
+    triStar.innerHTML = `
+        <svg width="300" height="300" viewBox="0 0 100 100" style="opacity: 0.03;">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <path d="M50 15 L58 45 L88 45 L64 61 L72 91 L50 75 L28 91 L36 61 L12 45 L42 45 Z" 
+                  fill="none" stroke="currentColor" stroke-width="0.5"/>
+        </svg>
+    `;
+    triStar.style.position = 'fixed';
+    triStar.style.top = '50%';
+    triStar.style.left = '50%';
+    triStar.style.transform = 'translate(-50%, -50%)';
+    triStar.style.pointerEvents = 'none';
+    triStar.style.color = '#C0C0C0';
+    
+    bgAnimation.appendChild(triStar);
 }
 
 // ====================================
@@ -165,6 +166,7 @@ function initCarousel() {
 // Updates 3D positions of carousel items
 // ANIMATION LOGIC: Controls rotation effect
 // ====================================
+
 function updateCarousel() {
     const items = document.querySelectorAll('.carousel-item');
     const indicators = document.querySelectorAll('.indicator');
@@ -255,6 +257,7 @@ function updateCarousel() {
 // SECTION 5: CAROUSEL CONTROLS
 // Navigation functions
 // ====================================
+
 function nextSlide() {
     currentIndex = (currentIndex + 1) % portfolioData.length;
     updateCarousel();
@@ -274,6 +277,7 @@ function goToSlide(index) {
 // SECTION 6: MOBILE MENU
 // Hamburger menu functionality
 // ====================================
+
 const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
 
@@ -297,6 +301,7 @@ if (menuToggle && navMenu) {
 // SECTION 7: HEADER SCROLL EFFECT
 // Makes header transparent on scroll
 // ====================================
+
 const header = document.getElementById('header');
 let lastScroll = 0;
 
@@ -316,6 +321,7 @@ window.addEventListener('scroll', () => {
 // SECTION 8: SMOOTH SCROLLING
 // Smooth navigation to sections
 // ====================================
+
 const navLinks = document.querySelectorAll('.nav-link');
 navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
@@ -339,6 +345,7 @@ navLinks.forEach(link => {
 // SECTION 9: ACTIVE NAVIGATION UPDATE
 // Highlights current section in menu
 // ====================================
+
 function updateActiveNav() {
     const sections = document.querySelectorAll('section[id]');
     const scrollPosition = window.pageYOffset + 150;
@@ -367,6 +374,7 @@ window.addEventListener('scroll', updateActiveNav);
 // Fades in sections as you scroll
 // EFFECT: Progressive content reveal
 // ====================================
+
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
@@ -390,6 +398,7 @@ sections.forEach(section => {
 // SECTION 11: TIMELINE ANIMATION
 // Staggered reveal for experience items
 // ====================================
+
 const timelineItems = document.querySelectorAll('.timeline-item');
 timelineItems.forEach((item, index) => {
     item.style.opacity = '0';
@@ -412,6 +421,7 @@ timelineItems.forEach((item, index) => {
 // SECTION 12: SKILLS ANIMATION
 // Staggered reveal for skill categories
 // ====================================
+
 const skillCategories = document.querySelectorAll('.skill-category');
 skillCategories.forEach((category, index) => {
     category.style.opacity = '0';
@@ -434,6 +444,7 @@ skillCategories.forEach((category, index) => {
 // SECTION 13: COURSE CARDS ANIMATION
 // Staggered reveal for learning section
 // ====================================
+
 const courseCards = document.querySelectorAll('.course-card');
 courseCards.forEach((card, index) => {
     card.style.opacity = '0';
@@ -520,6 +531,7 @@ scrollTopBtn.addEventListener('mouseleave', () => {
 // SECTION 16: KEYBOARD NAVIGATION
 // Arrow keys control carousel
 // ====================================
+
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') prevSlide();
     if (e.key === 'ArrowRight') nextSlide();
@@ -529,6 +541,7 @@ document.addEventListener('keydown', (e) => {
 // SECTION 17: CAROUSEL RESPONSIVE UPDATE
 // Updates carousel on window resize
 // ====================================
+
 let resizeTimeout;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
@@ -542,6 +555,7 @@ window.addEventListener('resize', () => {
 // Hero section parallax on scroll
 // EFFECT: Subtle depth on homepage
 // ====================================
+
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const heroContent = document.querySelector('.hero-content');
@@ -555,6 +569,7 @@ window.addEventListener('scroll', () => {
 // SECTION 19: LOADING SCREEN
 // Hides loader after page loads
 // ====================================
+
 window.addEventListener('load', () => {
     setTimeout(() => {
         const loader = document.getElementById('loader');
@@ -571,6 +586,7 @@ window.addEventListener('load', () => {
 // SECTION 20: EVENT LISTENERS SETUP
 // Initialize carousel controls
 // ====================================
+
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize carousel
     initCarousel();
@@ -583,12 +599,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (nextBtn) nextBtn.addEventListener('click', nextSlide);
 });
 
-
-
 // ====================================
 // CSS ANIMATIONS - INJECTED
 // Float animation for particles
 // ====================================
+
 const style = document.createElement('style');
 style.textContent = `
     @keyframes float {
@@ -607,6 +622,7 @@ document.head.appendChild(style);
 // ====================================
 // CONSOLE LOG - CONFIRMATION
 // ====================================
+
 console.log('✅ Odai Ayyad Portfolio - Loaded Successfully');
 console.log('🚗 AMG GT Black Series P1 Theme Active');
 console.log('📊 Projects loaded:', portfolioData.length);
