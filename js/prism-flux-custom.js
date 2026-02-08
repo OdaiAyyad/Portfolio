@@ -44,6 +44,11 @@ const portfolioData = [
     // }
 ];
 
+// ====================================
+// SECTION 2: BACKGROUND ANIMATION
+// Creates floating particles and AMG tri-star
+// EFFECT: Subtle background movement
+// ====================================
 function initBackgroundAnimation() {
     const bgAnimation = document.getElementById('bgAnimation');
     const particleCount = 50;
