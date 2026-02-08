@@ -313,6 +313,29 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
+// ====================================
+// SECTION 8: SMOOTH SCROLLING
+// Smooth navigation to sections
+// ====================================
+const navLinks = document.querySelectorAll('.nav-link');
+navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+            const headerHeight = header.offsetHeight;
+            const targetPosition = targetSection.offsetTop - headerHeight;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
 
 
 // ====================================
