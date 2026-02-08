@@ -409,6 +409,28 @@ timelineItems.forEach((item, index) => {
     timelineObserver.observe(item);
 });
 
+// ====================================
+// SECTION 12: SKILLS ANIMATION
+// Staggered reveal for skill categories
+// ====================================
+const skillCategories = document.querySelectorAll('.skill-category');
+skillCategories.forEach((category, index) => {
+    category.style.opacity = '0';
+    category.style.transform = 'translateY(30px)';
+    category.style.transition = `all 0.6s ease ${index * 0.1}s`;
+    
+    const skillsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    skillsObserver.observe(category);
+});
+
 
 
 // ====================================
