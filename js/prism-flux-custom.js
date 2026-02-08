@@ -431,6 +431,28 @@ skillCategories.forEach((category, index) => {
     skillsObserver.observe(category);
 });
 
+// ====================================
+// SECTION 13: COURSE CARDS ANIMATION
+// Staggered reveal for learning section
+// ====================================
+const courseCards = document.querySelectorAll('.course-card');
+courseCards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = `all 0.5s ease ${index * 0.05}s`;
+    
+    const courseObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    courseObserver.observe(card);
+});
+
 
 
 // ====================================
