@@ -166,7 +166,6 @@ function initCarousel() {
 // Updates 3D positions of carousel items
 // ANIMATION LOGIC: Controls rotation effect
 // ====================================
-
 function updateCarousel() {
     const items = document.querySelectorAll('.carousel-item');
     const indicators = document.querySelectorAll('.indicator');
@@ -251,6 +250,25 @@ function updateCarousel() {
     indicators.forEach((indicator, index) => {
         indicator.classList.toggle('active', index === currentIndex);
     });
+}
+
+// ====================================
+// SECTION 5: CAROUSEL CONTROLS
+// Navigation functions
+// ====================================
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % portfolioData.length;
+    updateCarousel();
+}
+
+function prevSlide() {
+    currentIndex = (currentIndex - 1 + portfolioData.length) % portfolioData.length;
+    updateCarousel();
+}
+
+function goToSlide(index) {
+    currentIndex = index;
+    updateCarousel();
 }
 
 
