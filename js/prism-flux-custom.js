@@ -53,7 +53,7 @@ function initBackgroundAnimation() {
     const bgAnimation = document.getElementById('bgAnimation');
     
     // Create floating particles
-    const particleCount = 40; // Reduced for performance
+    const particleCount = 50; // Reduced for performance
     
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
@@ -69,7 +69,7 @@ function initBackgroundAnimation() {
         particle.style.pointerEvents = 'none';
         
         // Animation properties
-        const duration = Math.random() * 20 + 10;
+        const duration = Math.random() * 20 + 15;
 
         const delay = Math.random() * 5;
         const xMovement = (Math.random() - 0.5) * 200;
