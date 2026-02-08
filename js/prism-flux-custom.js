@@ -62,7 +62,7 @@ function initBackgroundAnimation() {
         particle.style.position = 'absolute';
         particle.style.width = Math.random() * 3 + 1 + 'px';
         particle.style.height = particle.style.width;
-        particle.style.background = 'rgba(192, 192, 192, 0.2)'; // Silver glow
+        particle.style.background = 'rgba(1, 245, 209, 0.3)';
         particle.style.borderRadius = '50%';
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = Math.random() * 100 + '%';
