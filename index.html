@@ -124,34 +124,137 @@
         </div>
     </section>
 
-    <!-- ====================================
-        ABOUT SECTION
+<!-- ====================================
+     INTERACTIVE ABOUT ME SECTION
         - Personal introduction
         - GitHub contribution graph
         - CUSTOMIZABLE: Update bio text
-    ==================================== -->
-    <section class="section about-section" id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <!-- Bio Text - CUSTOMIZABLE: Edit your story -->
-                <div class="about-text">
-                    <p>I'm an AI Engineer and Quality Assurance Specialist based in Amman, Jordan. I combine technical expertise in artificial intelligence with rigorous quality assurance practices to build reliable, intelligent systems.</p>
+==================================== -->
+<section class="section about-section" id="about">
+    <div class="container">
+        <h2 class="section-title">About Me</h2>
+        
+        <div class="about-grid">
+            
+            <!-- LEFT SIDE: Brief Bio + Stats Cards -->
+            <div class="about-left">
+                <!-- Brief Introduction (CUSTOMIZABLE) -->
+                <div class="about-intro">
+                    <p class="intro-text">
+                        AI Engineer & QA Specialist combining <span class="highlight">technical innovation</span> 
+                        with <span class="highlight">rigorous quality assurance</span> to build intelligent, 
+                        reliable systems.
+                    </p>
+                </div>
+                
+                <!-- Animated Stats Cards (CUSTOMIZABLE) -->
+                <div class="stats-cards">
+                    <div class="stat-card" data-stat="location">
+                        <div class="stat-icon">📍</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Location</div>
+                            <div class="stat-value">Amman, Jordan</div>
+                        </div>
+                    </div>
                     
-                    <p>My journey spans machine learning, deep learning, and agentic AI workflows, complemented by hands-on QA experience in manual testing, API validation, and AI-assisted quality initiatives. I'm passionate about creating solutions that are not only innovative but also robust and production-ready.</p>
+                    <div class="stat-card" data-stat="focus">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Focus Areas</div>
+                            <div class="stat-value">AI & Quality Assurance</div>
+                        </div>
+                    </div>
                     
-                    <p>Currently expanding my expertise across the AI and QA spectrum, I'm driven by continuous learning and the pursuit of technical excellence.</p>
+                    <div class="stat-card" data-stat="status">
+                        <div class="stat-icon">💼</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Current Role</div>
+                            <div class="stat-value">QA Officer @ Jo Academy</div>
+                        </div>
+                    </div>
                     
-                    <!-- GitHub Contributions Graph - CUSTOMIZABLE: Update username -->
-                    <div class="github-contributions">
-                        <h3 class="contributions-title">GitHub Activity</h3>
-                        <img src="https://ghchart.rshah.org/00CFC1/odaiayyad" alt="GitHub Contributions" class="contributions-chart" />
-                        <p class="contributions-note">Contributions over the past year</p>
+                    <div class="stat-card" data-stat="education">
+                        <div class="stat-icon">🎓</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Education</div>
+                            <div class="stat-value">BS in AI & Data Science</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Technologies Marquee (ANIMATED) -->
+                <div class="tech-marquee">
+                    <div class="marquee-content">
+                        <span class="tech-item">Python</span>
+                        <span class="tech-item">LangChain</span>
+                        <span class="tech-item">YOLOv11</span>
+                        <span class="tech-item">Postman</span>
+                        <span class="tech-item">TensorFlow</span>
+                        <span class="tech-item">API Testing</span>
+                        <span class="tech-item">LLMs</span>
+                        <span class="tech-item">RAG</span>
+                        <!-- Duplicate for seamless loop -->
+                        <span class="tech-item">Python</span>
+                        <span class="tech-item">LangChain</span>
+                        <span class="tech-item">YOLOv11</span>
+                        <span class="tech-item">Postman</span>
+                        <span class="tech-item">TensorFlow</span>
+                        <span class="tech-item">API Testing</span>
+                        <span class="tech-item">LLMs</span>
+                        <span class="tech-item">RAG</span>
                     </div>
                 </div>
             </div>
+            
+            <!-- RIGHT SIDE: 3D GitHub Contribution Graph -->
+            <div class="about-right">
+                <div class="github-3d-container">
+                    <h3 class="github-title">
+                        <span class="github-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </span>
+                        GitHub Activity
+                    </h3>
+                    
+                    <!-- OPTION 1: Standard 2D GitHub Chart (EASY) -->
+                    <div class="github-chart-2d">
+                        <img src="https://ghchart.rshah.org/00CFC1/odaiayyad" 
+                             alt="Odai's GitHub Contributions" 
+                             class="contributions-img" />
+                        <p class="chart-caption">Contributions over the past year</p>
+                    </div>
+                    
+                    <!-- OPTION 2: GitHub Stats Card (ALTERNATIVE) -->
+                    <div class="github-stats-card" style="display: none;">
+                        <img src="https://github-readme-stats.vercel.app/api?username=odaiayyad&show_icons=true&theme=dark&bg_color=0a0a0a&title_color=00CFC1&text_color=b8b8b8&icon_color=00CFC1&border_color=333333" 
+                             alt="Odai's GitHub Stats" 
+                             class="stats-img" />
+                    </div>
+                    
+                    <!-- GitHub Link Button -->
+                    <a href="https://github.com/odaiayyad" target="_blank" class="github-profile-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View Full Profile
+                    </a>
+                </div>
+            </div>
+            
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- ====================================
+     NOTES:
+     - Remove old About section completely
+     - This is more visual, less text
+     - Stats cards animate on scroll
+     - Tech marquee scrolls continuously
+     - GitHub chart embedded directly
+==================================== -->
 
     <!-- ====================================
          PROJECTS SECTION - 3D CAROUSEL
