@@ -37,9 +37,9 @@
    /* AMG-Inspired Accent Colors */
     --amg-cyan: #00CFC1;              /* Muted cyan - primary accent */
     --amg-cyan-light: #1ADACA;        /* Lighter cyan for hover */
-    --amg-silver: #C0C0C0;            /* Chrome silver accent */
-    --amg-gold: #E8E8E8;              /* P1 Edition gold highlight */
-    --amg-dark-silver: #808080;       /* Muted silver */
+    --amg-silver: #B8B8B8;            /* Darker silver */
+    --amg-gold: #D4AF37;              /* Champagne gold accent */
+    --amg-dark-silver: #707070;
 
    /* Text Colors */
     --text-primary: #ffffff;
