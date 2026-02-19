@@ -465,9 +465,9 @@ courseCards.forEach((card, index) => {
 
 // ====================================
 // SECTION 14: SCROLL TO TOP BUTTON
+// With a gradient hover effect
 // Floating button to return to top
 // ====================================
-
 const scrollTopBtn = document.createElement('button');
 scrollTopBtn.innerHTML = '↑';
 scrollTopBtn.setAttribute('aria-label', 'Scroll to top');
@@ -491,6 +491,7 @@ scrollTopBtn.style.cssText = `
 `;
 document.body.appendChild(scrollTopBtn);
 
+// Show/hide based on scroll position
 window.addEventListener('scroll', () => {
     if (window.pageYOffset > 500) {
         scrollTopBtn.style.opacity = '1';
@@ -501,6 +502,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Scroll to top on click
 scrollTopBtn.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
@@ -508,14 +510,22 @@ scrollTopBtn.addEventListener('click', () => {
     });
 });
 
+// ====================================
+// GRADIENT HOVER EFFECT
+// Same as Download Resume button
+// ====================================
 scrollTopBtn.addEventListener('mouseenter', () => {
     scrollTopBtn.style.transform = 'translateY(-5px) scale(1.1)';
     scrollTopBtn.style.boxShadow = '0 8px 30px rgba(192, 192, 192, 0.5)';
+    // GRADIENT ANIMATION - Change background on hover
+    scrollTopBtn.style.background = 'linear-gradient(135deg, #00CFC1, #C0C0C0)';
 });
 
 scrollTopBtn.addEventListener('mouseleave', () => {
     scrollTopBtn.style.transform = 'translateY(0) scale(1)';
     scrollTopBtn.style.boxShadow = '0 5px 20px rgba(192, 192, 192, 0.3)';
+    // RETURN TO ORIGINAL GRADIENT
+    scrollTopBtn.style.background = 'linear-gradient(135deg, #C0C0C0, #A8A8A8)';
 });
 
 // ====================================
