@@ -50,55 +50,202 @@ const portfolioData = [
 // Creates floating particles and AMG tri-star
 // EFFECT: Subtle background movement
 // ====================================
+// ====================================
+// ENHANCED BACKGROUND ANIMATION
+// Moving lines + AMG tri-star
+// Replace the initBackgroundAnimation() function in your JS file
+// ====================================
+
 function initBackgroundAnimation() {
     const bgAnimation = document.getElementById('bgAnimation');
-
-    // Create floating particles
-    const particleCount = 50; // Reduced for performance
-
+    
+    // ====================================
+    // SECTION 1: ANIMATED MOVING LINES
+    // Creates diagonal lines that move across screen
+    // CUSTOMIZABLE: Adjust lineCount, speed, opacity
+    // ====================================
+    
+    const lineCount = 8; // Number of moving lines
+    
+    for (let i = 0; i < lineCount; i++) {
+        const line = document.createElement('div');
+        line.className = 'moving-line';
+        
+        // Line styling
+        line.style.position = 'absolute';
+        line.style.width = '1px';
+        line.style.height = '100%';
+        line.style.background = 'linear-gradient(180deg, transparent, rgba(0, 207, 193, 0.2), transparent)';
+        line.style.left = (i * (100 / lineCount)) + '%';
+        line.style.top = '0';
+        line.style.pointerEvents = 'none';
+        
+        // Animation properties
+        const duration = 15 + Math.random() * 10; // 15-25 seconds
+        const delay = i * 2; // Stagger the animations
+        
+        line.style.animation = `moveLine ${duration}s linear ${delay}s infinite`;
+        
+        bgAnimation.appendChild(line);
+    }
+    
+    // ====================================
+    // SECTION 2: HORIZONTAL MOVING LINES
+    // Creates horizontal lines for grid effect
+    // ====================================
+    
+    const horizontalLineCount = 5;
+    
+    for (let i = 0; i < horizontalLineCount; i++) {
+        const hLine = document.createElement('div');
+        hLine.className = 'moving-line-horizontal';
+        
+        hLine.style.position = 'absolute';
+        hLine.style.width = '100%';
+        hLine.style.height = '1px';
+        hLine.style.background = 'linear-gradient(90deg, transparent, rgba(0, 207, 193, 0.15), transparent)';
+        hLine.style.left = '0';
+        hLine.style.top = (i * (100 / horizontalLineCount)) + '%';
+        hLine.style.pointerEvents = 'none';
+        
+        const duration = 20 + Math.random() * 10;
+        const delay = i * 1.5;
+        
+        hLine.style.animation = `moveLineHorizontal ${duration}s linear ${delay}s infinite`;
+        
+        bgAnimation.appendChild(hLine);
+    }
+    
+    // ====================================
+    // SECTION 3: FLOATING PARTICLES
+    // Subtle ambient particles
+    // CUSTOMIZABLE: Adjust particleCount
+    // ====================================
+    
+    const particleCount = 30;
+    
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
-
-        // Particle styling
+        particle.className = 'floating-particle';
+        
         particle.style.position = 'absolute';
         particle.style.width = Math.random() * 3 + 1 + 'px';
         particle.style.height = particle.style.width;
-        particle.style.background = 'rgba(1, 245, 209, 0.25)';
+        particle.style.background = 'rgba(192, 192, 192, 0.2)';
         particle.style.borderRadius = '50%';
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = Math.random() * 100 + '%';
         particle.style.pointerEvents = 'none';
-
-        // Animation properties
+        
         const duration = Math.random() * 20 + 15;
-
         const delay = Math.random() * 5;
-        const xMovement = (Math.random() - 0.5) * 200;
-        const yMovement = (Math.random() - 0.5) * 200;
-
-        particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
-
+        
+        particle.style.animation = `floatParticle ${duration}s ease-in-out ${delay}s infinite`;
+        
         bgAnimation.appendChild(particle);
     }
-
-    // Create animated lines
-    for (let i = 0; i < 5; i++) {
-        const line = document.createElement('div');
-        line.style.position = 'absolute';
-        line.style.width = Math.random() * 200 + 100 + 'px';
-        line.style.height = '1px';
-        line.style.background = 'linear-gradient(90deg, transparent, rgba(1, 245, 209, 0.3), transparent)';
-        line.style.left = Math.random() * 100 + '%';
-        line.style.top = Math.random() * 100 + '%';
-        line.style.transform = `rotate(${Math.random() * 360}deg)`;
-        line.style.pointerEvents = 'none';
-
-        const duration = Math.random() * 15 + 10;
-        line.style.animation = `drift ${duration}s linear infinite`;
-
-        bgAnimation.appendChild(line);
-    }
+    
+    // ====================================
+    // SECTION 4: AMG TRI-STAR (Subtle)
+    // Mercedes three-pointed star watermark
+    // STATIC: Design element
+    // ====================================
+    
+    const triStar = document.createElement('div');
+    triStar.className = 'amg-tristar';
+    triStar.innerHTML = `
+        <svg width="400" height="400" viewBox="0 0 100 100" style="opacity: 0.02;">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="0.3"/>
+            <path d="M50 15 L58 45 L88 45 L64 61 L72 91 L50 75 L28 91 L36 61 L12 45 L42 45 Z" 
+                  fill="none" stroke="currentColor" stroke-width="0.3"/>
+        </svg>
+    `;
+    triStar.style.position = 'fixed';
+    triStar.style.top = '50%';
+    triStar.style.left = '50%';
+    triStar.style.transform = 'translate(-50%, -50%)';
+    triStar.style.pointerEvents = 'none';
+    triStar.style.color = '#C0C0C0';
+    triStar.style.zIndex = '-1';
+    
+    bgAnimation.appendChild(triStar);
+    
+    // ====================================
+    // SECTION 5: INJECT CSS ANIMATIONS
+    // Keyframes for all moving elements
+    // STATIC: Animation definitions
+    // ====================================
+    
+    const animationStyles = document.createElement('style');
+    animationStyles.textContent = `
+        @keyframes moveLine {
+            0% {
+                transform: translateX(-100px) translateY(-100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateX(100px) translateY(100vh);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes moveLineHorizontal {
+            0% {
+                transform: translateY(-50px) translateX(-100vw);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(50px) translateX(100vw);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes floatParticle {
+            0%, 100% {
+                transform: translate(0, 0);
+                opacity: 0.2;
+            }
+            25% {
+                transform: translate(20px, -20px);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translate(-15px, -40px);
+                opacity: 0.6;
+            }
+            75% {
+                transform: translate(-25px, -20px);
+                opacity: 0.4;
+            }
+        }
+    `;
+    document.head.appendChild(animationStyles);
 }
+
+// ====================================
+// HOW TO USE:
+// 1. Replace the old initBackgroundAnimation() function
+// 2. Save the file
+// 3. Refresh your portfolio
+// ====================================
 
 // ====================================
 // SECTION 3: 3D CAROUSEL INITIALIZATION
