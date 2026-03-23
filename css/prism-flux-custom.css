@@ -37,8 +37,8 @@
    /* AMG-Inspired Accent Colors */
     --amg-cyan: #00CFC1;              /* Muted cyan - primary accent */
     --amg-cyan-light: #1ADACA;        /* Lighter cyan for hover */
-    --amg-silver: #909090;            /* Gunmetal gray */
-    --amg-gold: #00CFC1;              /* Use cyan as third color */
+    --amg-silver: #A855F7;      /* Purple */
+    --amg-gold: #C084FC;        /* Light purple */
     --amg-dark-silver: #606060;       /* Darker muted */
 
    /* Text Colors */
