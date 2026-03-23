@@ -1347,6 +1347,26 @@ CUSTOMIZABLE: Adjust breakpoints
     justify-content: center;
 }
 }
+/* Add to your CSS file at the end */
+.github-contributions {
+    text-align: center;
+    margin-top: 40px;
+    padding: 30px;
+    background: var(--carbon-medium);
+    border: 1px solid var(--amg-cyan);
+    border-radius: 15px;
+}
+
+.github-contributions h3 {
+    color: var(--amg-cyan);
+    margin-bottom: 20px;
+}
+
+.github-contributions img {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 8px;
+}
 /* ====================================
 END OF STYLESHEET
 Last updated: FEB-2026
