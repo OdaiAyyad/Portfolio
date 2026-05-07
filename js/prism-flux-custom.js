@@ -580,16 +580,23 @@ window.addEventListener('scroll', () => {
 // Hides loader after page loads
 // ====================================
 
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        const loader = document.getElementById('loader');
-        if (loader) {
+// Fix 1: Try both DOMContentLoaded AND load
+document.addEventListener('DOMContentLoaded', () => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        // Hide immediately if content is ready
+        setTimeout(() => {
             loader.classList.add('hidden');
-        }
-        
-        // Initialize background animation after loading
-        initBackgroundAnimation();
-    }, 1500);
+        }, 800); // Reduced from 1500ms
+    }
+});
+
+// Backup: Also try on window load
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.classList.add('hidden');
+    }
 });
 
 // ====================================
