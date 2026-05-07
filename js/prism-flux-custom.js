@@ -614,7 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ==================================== */
 
 async function fetchGitHubStats() {
-    const username = 'odaiayyad';
+    const username = 'OdaiAyyad';
     
     try {
         // Fetch user data
