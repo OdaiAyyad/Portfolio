@@ -13,7 +13,7 @@ const portfolioData = [
         id: 1,
         title: 'YOLOv11 Traffic Safety System',
         description: 'Real-time traffic safety system trained on 14,800+ images for driver monitoring and traffic sign detection. Achieved 94.7% mAP50 and 89.2% mAP50-95, ranking in top 7 among 125 interns.',
-        image: 'assets/images/yolo-traffic.jpg',
+        image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop',
         tech: ['YOLOv11', 'Computer Vision', 'Python', 'Deep Learning'],
         link: '' // Optional: Add GitHub or demo link
     },
