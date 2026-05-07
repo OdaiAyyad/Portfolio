@@ -5,572 +5,601 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odai Ayyad - AI Engineer & QA Specialist</title>
     
-    <!-- ====================================
-         STYLESHEET LINK
-         - Main CSS file with all styles
-         - Located in css/prism-flux-custom.css
-    ==================================== -->
-    <link rel="stylesheet" href="css/prism-flux-custom.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <!-- Open Graph for LinkedIn Preview -->
+    <meta property="og:title" content="Odai Ayyad - AI Engineer & QA Specialist">
+    <meta property="og:description" content="AI Engineering and Quality Assurance Portfolio">
+    <meta property="og:url" content="https://odaiayyad.github.io/Portfolio/">
+    
+    <style>
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== VARIABLES ===== */
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #1a1a2e;
+            --primary-cyan: #06b6d4;
+            --primary-blue: #1e3a8a;
+            --text-primary: #ffffff;
+            --text-secondary: #b8b8b8;
+            --border: rgba(6, 182, 212, 0.2);
+        }
+
+        /* ===== BASE ===== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-cyan);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.05), transparent 70%);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff, var(--primary-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            color: var(--primary-cyan);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--primary-cyan);
+            color: var(--primary-cyan);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .github-chart {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+        }
+
+        .github-chart img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* ===== PROJECTS ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+        }
+
+        .project-card h3 {
+            color: var(--primary-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.5rem 1rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid var(--primary-cyan);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--primary-cyan);
+        }
+
+        /* ===== EXPERIENCE ===== */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary-cyan), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 1.5rem;
+            width: 14px;
+            height: 14px;
+            background: var(--primary-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-cyan);
+        }
+
+        .timeline-date {
+            color: var(--primary-cyan);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item h4 {
+            color: var(--text-secondary);
+            font-weight: normal;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .timeline-item li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .timeline-item li::before {
+            content: '▸';
+            position: absolute;
+            left: -1rem;
+            color: var(--primary-cyan);
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .skill-category h3 {
+            color: var(--primary-cyan);
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            color: var(--primary-cyan);
+            border-color: var(--primary-cyan);
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-cyan);
+        }
+
+        .contact-item h3 {
+            color: var(--primary-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            color: var(--text-secondary);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .timeline {
+                padding-left: 2rem;
+            }
+            
+            .timeline-item::before {
+                left: -2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    
-    <!-- ====================================
-         LOADING SCREEN
-         - Shows on page load
-         - Fades out automatically via JS
-         - STATIC - Do not modify structure
-    ==================================== -->
 
-    <!-- ====================================
-         NAVIGATION HEADER
-         - Fixed to top of page
-         - Becomes transparent on scroll
-         - CUSTOMIZABLE: Update menu items
-    ==================================== -->
-    <header class="header" id="header">
-        <nav class="nav-container">
-            <!-- Logo - CUSTOMIZABLE: Change text -->
-            <a href="#home" class="logo">
-                <span class="logo-text">ODAI AYYAD</span>
-            </a>
-            
-            <!-- Navigation Menu - CUSTOMIZABLE: Add/remove sections -->
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#learning" class="nav-link">Learning</a></li>
-                <li><a href="#volunteering" class="nav-link">Volunteering</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+    <!-- HEADER -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#home" class="logo">ODAI AYYAD</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-
-            <!-- Mobile Menu Toggle - STATIC: Do not modify -->
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </nav>
     </header>
 
-    <!-- ====================================
-         ANIMATED BACKGROUND
-         - Contains floating particles & AMG tri-star
-         - Generated by JavaScript
-         - STATIC: Controlled via JS
-    ==================================== -->
-    <div class="bg-animation" id="bgAnimation"></div>
-
-    <!-- ====================================
-         HERO SECTION (Home)
-         - First section visible on page load
-         - CUSTOMIZABLE: Update name, title, slogan
-    ==================================== -->
+    <!-- HERO -->
     <section class="hero" id="home">
-        <div class="hero-content">
-            <!-- Main Name - CUSTOMIZABLE -->
-            <h1 class="hero-name">ODAI AYYAD</h1>
-            
-            <!-- Professional Title - CUSTOMIZABLE -->
-            <h2 class="hero-title">AI Engineer & QA Specialist</h2>
-
-            <!-- Personal Slogan - CUSTOMIZABLE -->
-            <p class="hero-slogan">Engineering Intelligence, Ensuring Quality</p>
-            
-            <!-- Social Links - CUSTOMIZABLE: Update URLs -->
-            <div class="hero-social">
-                <a href="https://linkedin.com/in/odai-ayyad" target="_blank" class="social-btn" aria-label="LinkedIn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                </a>
-                <a href="https://github.com/odaiayyad" target="_blank" class="social-btn" aria-label="GitHub">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
-                <!-- Email Link - CUSTOMIZABLE: Update email -->
-                <a href="mailto:odai.ayyad.work@gmail.com" class="social-btn" aria-label="Email">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
-                    </svg>
-                </a>
-            </div>
-
-            <!-- Action Buttons - CUSTOMIZABLE: Update resume link -->
-            <div class="hero-actions">
-                <a href="assets/Odai_Ayyad_Resume.pdf" download class="btn-primary">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                    Download Resume
-                </a>
-                <a href="#contact" class="btn-secondary">Get in Touch</a>
+        <div>
+            <h1>ODAI AYYAD</h1>
+            <h2>AI Engineer & QA Specialist</h2>
+            <p>Engineering Intelligence, Ensuring Quality</p>
+            <div class="hero-buttons">
+                <a href="assets/Odai_Ayyad_Resume.pdf" download class="btn btn-primary">Download Resume</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
             </div>
         </div>
     </section>
 
-<!-- ====================================
-        ABOUT SECTION
-        - Personal introduction
-        - GitHub contribution graph
-        - CUSTOMIZABLE: Update bio text
-    ==================================== -->
-    <section class="section about-section" id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <!-- Bio Text - CUSTOMIZABLE: Edit your story -->
-                <div class="about-text">
-                    <p>I'm an AI Engineer and Quality Assurance Specialist based in Amman, Jordan. I combine technical expertise in artificial intelligence with rigorous quality assurance practices to build reliable, intelligent systems.</p>
-                    <p>My journey spans machine learning, deep learning, and agentic AI workflows, complemented by hands-on QA experience in manual testing, API validation, and AI-assisted quality initiatives. I'm passionate about creating solutions that are not only innovative but also robust and production-ready.</p>
-                    <p>Currently expanding my expertise across the AI and QA spectrum, I'm driven by continuous learning and the pursuit of technical excellence.</p>
-                    </div>
+    <!-- ABOUT -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <p>I'm an AI Engineer and Quality Assurance Specialist based in Amman, Jordan. I combine technical expertise in artificial intelligence with rigorous quality assurance practices to build reliable, intelligent systems.</p>
+            
+            <p>My journey spans machine learning, deep learning, and agentic AI workflows, complemented by hands-on QA experience in manual testing, API validation, and AI-assisted quality initiatives.</p>
+            
+            <div class="github-chart">
+                <h3 style="color: var(--primary-cyan); margin-bottom: 1rem;">GitHub Activity</h3>
+                <img src="https://ghchart.rshah.org/06b6d4/odaiayyad" alt="GitHub Contributions">
             </div>
-            </div>
+        </div>
     </section>
 
-<!-- ====================================
-     INTERACTIVE GITHUB ACTIVITY SECTION
-     No backend needed - Pure HTML/CSS/JS
-     Add this to your portfolio
-==================================== -->
-<section class="github-section">
-    <div class="container">
-        <h2 class="section-title">GitHub Activity</h2>
-        
-        <div class="github-stats-wrapper">
-            
-            <!-- Main GitHub Chart -->
-            <div class="github-chart-container">
-                <img src="https://ghchart.rshah.org/06b6d4/odaiayyad" 
-                     alt="GitHub Contributions" 
-                     class="github-chart"
-                     id="githubChart">
-                     
-                <!-- Hover Info Card -->
-                <div class="github-info-card" id="githubInfo">
-                    <div class="info-stat">
-                        <span class="stat-label">Total Contributions</span>
-                        <span class="stat-value" id="totalContributions">Loading...</span>
-                    </div>
-                    <div class="info-stat">
-                        <span class="stat-label">Current Streak</span>
-                        <span class="stat-value" id="currentStreak">Loading...</span>
-                    </div>
-                    <div class="info-stat">
-                        <span class="stat-label">Longest Streak</span>
-                        <span class="stat-value" id="longestStreak">Loading...</span>
-                    </div>
+    <!-- PROJECTS -->
+    <section id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>YOLOv11 Traffic Safety System</h3>
+                <p>Real-time driver monitoring and traffic sign detection system trained on 14,800+ images. Achieved 94.7% mAP50 and ranked top 7 among 125 interns.</p>
+                <div class="tech-tags">
+                    <span class="tag">YOLOv11</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Computer Vision</span>
                 </div>
             </div>
-            
-            <!-- Additional Stats Cards -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">📊</div>
-                    <div class="stat-content">
-                        <div class="stat-number" id="publicRepos">0</div>
-                        <div class="stat-label">Public Repos</div>
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">⭐</div>
-                    <div class="stat-content">
-                        <div class="stat-number" id="totalStars">0</div>
-                        <div class="stat-label">Total Stars</div>
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">🔱</div>
-                    <div class="stat-content">
-                        <div class="stat-number" id="totalForks">0</div>
-                        <div class="stat-label">Total Forks</div>
-                    </div>
+
+            <div class="project-card">
+                <h3>YouTube AI Agent</h3>
+                <p>Multi-tool AI agent automating content strategy generation including titles, descriptions, thumbnails, and analytics using GPT-4o and GPT-3.5.</p>
+                <div class="tech-tags">
+                    <span class="tag">LangChain</span>
+                    <span class="tag">GPT-4o</span>
+                    <span class="tag">AI Agents</span>
                 </div>
             </div>
-            
-            <!-- GitHub Profile Link -->
-            <a href="https://github.com/odaiayyad" target="_blank" class="github-profile-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-                View Full GitHub Profile
+
+            <div class="project-card">
+                <h3>RAG-based QA Chatbot</h3>
+                <p>Building internal chatbot for Jo Academy using RAG architecture with Bitrix24 API integration for ticket management and quality assurance.</p>
+                <div class="tech-tags">
+                    <span class="tag">RAG</span>
+                    <span class="tag">LangChain</span>
+                    <span class="tag">Qdrant</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Jan 2026 - Present</div>
+                <h3>Quality Assurance Officer</h3>
+                <h4>Jo Academy</h4>
+                <ul>
+                    <li>Perform manual, regression, and exploratory testing to identify functional, UI, and workflow defects</li>
+                    <li>Execute API testing using Postman, validating request/response behavior and edge cases</li>
+                    <li>Contribute to AI-assisted QA initiatives, including RAG-based chatbot testing</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">Nov 2024 - Jun 2025</div>
+                <h3>AI & Data Science Intern</h3>
+                <h4>Unihance - Jordan</h4>
+                <ul>
+                    <li>Developed ML models using Pandas, NumPy, and Scikit-learn</li>
+                    <li>Built AI solutions with LangChain, LangGraph, and OpenAI APIs</li>
+                    <li>Engineered YOLOv11 traffic system achieving 94.7% mAP50 - top 7/125 interns</li>
+                    <li>Created YouTube AI Agent automating content strategy with GPT-4o</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">Mar 2025 - Nov 2025</div>
+                <h3>Fab Lab Intern</h3>
+                <h4>The Makerspace - Crown Prince Foundation</h4>
+                <ul>
+                    <li>Designed 20+ projects using Fusion 360</li>
+                    <li>Operated laser cutters, CNC machines, and 3D printers</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>AI & Machine Learning</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">AI Agents</span>
+                    <span class="skill-tag">LangChain</span>
+                    <span class="skill-tag">LangGraph</span>
+                    <span class="skill-tag">LLMs</span>
+                    <span class="skill-tag">RAG</span>
+                    <span class="skill-tag">YOLO</span>
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">Scikit-learn</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Quality Assurance</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Manual Testing</span>
+                    <span class="skill-tag">API Testing</span>
+                    <span class="skill-tag">Postman</span>
+                    <span class="skill-tag">Regression Testing</span>
+                    <span class="skill-tag">Bug Tracking</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Programming & Tools</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">GitHub</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-grid">
+            <a href="mailto:odai.ayyad.work@gmail.com" class="contact-item">
+                <h3>Email</h3>
+                <p>odai.ayyad.work@gmail.com</p>
+            </a>
+
+            <a href="tel:+962782923077" class="contact-item">
+                <h3>Phone</h3>
+                <p>+962 782 923 077</p>
+            </a>
+
+            <a href="https://linkedin.com/in/odai-ayyad" target="_blank" class="contact-item">
+                <h3>LinkedIn</h3>
+                <p>linkedin.com/in/odai-ayyad</p>
+            </a>
+
+            <a href="https://github.com/odaiayyad" target="_blank" class="contact-item">
+                <h3>GitHub</h3>
+                <p>github.com/odaiayyad</p>
             </a>
         </div>
-    </div>
-</section>
-
-    <!-- ====================================
-         PROJECTS SECTION - 3D CAROUSEL
-         - Rotating 3D carousel effect
-         - CUSTOMIZABLE: Add/remove projects
-         - DATA ENTRY SECTION: Update project info
-    ==================================== -->
-    <section class="section projects-section" id="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            
-            <!-- 3D Carousel Container - STATIC: Structure controlled by JS -->
-            <div class="carousel-container">
-                <div class="carousel" id="carousel">
-                    <!-- Projects populated by JavaScript from portfolioData -->
-                </div>
-                
-                <!-- Carousel Navigation - STATIC -->
-                <div class="carousel-controls">
-                    <button class="carousel-btn" id="prevBtn">‹</button>
-                    <button class="carousel-btn" id="nextBtn">›</button>
-                </div>
-                
-                <!-- Carousel Indicators - STATIC: Auto-generated by JS -->
-                <div class="carousel-indicators" id="indicators"></div>
-            </div>
-        </div>
     </section>
 
-    <!-- ====================================
-         EXPERIENCE SECTION - Timeline
-         - Reverse chronological order
-         - CUSTOMIZABLE: Add/edit experiences
-         - DATA ENTRY SECTION
-    ==================================== -->
-    <section class="section experience-section" id="experience">
-        <div class="container">
-            <h2 class="section-title">Professional Experience</h2>
-            <div class="timeline">
-
-                <!-- Experience Item 1 - CUSTOMIZABLE -->
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Jan 2026 - Present</div>
-                        <h3 class="timeline-title">Quality Assurance Officer</h3>
-                        <h4 class="timeline-company">Jo Academy</h4>
-                        <ul class="timeline-description">
-                            <li>Perform manual, regression, and exploratory testing to identify functional, UI, and workflow defects</li>
-                            <li>Execute API testing using Postman, validating request/response behavior and edge cases</li>
-                            <li>Contribute to AI-assisted QA initiatives, including RAG-based chatbot testing and validation</li>
-                            <li>Document and track issues using structured bug reports for timely resolution</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Experience Item 2 - CUSTOMIZABLE -->
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Mar 2025 - Nov 2025</div>
-                        <h3 class="timeline-title">Fab Lab Intern</h3>
-                        <h4 class="timeline-company">The Makerspace - Crown Prince Foundation, Jordan</h4>
-                        <ul class="timeline-description">
-                            <li>Designed and modeled 20+ complex 2D and 3D projects using Fusion 360</li>
-                            <li>Operated laser cutters, vinyl cutters, CNC machines, and 3D printers</li>
-                            <li>Applied digital fabrication techniques for rapid prototyping and manufacturing</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Experience Item 3 - CUSTOMIZABLE -->
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Nov 2024 - Jun 2025</div>
-                        <h3 class="timeline-title">AI & Data Science Intern</h3>
-                        <h4 class="timeline-company">Unihance - Jordan</h4>
-                        <ul class="timeline-description">
-                            <li>Developed machine learning models (regression, classification, clustering, association rules) using Pandas, NumPy, and Scikit-learn</li>
-                            <li>Built applied AI solutions using LangChain, LangGraph, and OpenAI APIs, integrating tool-chaining, memory, and prompt engineering</li>
-                            <li>Engineered real-time YOLOv11 traffic signs detection system achieving 94.7% mAP50, ranked top 7 among 125 interns</li>
-                            <li>Created multi-tool YouTube AI Agent automating content strategy generation using GPT-4o</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Experience Item 4 - CUSTOMIZABLE -->
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Jan 2025 - Oct 2025</div>
-                        <h3 class="timeline-title">Data Annotator Freelance</h3>
-                        <h4 class="timeline-company">Alignerr - Labelbox, Remote</h4>
-                        <ul class="timeline-description">
-                            <li>Executed high-precision annotation projects including real-time video stream labeling</li>
-                            <li>Evaluated and compared LLM responses using structured rubrics across multiple categories</li>
-                            <li>Improved model reliability and accuracy for major AI evaluation projects</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Experience Item 5 - CUSTOMIZABLE -->
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Oct 2024 - Jan 2025</div>
-                        <h3 class="timeline-title">Professional Development Training</h3>
-                        <h4 class="timeline-company">Correlation One - USAID, Remote</h4>
-                        <ul class="timeline-description">
-                            <li>Completed comprehensive training for tech roles</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- TO ADD MORE: Copy entire timeline-item div and modify content -->
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ====================================
-         SKILLS SECTION
-         - Categorized skills
-         - CUSTOMIZABLE: Add/remove skills
-         - DATA ENTRY SECTION
-    ==================================== -->
-    <section class="section skills-section" id="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-
-                <!-- Skill Category 1 - CUSTOMIZABLE -->
-                <div class="skill-category">
-                    <h3 class="category-title">AI Engineering</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">AI Agents</span>
-                        <span class="skill-tag">LangChain</span>
-                        <span class="skill-tag">LangGraph</span>
-                        <span class="skill-tag">LLMs</span>
-                        <span class="skill-tag">RAG</span>
-                        <span class="skill-tag">Prompt Engineering</span>
-                        <span class="skill-tag">Transformers</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">Keras</span>
-                        <span class="skill-tag">YOLO</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                    </div>
-                </div>
-
-                <!-- Skill Category 2 - CUSTOMIZABLE -->
-                <div class="skill-category">
-                    <h3 class="category-title">Quality Assurance</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">Manual Testing</span>
-                        <span class="skill-tag">API Testing</span>
-                        <span class="skill-tag">Postman</span>
-                        <span class="skill-tag">Regression Testing</span>
-                        <span class="skill-tag">Performance Testing</span>
-                        <span class="skill-tag">Exploratory Testing</span>
-                        <span class="skill-tag">Bug Tracking</span>
-                        <span class="skill-tag">Test Cases Documentation</span>
-                    </div>
-                </div>
-
-                <!-- Skill Category 3 - CUSTOMIZABLE -->
-                <div class="skill-category">
-                    <h3 class="category-title">Programming & Technologies</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">Python</span>
-                        <i class="devicons devicons-python colored"></i> Python
-                        <i class="devicons devicons-tensorflow colored"></i> TensorFlow
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">JIRA</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub</span>    
-                    </div>
-                </div>
-
-                <!-- TO ADD MORE: Copy skill-category div and modify -->
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ====================================
-         LEARNING SECTION
-         - Courses and certifications
-         - CUSTOMIZABLE: Add/remove courses
-         - DATA ENTRY SECTION
-    ==================================== -->
-    <section class="section learning-section" id="learning">
-        <div class="container">
-            <h2 class="section-title">Courses & Certifications</h2>
-            <div class="learning-grid">
-
-                <!-- Course Card - CUSTOMIZABLE -->
-                <div class="course-card">
-                    <div class="course-content">
-                        <h3 class="course-title">AI and Machine Learning Program</h3>
-                        <div class="course-provider">Samsung Innovation Campus (SIC)</div>
-                        <div class="course-date">Aug 2025 - Oct 2025</div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-content">
-                        <h3 class="course-title">AI Agents & Transformers</h3>
-                        <div class="course-provider">Unihance</div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-content">
-                        <h3 class="course-title">Machine and Deep Learning</h3>
-                        <div class="course-provider">Unihance</div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-content">
-                        <h3 class="course-title">LLMs & GPT</h3>
-                        <div class="course-provider">Unihance</div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-content">
-                        <h3 class="course-title">Statistics and Data Modeling</h3>
-                        <div class="course-provider">Unihance</div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-content">
-                        <h3 class="course-title">Python Basics for Data Science</h3>
-                        <div class="course-provider">edX</div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-content">
-                        <h3 class="course-title">Introduction to Power BI</h3>
-                        <div class="course-provider">Qafza</div>
-                    </div>
-                </div>
-
-                <!-- TO ADD MORE: Copy course-card div and modify -->
-
-            </div>
-        </div>
-    </section>
-    <!-- ====================================
-         VOLUNTEERING SECTION
-         - IEEE leadership experience
-         - CUSTOMIZABLE: Update achievements
-    ==================================== -->
-    <section class="section volunteering-section" id="volunteering">
-        <div class="container">
-            <h2 class="section-title">Volunteering Experience</h2>
-            <div class="volunteering-content">
-                <div class="volunteer-card">
-                    <div class="volunteer-header">
-                        <h3 class="volunteer-title">IEEE Young Professionals Jordan Affinity Group</h3>
-                        <div class="volunteer-date">Feb 2021 - Present</div>
-                    </div>
-                    <div class="volunteer-role">Leadership Roles</div>
-                    <ul class="volunteer-achievements">
-                        <li><strong>Directed Large-Scale Events:</strong> Led logistical and program coordination for 10+ major local and regional congresses (including MESYP Congress and YP Mentoring-Meet), ensuring smooth operations and achieving 95% attendee satisfaction</li>
-                        <li><strong>Team Development & Mentorship:</strong> Recruited, onboarded, and formally mentored 100+ committee members and volunteers, guiding organizational structure and building team capabilities across multiple chapters</li>
-                        <li><strong>Strategic Outreach:</strong> Represented the organization at 10+ major industry events (e.g., Xpand Conferences, IEEE Day), engaging with 2,500+ attendees to promote strategic initiatives and drive membership growth</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ====================================
-         CONTACT SECTION
-         - Contact methods
-         - CUSTOMIZABLE: Update contact info
-    ==================================== -->
-    <section class="section contact-section" id="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <p class="contact-text">I'm always interested in hearing about new opportunities, collaborations, or connecting with fellow AI and QA professionals. Feel free to reach out!</p>
-                    
-                    <div class="contact-methods">
-                        <!-- Email - CUSTOMIZABLE -->
-                        <a href="mailto:odai.ayyad.work@gmail.com" class="contact-method">
-                            <div class="method-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
-                                </svg>
-                            </div>
-                            <div class="method-details">
-                                <div class="method-label">Email</div>
-                                <div class="method-value">odai.ayyad.work@gmail.com</div>
-                            </div>
-                        </a>
-
-                        <!-- Phone - CUSTOMIZABLE -->
-                        <a href="tel:+962782923077" class="contact-method">
-                            <div class="method-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"/>
-                                </svg>
-                            </div>
-                            <div class="method-details">
-                                <div class="method-label">Phone</div>
-                                <div class="method-value">+962 782 923 077</div>
-                            </div>
-                        </a>
-
-                        <!-- LinkedIn - CUSTOMIZABLE -->
-                        <a href="https://linkedin.com/in/odai-ayyad" target="_blank" class="contact-method">
-                            <div class="method-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                                </svg>
-                            </div>
-                            <div class="method-details">
-                                <div class="method-label">LinkedIn</div>
-                                <div class="method-value">linkedin.com/in/odai-ayyad</div>
-                            </div>
-                        </a>
-
-                        <!-- GitHub - CUSTOMIZABLE -->
-                        <a href="https://github.com/odaiayyad" target="_blank" class="contact-method">
-                            <div class="method-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                            </div>
-                            <div class="method-details">
-                                <div class="method-label">GitHub</div>
-                                <div class="method-value">github.com/odaiayyad</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ====================================
-         FOOTER
-         - Copyright and location
-         - STATIC
-    ==================================== -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2026 Odai Ayyad. All rights reserved.</p>
-            <p class="footer-location">Amman - Jordan</p>
-        </div>
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Odai Ayyad. All rights reserved.</p>
+        <p>Amman, Jordan</p>
     </footer>
 
-<!-- ====================================
-         JAVASCRIPT FILE
-         - All animations and interactions
-         - Located in js/prism-flux-custom.js
-    ==================================== -->
-    <script src="js/prism-flux-custom.js"></script>
 </body>
 </html>
