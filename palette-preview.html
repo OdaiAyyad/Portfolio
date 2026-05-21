@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odai Portfolio Palette Preview</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #05070a;
+            color: #f8fafc;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            line-height: 1.5;
+            padding: 42px 22px;
+        }
+
+        .page {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .intro {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .intro p {
+            max-width: 760px;
+            color: #a7b0bf;
+            font-size: 1.02rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 20px;
+        }
+
+        .theme {
+            --bg: #05070a;
+            --panel: #0b111a;
+            --accent: #00e5d4;
+            --accent-2: #9aa4b2;
+            --text: #e6edf3;
+            --muted: #a7b0bf;
+            min-height: 410px;
+            border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+            border-radius: 8px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 32%),
+                linear-gradient(140deg, var(--bg), color-mix(in srgb, var(--panel) 90%, #000 10%));
+            box-shadow: 0 22px 80px rgba(0, 0, 0, 0.35);
+        }
+
+        .theme[data-theme="2"] {
+            --bg: #060b18;
+            --panel: #0b1e3a;
+            --accent: #00d4ff;
+            --accent-2: #7c3aed;
+            --text: #f8fafc;
+            --muted: #b6c1d1;
+        }
+
+        .theme[data-theme="3"] {
+            --bg: #030406;
+            --panel: #111827;
+            --accent: #00cfc1;
+            --accent-2: #d4af37;
+            --text: #f2f5f8;
+            --muted: #c0c7d1;
+        }
+
+        .theme[data-theme="4"] {
+            --bg: #07111f;
+            --panel: #102a43;
+            --accent: #38bdf8;
+            --accent-2: #a855f7;
+            --text: #e2e8f0;
+            --muted: #b4c2d4;
+        }
+
+        .theme[data-theme="5"] {
+            --bg: #080a12;
+            --panel: #121826;
+            --accent: #22d3ee;
+            --accent-2: #6366f1;
+            --text: #eff6ff;
+            --muted: #94a3b8;
+        }
+
+        .theme[data-theme="6"] {
+            --bg: #050505;
+            --panel: #161616;
+            --accent: #00f5d4;
+            --accent-2: #2563eb;
+            --text: #f5f5f5;
+            --muted: #b8bec8;
+        }
+
+        .theme[data-theme="7"] {
+            --bg: #070a1a;
+            --panel: #0f172a;
+            --accent: #06b6d4;
+            --accent-2: #8b5cf6;
+            --text: #f1f5f9;
+            --muted: #cbd5e1;
+        }
+
+        .theme[data-theme="8"] {
+            --bg: #020617;
+            --panel: #0f2a3d;
+            --accent: #67e8f9;
+            --accent-2: #3b82f6;
+            --text: #ffffff;
+            --muted: #c9d6e5;
+        }
+
+        .mock-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px;
+            border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+            background: color-mix(in srgb, var(--bg) 76%, transparent);
+        }
+
+        .brand {
+            color: var(--text);
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .nav-lines {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-lines span {
+            width: 30px;
+            height: 3px;
+            border-radius: 999px;
+            background: color-mix(in srgb, var(--muted) 70%, transparent);
+        }
+
+        .nav-lines span:first-child {
+            background: var(--accent);
+        }
+
+        .mock-hero {
+            padding: 28px 20px 22px;
+        }
+
+        .theme-label {
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .mock-hero h2 {
+            color: var(--text);
+            font-size: 2.2rem;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .mock-hero p {
+            color: var(--muted);
+            max-width: 30rem;
+            font-size: 0.95rem;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            border-radius: 999px;
+            padding: 10px 15px;
+            font-size: 0.86rem;
+            font-weight: 800;
+            color: var(--bg);
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        }
+
+        .button.secondary {
+            color: var(--accent);
+            background: transparent;
+            border: 1px solid color-mix(in srgb, var(--accent) 72%, transparent);
+        }
+
+        .mock-card {
+            margin: 0 20px 20px;
+            padding: 18px;
+            border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+            border-radius: 8px;
+            background: color-mix(in srgb, var(--panel) 86%, transparent);
+        }
+
+        .mock-card h3 {
+            color: var(--text);
+            font-size: 1.05rem;
+            margin-bottom: 9px;
+        }
+
+        .mock-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .chips {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .chip {
+            padding: 6px 9px;
+            border-radius: 999px;
+            color: var(--accent);
+            border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+            background: color-mix(in srgb, var(--accent) 12%, transparent);
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .swatches {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            height: 42px;
+        }
+
+        .swatches span:nth-child(1) { background: var(--bg); }
+        .swatches span:nth-child(2) { background: var(--panel); }
+        .swatches span:nth-child(3) { background: var(--accent); }
+        .swatches span:nth-child(4) { background: var(--accent-2); }
+        .swatches span:nth-child(5) { background: var(--text); }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <section class="intro">
+            <h1>Palette Preview</h1>
+            <p>Pick by feeling, not hex codes. Each card shows how the palette might feel on your actual portfolio: hero, buttons, project card, tags, and the accent balance.</p>
+        </section>
+
+        <section class="grid" aria-label="Portfolio color palette previews">
+            <article class="theme" data-theme="1">
+                <div class="mock-nav"><div class="brand">ODAI AYYAD</div><div class="nav-lines"><span></span><span></span><span></span></div></div>
+                <div class="mock-hero">
+                    <div class="theme-label">Option 1 - AMG Petronas</div>
+                    <h2>AI Engineer & QA Specialist</h2>
+                    <p>Clean AMG-inspired cyan with silver restraint. Sporty, sharp, and not too loud.</p>
+                    <div class="actions"><span class="button">Resume</span><span class="button secondary">Projects</span></div>
+                </div>
+                <div class="mock-card"><h3>Driver Monitoring System</h3><p>Computer vision, safety, and real-time AI presented with a polished racing-tech feel.</p><div class="chips"><span class="chip">YOLOv11</span><span class="chip">OpenCV</span><span class="chip">QA</span></div></div>
+                <div class="swatches"><span></span><span></span><span></span><span></span><span></span></div>
+            </article>
+
+            <article class="theme" data-theme="2">
+                <div class="mock-nav"><div class="brand">ODAI AYYAD</div><div class="nav-lines"><span></span><span></span><span></span></div></div>
+                <div class="mock-hero">
+                    <div class="theme-label">Option 2 - Deep Tech Cyan</div>
+                    <h2>AI Engineer & QA Specialist</h2>
+                    <p>More futuristic and AI-focused, with a visible purple glow for the tech gradient touch.</p>
+                    <div class="actions"><span class="button">Resume</span><span class="button secondary">Projects</span></div>
+                </div>
+                <div class="mock-card"><h3>YouTube AI Agent</h3><p>Works well for LLMs, agents, automations, and modern AI workflows.</p><div class="chips"><span class="chip">LangChain</span><span class="chip">GPT-4o</span><span class="chip">RAG</span></div></div>
+                <div class="swatches"><span></span><span></span><span></span><span></span><span></span></div>
+            </article>
+
+            <article class="theme" data-theme="3">
+                <div class="mock-nav"><div class="brand">ODAI AYYAD</div><div class="nav-lines"><span></span><span></span><span></span></div></div>
+                <div class="mock-hero">
+                    <div class="theme-label">Option 3 - Black Series Luxury</div>
+                    <h2>AI Engineer & QA Specialist</h2>
+                    <p>AMG black, cyan, silver, and a small gold touch. Premium, automotive, and serious.</p>
+                    <div class="actions"><span class="button">Resume</span><span class="button secondary">Projects</span></div>
+                </div>
+                <div class="mock-card"><h3>QA Automation Workflow</h3><p>The gold gives it a P1 Edition detail without turning the whole site yellow.</p><div class="chips"><span class="chip">n8n</span><span class="chip">Jira API</span><span class="chip">Postman</span></div></div>
+                <div class="swatches"><span></span><span></span><span></span><span></span><span></span></div>
+            </article>
+
+            <article class="theme" data-theme="4">
+                <div class="mock-nav"><div class="brand">ODAI AYYAD</div><div class="nav-lines"><span></span><span></span><span></span></div></div>
+                <div class="mock-hero">
+                    <div class="theme-label">Option 4 - Azure Neon</div>
+                    <h2>AI Engineer & QA Specialist</h2>
+                    <p>Bright, friendly, and modern. More developer portfolio, less automotive luxury.</p>
+                    <div class="actions"><span class="button">Resume</span><span class="button secondary">Projects</span></div>
+                </div>
+                <div class="mock-card"><h3>Machine Learning Models</h3><p>Readable and energetic, especially for recruiters scanning quickly.</p><div class="chips"><span class="chip">TensorFlow</span><span class="chip">Python</span><span class="chip">ML</span></div></div>
+                <div class="swatches"><span></span><span></span><span></span><span></span><span></span></div>
+            </article>
+
+            <article class="theme" data-theme="5">
+                <div class="mock-nav"><div class="brand">ODAI AYYAD</div><div class="nav-lines"><span></span><span></span><span></span></div></div>
+                <div class="mock-hero">
+                    <div class="theme-label">Option 5 - Midnight Graph</div>
+                    <h2>AI Engineer & QA Specialist</h2>
+                    <p>Balanced blue-cyan-purple. Quiet, technical, and good for dashboards or GitHub visuals.</p>
+                    <div class="actions"><span class="button">Resume</span><span class="button secondary">Projects</span></div>
+                </div>
+                <div class="mock-card"><h3>GitHub Activity</h3><p>A strong choice if contributions, stats, and data blocks become a major visual feature.</p><div class="chips"><span class="chip">GitHub</span><span class="chip">Stats</span><span class="chip">AI</span></div></div>
+                <div class="swatches"><span></span><span></span><span></span><span></span><span></span></div>
+            </article>
+
+            <article class="theme" data-theme="6">
+                <div class="mock-nav"><div class="brand">ODAI AYYAD</div><div class="nav-lines"><span></span><span></span><span></span></div></div>
+                <div class="mock-hero">
+                    <div class="theme-label">Option 6 - Electric Carbon</div>
+                    <h2>AI Engineer & QA Specialist</h2>
+                    <p>High-contrast carbon black with strong cyan energy. The loudest racing-tech option.</p>
+                    <div class="actions"><span class="button">Resume</span><span class="button secondary">Projects</span></div>
+                </div>
+                <div class="mock-card"><h3>Real-Time AI Systems</h3><p>Bold and memorable, but we would need to control glow carefully so it does not feel shiny.</p><div class="chips"><span class="chip">Vision</span><span class="chip">Automation</span><span class="chip">Testing</span></div></div>
+                <div class="swatches"><span></span><span></span><span></span><span></span><span></span></div>
+            </article>
+
+            <article class="theme" data-theme="7">
+                <div class="mock-nav"><div class="brand">ODAI AYYAD</div><div class="nav-lines"><span></span><span></span><span></span></div></div>
+                <div class="mock-hero">
+                    <div class="theme-label">Option 7 - Cyan Violet Racing</div>
+                    <h2>AI Engineer & QA Specialist</h2>
+                    <p>Dark blue foundation with cyan and purple, probably the safest modern tech direction.</p>
+                    <div class="actions"><span class="button">Resume</span><span class="button secondary">Projects</span></div>
+                </div>
+                <div class="mock-card"><h3>AI + QA Portfolio</h3><p>Clear, stylish, and flexible enough for both AI engineering and quality assurance sections.</p><div class="chips"><span class="chip">LLMs</span><span class="chip">QA</span><span class="chip">APIs</span></div></div>
+                <div class="swatches"><span></span><span></span><span></span><span></span><span></span></div>
+            </article>
+
+            <article class="theme" data-theme="8">
+                <div class="mock-nav"><div class="brand">ODAI AYYAD</div><div class="nav-lines"><span></span><span></span><span></span></div></div>
+                <div class="mock-hero">
+                    <div class="theme-label">Option 8 - Ice Circuit</div>
+                    <h2>AI Engineer & QA Specialist</h2>
+                    <p>Cool, crisp, and very blue. Strong readability with less purple personality.</p>
+                    <div class="actions"><span class="button">Resume</span><span class="button secondary">Projects</span></div>
+                </div>
+                <div class="mock-card"><h3>Portfolio System</h3><p>Professional and clean, especially if you want the cyan to feel calmer and more premium.</p><div class="chips"><span class="chip">Static Site</span><span class="chip">GitHub Pages</span><span class="chip">Responsive</span></div></div>
+                <div class="swatches"><span></span><span></span><span></span><span></span><span></span></div>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
