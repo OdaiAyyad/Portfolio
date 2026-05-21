@@ -300,23 +300,33 @@
             });
         });
 
-        // Scroll to top button
+        // Scroll-based controls
+        const header = document.querySelector('.header');
         const scrollTopBtn = document.getElementById('scrollTop');
-        
-        window.addEventListener('scroll', () => {
+
+        function updateScrollControls() {
+            const isScrolled = window.pageYOffset > 90;
+            if (header) header.classList.toggle('is-scrolled', isScrolled);
+
+            if (!scrollTopBtn) return;
             if (window.pageYOffset > 300) {
                 scrollTopBtn.classList.add('visible');
             } else {
                 scrollTopBtn.classList.remove('visible');
             }
-        });
+        }
 
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        window.addEventListener('scroll', updateScrollControls);
+        updateScrollControls();
+
+        if (scrollTopBtn) {
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
-        });
+        }
 
         // Reveal sections on scroll
         const sections = document.querySelectorAll('section');

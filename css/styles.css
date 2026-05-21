@@ -248,13 +248,29 @@
         /* ===== HEADER ===== */
         .header {
             position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(7, 10, 26, 0.88);
-            backdrop-filter: blur(18px);
-            border-bottom: 1px solid var(--border);
+            top: 1rem;
+            left: 50%;
+            width: min(calc(100% - 2rem), 1120px);
+            background: transparent;
+            backdrop-filter: none;
+            border: 1px solid transparent;
+            border-radius: 999px;
             z-index: 1000;
-            padding: 1rem 2rem;
+            padding: 0.75rem 1rem;
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, -18px);
+            transition: opacity 0.25s ease, transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s ease;
+        }
+
+        .header.is-scrolled {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, 0);
+            background: rgba(7, 10, 26, 0.72);
+            backdrop-filter: blur(18px);
+            border-color: rgba(6, 182, 212, 0.22);
+            box-shadow: 0 16px 42px rgba(6, 182, 212, 0.1);
         }
 
         .nav {
@@ -466,22 +482,42 @@
 
         .hero-buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 0.15rem;
+            margin-top: 0.35rem;
         }
 
         .btn {
-            padding: 1rem 2.5rem;
+            position: relative;
+            min-width: 220px;
+            min-height: 56px;
+            padding: 0 1.5rem;
             border-radius: 999px;
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
+            font-weight: 800;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
             font-size: 1rem;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 1px;
+            border-radius: inherit;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+            transform: translateX(-120%);
+            transition: transform 0.55s ease;
+            pointer-events: none;
+        }
+
+        .btn:hover::before {
+            transform: translateX(120%);
         }
 
         .btn-primary {
@@ -491,19 +527,31 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px);
             box-shadow: 0 14px 34px var(--glow-violet);
         }
 
         .btn-secondary {
-            border: 2px solid var(--primary-cyan);
+            border: 1px solid rgba(6, 182, 212, 0.78);
             color: var(--primary-cyan);
-            background: transparent;
+            background: rgba(8, 19, 40, 0.42);
+            box-shadow: inset 0 0 18px rgba(6, 182, 212, 0.06);
         }
 
         .btn-secondary:hover {
-            background: rgba(6, 182, 212, 0.1);
-            transform: translateY(-3px);
+            color: var(--text-primary);
+            border-color: rgba(139, 92, 246, 0.78);
+            background: rgba(6, 182, 212, 0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 14px 34px rgba(6, 182, 212, 0.14);
+        }
+
+        .btn-arrow {
+            transition: transform 0.25s ease;
+        }
+
+        .btn-secondary:hover .btn-arrow {
+            transform: translateX(4px);
         }
 
         /* ===== SCROLL UP BUTTON (From old version) ===== */
