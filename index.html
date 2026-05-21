@@ -303,21 +303,17 @@
             border-radius: 999px;
             padding: 0.42rem 0.72rem;
             font-size: 0.82rem;
+            font-family: inherit;
             display: inline-flex;
-            gap: 0.45rem;
             align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .hero-copy-btn {
-            background: transparent;
-            border: 0;
-            color: var(--primary-cyan);
-            cursor: pointer;
-            font-size: 0.74rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-            padding: 0;
+        .hero-copy-chip:hover {
+            color: #081022;
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-violet));
         }
 
         .hero-buttons {
@@ -711,7 +707,7 @@
         }
 
         .contact-panel {
-            max-width: 940px;
+            max-width: 840px;
             margin: 0 auto;
             background: linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(17, 28, 51, 0.92));
             border: 1px solid var(--border);
@@ -724,7 +720,7 @@
 
         .contact-row {
             display: grid;
-            grid-template-columns: 36px minmax(0, max-content) auto;
+            grid-template-columns: 36px minmax(0, 1fr);
             align-items: center;
             column-gap: 0.7rem;
             padding: 0.72rem 0.78rem;
@@ -785,33 +781,27 @@
             overflow-wrap: anywhere;
         }
 
-        .row-end-hint {
-            justify-self: end;
-            border: 1px solid rgba(6, 182, 212, 0.35);
-            color: var(--primary-cyan);
-            background: rgba(6, 182, 212, 0.06);
-            border-radius: 8px;
-            padding: 0.3rem 0.48rem;
-            font-size: 0.68rem;
-            text-transform: uppercase;
-            letter-spacing: 0.45px;
+        .copy-toast {
+            position: fixed;
+            top: 84px;
+            right: 24px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.95), rgba(139, 92, 246, 0.92));
+            color: #06101f;
+            border-radius: 10px;
+            padding: 0.55rem 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            line-height: 1;
+            box-shadow: 0 10px 24px rgba(6, 182, 212, 0.28);
+            opacity: 0;
+            transform: translateY(-8px);
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 30000;
         }
 
-        .contact-row:hover .row-end-hint {
-            color: #081022;
-            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-violet));
-            border-color: transparent;
-        }
-
-        .copy-feedback {
-            color: var(--text-muted);
-            font-size: 0.72rem;
-            text-align: right;
-            margin: 0.15rem 0 0;
-            min-height: 1rem;
-            grid-column: 1 / -1;
+        .copy-toast.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .cursor-ring,
@@ -866,7 +856,7 @@
             }
 
             .contact-row {
-                grid-template-columns: 36px minmax(0, 1fr) max-content;
+                grid-template-columns: 36px minmax(0, 1fr);
             }
 
             .cursor-ring,
@@ -953,23 +943,16 @@
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
                     </svg>
                 </a>
-                <button class="social-btn copy-trigger" data-copy="odai.ayyad.work@gmail.com" data-copy-feedback-target="heroCopyFeedback" aria-label="Copy email">
+                <button class="social-btn copy-trigger" data-copy="odai.ayyad.work@gmail.com" aria-label="Copy email">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"></path>
                     </svg>
                 </button>
             </div>
             <div class="hero-quick-contact">
-                <div class="hero-copy-chip">
-                    <span>odai.ayyad.work@gmail.com</span>
-                    <button class="hero-copy-btn" data-copy="odai.ayyad.work@gmail.com" data-copy-feedback-target="heroCopyFeedback">Copy</button>
-                </div>
-                <div class="hero-copy-chip">
-                    <span>+962 782 923 077</span>
-                    <button class="hero-copy-btn" data-copy="+962782923077" data-copy-feedback-target="heroCopyFeedback">Copy</button>
-                </div>
+                <button class="hero-copy-chip" data-copy="odai.ayyad.work@gmail.com">odai.ayyad.work@gmail.com</button>
+                <button class="hero-copy-chip" data-copy="+962782923077">+962 782 923 077</button>
             </div>
-            <p id="heroCopyFeedback" class="copy-feedback" style="text-align:center; margin-top:-1.2rem; margin-bottom:1.1rem;"></p>
             <div class="hero-buttons">
                 <a href="assets/Odai_Ayyad_Resume.pdf" download class="btn btn-primary">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1101,7 +1084,7 @@
         <h2 class="section-title">Get In Touch</h2>
         <p class="contact-intro">Have a question or want to work together? Reach out directly. You can copy contact details instantly.</p>
         <div class="contact-panel">
-            <button type="button" class="contact-row contact-copy-row" data-copy="odai.ayyad.work@gmail.com" data-copy-feedback-target="contactCopyFeedback">
+            <button type="button" class="contact-row contact-copy-row" data-copy="odai.ayyad.work@gmail.com">
                 <div class="method-icon">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"></path>
@@ -1111,10 +1094,9 @@
                     <div class="method-label">Email</div>
                     <div class="method-value">odai.ayyad.work@gmail.com</div>
                 </div>
-                <span class="row-end-hint">Copy</span>
             </button>
 
-            <button type="button" class="contact-row contact-copy-row" data-copy="+962782923077" data-copy-feedback-target="contactCopyFeedback">
+            <button type="button" class="contact-row contact-copy-row" data-copy="+962782923077">
                 <div class="method-icon">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"></path>
@@ -1124,7 +1106,6 @@
                     <div class="method-label">Phone</div>
                     <div class="method-value">+962 782 923 077</div>
                 </div>
-                <span class="row-end-hint">Copy</span>
             </button>
 
             <a href="https://linkedin.com/in/odai-ayyad" target="_blank" class="contact-row contact-link-row">
@@ -1137,7 +1118,6 @@
                     <div class="method-label">LinkedIn</div>
                     <div class="method-value">linkedin.com/in/odai-ayyad</div>
                 </div>
-                <span class="row-end-hint">Open</span>
             </a>
 
             <a href="https://github.com/odaiayyad" target="_blank" class="contact-row contact-link-row">
@@ -1150,9 +1130,7 @@
                     <div class="method-label">GitHub</div>
                     <div class="method-value">github.com/odaiayyad</div>
                 </div>
-                <span class="row-end-hint">Open</span>
             </a>
-            <p class="copy-feedback" id="contactCopyFeedback"></p>
         </div>
     </section>
 
@@ -1164,6 +1142,7 @@
 
     <!-- SCROLL TO TOP BUTTON -->
     <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">&uarr;</button>
+    <div class="copy-toast" id="copyToast">Copied</div>
 
     <!-- JAVASCRIPT -->
     <script>
@@ -1185,25 +1164,24 @@
             }
         ];
 
-        async function copyText(value, feedbackTargetId) {
+        async function copyText(value) {
+            const toast = document.getElementById('copyToast');
+
+            const showToast = (message) => {
+                if (!toast) return;
+                toast.textContent = message;
+                toast.classList.add('visible');
+                window.clearTimeout(window.copyToastTimer);
+                window.copyToastTimer = window.setTimeout(() => {
+                    toast.classList.remove('visible');
+                }, 1300);
+            };
+
             try {
                 await navigator.clipboard.writeText(value);
-                if (feedbackTargetId) {
-                    const target = document.getElementById(feedbackTargetId);
-                    if (target) {
-                        target.textContent = "Copied";
-                        clearTimeout(target.dataset.timerId ? Number(target.dataset.timerId) : undefined);
-                        const timeoutId = window.setTimeout(() => {
-                            target.textContent = "";
-                        }, 1400);
-                        target.dataset.timerId = String(timeoutId);
-                    }
-                }
+                showToast('Copied');
             } catch (error) {
-                if (feedbackTargetId) {
-                    const target = document.getElementById(feedbackTargetId);
-                    if (target) target.textContent = "Copy failed";
-                }
+                showToast('Copy failed');
             }
         }
 
@@ -1397,8 +1375,7 @@
                 const target = event.currentTarget;
                 if (!(target instanceof HTMLElement)) return;
                 const copyValue = target.dataset.copy;
-                const feedbackTarget = target.dataset.copyFeedbackTarget || "";
-                if (copyValue) copyText(copyValue, feedbackTarget);
+                if (copyValue) copyText(copyValue);
             });
         });
 
