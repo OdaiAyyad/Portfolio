@@ -317,6 +317,77 @@
             font-size: 1.1rem;
         }
 
+        .github-live {
+            margin-top: 2rem;
+            background: linear-gradient(145deg, var(--bg-card), var(--bg-card-soft));
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.2rem;
+        }
+
+        .github-live-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .github-live-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.2px;
+        }
+
+        .github-live-link {
+            font-size: 0.82rem;
+            color: var(--primary-cyan);
+            text-decoration: none;
+            border: 1px solid rgba(6, 182, 212, 0.35);
+            border-radius: 999px;
+            padding: 0.3rem 0.7rem;
+            transition: all 0.25s ease;
+        }
+
+        .github-live-link:hover {
+            background: rgba(6, 182, 212, 0.12);
+        }
+
+        .github-live-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.7rem;
+        }
+
+        .github-stat {
+            background: rgba(6, 182, 212, 0.06);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 10px;
+            padding: 0.75rem;
+        }
+
+        .github-stat-label {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.74rem;
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .github-stat-value {
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .github-status {
+            margin-top: 0.8rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
         /* ===== PROJECTS ===== */
         .projects-carousel {
             max-width: 900px;
@@ -705,6 +776,10 @@
                 padding: 1.7rem;
             }
 
+            .github-live-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
             .contact-link {
                 grid-template-columns: 40px 1fr auto;
                 gap: 0.75rem;
@@ -767,6 +842,32 @@
             <p>I'm an AI Engineer and Quality Assurance Specialist based in Amman, Jordan. I combine technical expertise in artificial intelligence with rigorous quality assurance practices to build reliable, intelligent systems.</p>
             
             <p>My journey spans machine learning, deep learning, and agentic AI workflows, complemented by hands-on QA experience in manual testing, API validation, and AI-assisted quality initiatives. I'm passionate about creating solutions that are not only innovative but also robust and production-ready.</p>
+
+            <div class="github-live" id="githubLive">
+                <div class="github-live-head">
+                    <div class="github-live-title">Live GitHub Snapshot</div>
+                    <a class="github-live-link" href="https://github.com/odaiayyad" target="_blank" rel="noopener">Open Profile</a>
+                </div>
+                <div class="github-live-grid">
+                    <div class="github-stat">
+                        <span class="github-stat-label">Public Repos</span>
+                        <span class="github-stat-value" id="ghRepos">--</span>
+                    </div>
+                    <div class="github-stat">
+                        <span class="github-stat-label">Followers</span>
+                        <span class="github-stat-value" id="ghFollowers">--</span>
+                    </div>
+                    <div class="github-stat">
+                        <span class="github-stat-label">Total Stars</span>
+                        <span class="github-stat-value" id="ghStars">--</span>
+                    </div>
+                    <div class="github-stat">
+                        <span class="github-stat-label">Updated</span>
+                        <span class="github-stat-value" id="ghUpdated">--</span>
+                    </div>
+                </div>
+                <p class="github-status" id="ghStatus">Loading live data...</p>
+            </div>
         </div>
     </section>
 
@@ -941,6 +1042,41 @@
                 tags: ["N8N", "JIRA API", "Automation", "Gmail"]
             }
         ];
+
+        async function loadGitHubSnapshot() {
+            const username = "odaiayyad";
+            const reposEl = document.getElementById("ghRepos");
+            const followersEl = document.getElementById("ghFollowers");
+            const starsEl = document.getElementById("ghStars");
+            const updatedEl = document.getElementById("ghUpdated");
+            const statusEl = document.getElementById("ghStatus");
+            if (!reposEl || !followersEl || !starsEl || !updatedEl || !statusEl) return;
+
+            try {
+                const userRes = await fetch(`https://api.github.com/users/${username}`);
+                const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+                if (!userRes.ok || !reposRes.ok) throw new Error("GitHub API request failed");
+
+                const user = await userRes.json();
+                const repos = await reposRes.json();
+                const stars = Array.isArray(repos) ? repos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0) : 0;
+                const updated = user.updated_at ? new Date(user.updated_at) : null;
+
+                reposEl.textContent = String(user.public_repos ?? "--");
+                followersEl.textContent = String(user.followers ?? "--");
+                starsEl.textContent = String(stars);
+                updatedEl.textContent = updated ? updated.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "--";
+                statusEl.textContent = "Live data from GitHub API";
+            } catch (error) {
+                reposEl.textContent = "--";
+                followersEl.textContent = "--";
+                starsEl.textContent = "--";
+                updatedEl.textContent = "--";
+                statusEl.textContent = "GitHub live data is temporarily unavailable.";
+            }
+        }
+
+        loadGitHubSnapshot();
 
         // Hide loader after page loads
         window.addEventListener('load', () => {
