@@ -299,6 +299,20 @@
             });
         }
 
+        const volunteerToggle = document.getElementById('volunteerToggle');
+        const volunteerExtra = document.getElementById('volunteerExtra');
+
+        if (volunteerToggle && volunteerExtra) {
+            volunteerToggle.addEventListener('click', () => {
+                const isExpanded = volunteerToggle.getAttribute('aria-expanded') === 'true';
+                volunteerToggle.setAttribute('aria-expanded', String(!isExpanded));
+                volunteerExtra.hidden = isExpanded;
+                volunteerToggle.innerHTML = isExpanded
+                    ? 'Show more volunteering <span aria-hidden="true">-&gt;</span>'
+                    : 'Show less volunteering <span aria-hidden="true">-&gt;</span>';
+            });
+        }
+
         document.querySelectorAll('[data-copy]').forEach((copyElement) => {
             copyElement.addEventListener('click', (event) => {
                 event.preventDefault();
