@@ -1049,15 +1049,142 @@
             font-size: 1rem;
         }
 
-        .contact-panel {
-            max-width: 600px;
+        .contact-layout {
+            max-width: 980px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(280px, 0.85fr) minmax(320px, 1fr);
+            gap: 1.2rem;
+            align-items: stretch;
+        }
+
+        .location-card {
+            min-height: 260px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            border: 1px solid rgba(6, 182, 212, 0.24);
+            border-radius: 16px;
+            background:
+                radial-gradient(circle at 38% 35%, rgba(6, 182, 212, 0.18), transparent 20%),
+                radial-gradient(circle at 70% 72%, rgba(139, 92, 246, 0.12), transparent 26%),
+                linear-gradient(145deg, rgba(8, 19, 40, 0.96), rgba(16, 24, 55, 0.9));
+            box-shadow: 0 18px 42px rgba(6, 182, 212, 0.08);
+        }
+
+        .location-map {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(6, 182, 212, 0.09) 1px, transparent 1px),
+                linear-gradient(rgba(139, 92, 246, 0.07) 1px, transparent 1px);
+            background-size: 34px 34px;
+            opacity: 0.78;
+        }
+
+        .location-map::before,
+        .location-map::after {
+            content: '';
+            position: absolute;
+            inset: 18% 10%;
+            border: 1px solid rgba(6, 182, 212, 0.16);
+            border-radius: 42% 58% 44% 56%;
+            transform: rotate(-14deg);
+        }
+
+        .location-map::after {
+            inset: 28% 18%;
+            border-color: rgba(139, 92, 246, 0.16);
+            transform: rotate(18deg);
+        }
+
+        .map-ring,
+        .map-pin,
+        .map-route {
+            position: absolute;
+            display: block;
+        }
+
+        .map-ring {
+            width: 138px;
+            height: 138px;
+            border: 1px solid rgba(6, 182, 212, 0.18);
+            border-radius: 999px;
+        }
+
+        .ring-one {
+            left: 12%;
+            top: 18%;
+        }
+
+        .ring-two {
+            right: 8%;
+            bottom: 12%;
+            border-color: rgba(139, 92, 246, 0.18);
+        }
+
+        .map-pin {
+            left: 47%;
+            top: 42%;
+            width: 18px;
+            height: 18px;
+            border-radius: 999px;
+            background: var(--primary-cyan);
+            box-shadow: 0 0 0 8px rgba(6, 182, 212, 0.14), 0 0 28px rgba(6, 182, 212, 0.65);
+        }
+
+        .map-route {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.75), transparent);
+            transform-origin: left center;
+        }
+
+        .route-one {
+            left: 20%;
+            top: 42%;
+            width: 48%;
+            transform: rotate(-18deg);
+        }
+
+        .route-two {
+            left: 38%;
+            top: 56%;
+            width: 46%;
+            transform: rotate(23deg);
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.7), transparent);
+        }
+
+        .location-details {
+            position: relative;
+            z-index: 1;
+            padding: 1.25rem;
+            background: linear-gradient(180deg, transparent, rgba(8, 19, 40, 0.95));
+        }
+
+        .location-details .section-kicker {
+            margin-bottom: 0.65rem;
+        }
+
+        .location-details h3 {
+            color: var(--text-primary);
+            font-size: 1.35rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .location-details p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .contact-panel {
             background: none;
             border: 0;
             border-radius: 0;
             padding: 0;
             display: grid;
-            grid-template-columns: repeat(2, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, minmax(240px, 1fr));
             gap: 1rem;
         }
 
@@ -1073,7 +1200,7 @@
             transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
             color: inherit;
             text-decoration: none;
-            min-width: 280px;
+            min-width: 0;
             width: 100%;
             min-height: 84px;
         }
@@ -1185,14 +1312,50 @@
         /* ===== FOOTER ===== */
         footer {
             text-align: center;
-            padding: 2.5rem 2rem;
+            padding: 3rem 2rem;
             color: var(--text-secondary);
             border-top: 1px solid var(--border);
             font-size: 0.95rem;
+            background:
+                linear-gradient(135deg, rgba(6, 182, 212, 0.04), transparent 28%),
+                rgba(7, 10, 26, 0.58);
         }
 
-        footer p {
-            margin: 0.3rem 0;
+        .footer-content {
+            max-width: 920px;
+            margin: 0 auto;
+            display: grid;
+            justify-items: center;
+            gap: 0.8rem;
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 0.16em;
+            color: var(--primary-cyan);
+            text-decoration: none;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-cyan);
+        }
+
+        .footer-meta {
+            color: var(--text-muted);
         }
 
         /* ===== RESPONSIVE ===== */
@@ -1203,6 +1366,11 @@
         }
 
         @media (max-width: 900px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+                max-width: 620px;
+            }
+
             .contact-panel {
                 grid-template-columns: 1fr;
             }
