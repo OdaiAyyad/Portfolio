@@ -142,17 +142,17 @@
 
     <!-- PROJECTS -->
     <section id="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-carousel" aria-label="Project carousel">
-            <div class="projects-viewport">
-                <div class="projects-track" id="projectsTrack"></div>
+        <div class="projects-heading">
+            <div>
+                <span class="section-kicker">Selected Work</span>
+                <h2 class="section-title">Featured Projects</h2>
             </div>
-            <div class="project-nav">
-                <button class="project-btn" id="projectPrev" aria-label="Previous project">&lt;</button>
-                <div class="project-dots" id="projectDots" aria-label="Project indicators"></div>
-                <button class="project-btn" id="projectNext" aria-label="Next project">&gt;</button>
-            </div>
+            <button class="project-view-toggle" id="projectViewToggle" type="button" aria-expanded="false">
+                View All
+                <span aria-hidden="true">-&gt;</span>
+            </button>
         </div>
+        <div class="projects-grid" id="projectsGrid" aria-live="polite"></div>
     </section>
 
     <!-- EXPERIENCE -->

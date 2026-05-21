@@ -238,129 +238,56 @@
             }, 900);
         });
 
-        // Dynamic projects carousel
-        const projectsTrack = document.getElementById('projectsTrack');
-        const projectDots = document.getElementById('projectDots');
-        const projectPrev = document.getElementById('projectPrev');
-        const projectNext = document.getElementById('projectNext');
-        let projectIndex = 0;
-        let projectTimer;
+        // Dynamic projects grid
+        const projectsGrid = document.getElementById('projectsGrid');
+        const projectViewToggle = document.getElementById('projectViewToggle');
+        let projectsExpanded = false;
 
         function renderProjects() {
-            if (!projectsTrack || !projectDots) return;
+            if (!projectsGrid) return;
 
-            projectsTrack.innerHTML = projectData.map((project) => {
+            const visibleProjects = projectsExpanded ? projectData : projectData.slice(0, 3);
+            projectsGrid.innerHTML = visibleProjects.map((project) => {
                 const tags = project.tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
                 return `
-                    <article class="project-slide">
-                        <div class="project-card" style="--project-accent: ${project.accent};" tabindex="0" aria-label="${project.title}. Tap or hover to see details.">
-                            <div class="project-face project-front">
-                                <div class="project-art" aria-hidden="true">
-                                    <span>${project.visual}</span>
-                                </div>
-                                <div class="project-front-content">
-                                    <div class="project-kicker">${project.category}</div>
-                                    <h3>${project.title}</h3>
-                                    <div class="tech-tags">${tags}</div>
-                                </div>
-                            </div>
-                            <div class="project-face project-back">
-                                <div>
-                                    <div class="project-kicker">${project.category}</div>
-                                    <h3>${project.title}</h3>
-                                    <p>${project.description}</p>
-                                    <div class="tech-tags">${tags}</div>
-                                </div>
-                                <a class="project-link" href="${project.link}" target="_blank" rel="noopener">View Project</a>
+                    <article class="project-card" style="--project-accent: ${project.accent};">
+                        <div class="project-visual" aria-hidden="true">
+                            <span class="project-category-badge">${project.category}</span>
+                            <span class="project-visual-code">${project.visual}</span>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-kicker">${project.category}</div>
+                            <h3>${project.title}</h3>
+                            <p>${project.description}</p>
+                            <div class="tech-tags">${tags}</div>
+                            <div class="project-actions">
+                                <a class="project-link" href="${project.link}" target="_blank" rel="noopener">
+                                    View Project <span aria-hidden="true">-&gt;</span>
+                                </a>
+                                <a class="project-github" href="${project.link}" target="_blank" rel="noopener" aria-label="Open ${project.title} on GitHub">
+                                    <i class="devicon-github-original"></i>
+                                </a>
                             </div>
                         </div>
                     </article>
                 `;
             }).join("");
 
-            projectDots.innerHTML = projectData.map((_, index) =>
-                `<button class="project-dot${index === 0 ? " active" : ""}" data-index="${index}" aria-label="Go to project ${index + 1}"></button>`
-            ).join("");
-        }
-
-        function updateProjectCarousel(nextIndex) {
-            if (!projectsTrack) return;
-            projectIndex = (nextIndex + projectData.length) % projectData.length;
-            projectsTrack.style.transform = `translateX(-${projectIndex * 100}%)`;
-
-            document.querySelectorAll('.project-dot').forEach((dot, index) => {
-                dot.classList.toggle('active', index === projectIndex);
-            });
-
-            document.querySelectorAll('.project-card.is-flipped').forEach((card) => {
-                card.classList.remove('is-flipped');
-            });
-        }
-
-        function resetProjectTimer() {
-            clearInterval(projectTimer);
-            projectTimer = setInterval(() => updateProjectCarousel(projectIndex + 1), 5500);
+            if (projectViewToggle) {
+                projectViewToggle.setAttribute('aria-expanded', String(projectsExpanded));
+                projectViewToggle.innerHTML = projectsExpanded
+                    ? 'Show Less <span aria-hidden="true">-&gt;</span>'
+                    : 'View All <span aria-hidden="true">-&gt;</span>';
+            }
         }
 
         renderProjects();
-        updateProjectCarousel(0);
-        resetProjectTimer();
 
-        if (projectPrev) {
-            projectPrev.addEventListener('click', () => {
-                updateProjectCarousel(projectIndex - 1);
-                resetProjectTimer();
+        if (projectViewToggle) {
+            projectViewToggle.addEventListener('click', () => {
+                projectsExpanded = !projectsExpanded;
+                renderProjects();
             });
-        }
-
-        if (projectNext) {
-            projectNext.addEventListener('click', () => {
-                updateProjectCarousel(projectIndex + 1);
-                resetProjectTimer();
-            });
-        }
-
-        if (projectDots) {
-            projectDots.addEventListener('click', (event) => {
-                const target = event.target;
-                if (!(target instanceof HTMLElement)) return;
-                const dot = target.closest('.project-dot');
-                if (!dot) return;
-                const targetIndex = Number(dot.dataset.index);
-                if (!Number.isNaN(targetIndex)) {
-                    updateProjectCarousel(targetIndex);
-                    resetProjectTimer();
-                }
-            });
-        }
-
-        if (projectsTrack) {
-            projectsTrack.addEventListener('click', (event) => {
-                const target = event.target;
-                if (!(target instanceof HTMLElement)) return;
-                if (target.closest('a')) return;
-                const card = target.closest('.project-card');
-                if (!card) return;
-                card.classList.toggle('is-flipped');
-                resetProjectTimer();
-            });
-
-            projectsTrack.addEventListener('keydown', (event) => {
-                if (event.key !== 'Enter' && event.key !== ' ') return;
-                const target = event.target;
-                if (!(target instanceof HTMLElement)) return;
-                const card = target.closest('.project-card');
-                if (!card) return;
-                event.preventDefault();
-                card.classList.toggle('is-flipped');
-                resetProjectTimer();
-            });
-        }
-
-        const carouselRoot = document.querySelector('.projects-carousel');
-        if (carouselRoot) {
-            carouselRoot.addEventListener('mouseenter', () => clearInterval(projectTimer));
-            carouselRoot.addEventListener('mouseleave', resetProjectTimer);
         }
 
         document.querySelectorAll('[data-copy]').forEach((copyElement) => {
