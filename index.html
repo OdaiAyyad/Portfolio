@@ -677,16 +677,16 @@
         .contact-methods {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1.2rem;
-            max-width: 960px;
+            gap: 0.95rem;
+            max-width: 880px;
             margin: 0 auto;
         }
 
         .contact-method {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
+            gap: 0.9rem;
+            padding: 0.82rem 0.95rem;
             background: linear-gradient(145deg, var(--bg-card), var(--bg-card-soft));
             border: 1px solid var(--border);
             border-radius: 12px;
@@ -701,8 +701,8 @@
         }
 
         .method-icon {
-            width: 46px;
-            height: 46px;
+            width: 40px;
+            height: 40px;
             border-radius: 999px;
             background: rgba(6, 182, 212, 0.12);
             border: 1px solid rgba(6, 182, 212, 0.38);
@@ -719,17 +719,49 @@
         }
 
         .method-label {
-            font-size: 0.75rem;
+            font-size: 0.71rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: var(--text-muted);
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.14rem;
         }
 
         .method-value {
-            font-size: 0.94rem;
+            font-size: 0.9rem;
             color: var(--text-secondary);
             overflow-wrap: anywhere;
+        }
+
+        .cursor-ring,
+        .cursor-dot {
+            position: fixed;
+            left: 0;
+            top: 0;
+            pointer-events: none;
+            z-index: 20000;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .cursor-ring {
+            width: 30px;
+            height: 30px;
+            border-radius: 999px;
+            border: 1px solid rgba(6, 182, 212, 0.8);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.25);
+        }
+
+        .cursor-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-violet));
+            box-shadow: 0 0 12px rgba(6, 182, 212, 0.5);
+        }
+
+        .cursor-ring.active {
+            border-color: rgba(139, 92, 246, 0.85);
+            box-shadow: 0 0 24px rgba(6, 182, 212, 0.35);
         }
 
         /* ===== FOOTER ===== */
@@ -749,6 +781,11 @@
         @media (max-width: 900px) {
             .contact-methods {
                 grid-template-columns: 1fr;
+            }
+
+            .cursor-ring,
+            .cursor-dot {
+                display: none;
             }
         }
 
@@ -1093,6 +1130,50 @@
             }, 35);
         }
 
+        function initCustomCursor() {
+            if (window.matchMedia('(max-width: 900px)').matches) return;
+
+            const ring = document.createElement('div');
+            ring.className = 'cursor-ring';
+            const dot = document.createElement('div');
+            dot.className = 'cursor-dot';
+            document.body.appendChild(ring);
+            document.body.appendChild(dot);
+
+            let currentX = window.innerWidth / 2;
+            let currentY = window.innerHeight / 2;
+            let targetX = currentX;
+            let targetY = currentY;
+
+            function tick() {
+                currentX += (targetX - currentX) * 0.18;
+                currentY += (targetY - currentY) * 0.18;
+                ring.style.transform = `translate(${currentX - 15}px, ${currentY - 15}px)`;
+                dot.style.transform = `translate(${targetX - 3.5}px, ${targetY - 3.5}px)`;
+                requestAnimationFrame(tick);
+            }
+
+            document.addEventListener('mousemove', (event) => {
+                targetX = event.clientX;
+                targetY = event.clientY;
+                ring.style.opacity = '1';
+                dot.style.opacity = '1';
+            });
+
+            document.addEventListener('mouseleave', () => {
+                ring.style.opacity = '0';
+                dot.style.opacity = '0';
+            });
+
+            const interactiveSelector = 'a, button, .project-card, .skill-tag, .contact-method';
+            document.querySelectorAll(interactiveSelector).forEach((element) => {
+                element.addEventListener('mouseenter', () => ring.classList.add('active'));
+                element.addEventListener('mouseleave', () => ring.classList.remove('active'));
+            });
+
+            tick();
+        }
+
         // Hide loader after page loads
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
@@ -1100,6 +1181,7 @@
                 loader.classList.add('hidden');
                 initBackgroundAnimation();
                 typeHeroSlogan();
+                initCustomCursor();
             }, 900);
         });
 
