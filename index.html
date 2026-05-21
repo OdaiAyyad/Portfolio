@@ -707,16 +707,15 @@
         }
 
         .contact-panel {
-            max-width: 940px;
+            max-width: 780px;
             margin: 0 auto;
-            background: linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(17, 28, 51, 0.92));
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 0.72rem;
+            background: none;
+            border: 0;
+            border-radius: 0;
+            padding: 0;
             display: grid;
-            grid-template-columns: repeat(2, max-content);
-            justify-content: center;
-            gap: 0.62rem;
+            grid-template-columns: repeat(2, minmax(280px, 1fr));
+            gap: 1rem;
         }
 
         .contact-row {
@@ -731,9 +730,9 @@
             transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
             color: inherit;
             text-decoration: none;
-            min-width: 430px;
-            width: max-content;
-            max-width: 100%;
+            min-width: 280px;
+            width: 100%;
+            min-height: 84px;
         }
 
         .contact-row:hover {
