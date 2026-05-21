@@ -977,7 +977,7 @@
         .timeline-item {
             position: relative;
             padding: 2rem;
-            overflow: hidden;
+            overflow: visible;
             background:
                 linear-gradient(145deg, rgba(15, 23, 42, 0.94), rgba(17, 28, 51, 0.86)),
                 radial-gradient(circle at 100% 0, rgba(139, 92, 246, 0.12), transparent 28%);
@@ -996,6 +996,7 @@
             background-size: 34px 34px;
             opacity: 0.3;
             pointer-events: none;
+            border-radius: inherit;
         }
 
         .timeline-item:hover {
