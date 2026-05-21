@@ -25,13 +25,19 @@
 
         /* ===== VARIABLES ===== */
         :root {
-            --bg-dark: #0a0a0f;
-            --bg-card: #1a1a2e;
+            --bg-dark: #070a1a;
+            --bg-card: #0f172a;
+            --bg-card-soft: #111c33;
             --primary-cyan: #06b6d4;
-            --primary-blue: #1e3a8a;
-            --text-primary: #ffffff;
-            --text-secondary: #b8b8b8;
-            --border: rgba(6, 182, 212, 0.2);
+            --primary-violet: #8b5cf6;
+            --primary-blue: #1d4ed8;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border: rgba(6, 182, 212, 0.24);
+            --border-violet: rgba(139, 92, 246, 0.28);
+            --glow-cyan: rgba(6, 182, 212, 0.28);
+            --glow-violet: rgba(139, 92, 246, 0.2);
         }
 
         /* ===== BASE ===== */
@@ -41,7 +47,10 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-dark);
+            background:
+                radial-gradient(circle at 20% 8%, rgba(6, 182, 212, 0.16), transparent 28rem),
+                radial-gradient(circle at 86% 18%, rgba(139, 92, 246, 0.12), transparent 26rem),
+                linear-gradient(135deg, #070a1a 0%, #0b1024 45%, #070a1a 100%);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
@@ -99,8 +108,8 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(7, 10, 26, 0.88);
+            backdrop-filter: blur(18px);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
             padding: 1rem 2rem;
@@ -118,7 +127,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 1.5rem;
             font-weight: 900;
-            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-blue));
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-violet));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
@@ -151,7 +160,11 @@
             justify-content: center;
             text-align: center;
             padding: 2rem;
-            background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.05), transparent 70%);
+            background:
+                linear-gradient(rgba(6, 182, 212, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.035) 1px, transparent 1px),
+                radial-gradient(ellipse at center, rgba(6, 182, 212, 0.12), transparent 68%);
+            background-size: 44px 44px, 44px 44px, auto;
             position: relative;
         }
 
@@ -160,7 +173,7 @@
             font-size: clamp(3.5rem, 10vw, 7rem);
             font-weight: 900;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffffff 0%, var(--primary-cyan) 50%, #ffffff 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-cyan) 46%, var(--primary-violet) 72%, var(--text-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-size: 200% auto;
@@ -196,7 +209,7 @@
 
         .btn {
             padding: 1rem 2.5rem;
-            border-radius: 50px;
+            border-radius: 999px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
@@ -207,14 +220,14 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-violet));
             color: white;
-            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.3);
+            box-shadow: 0 10px 28px var(--glow-cyan);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.5);
+            box-shadow: 0 14px 34px var(--glow-violet);
         }
 
         .btn-secondary {
@@ -235,11 +248,12 @@
             right: 30px;
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 24px;
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 999px;
+            font-size: 22px;
+            font-weight: 500;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
@@ -248,7 +262,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.3);
+            box-shadow: 0 5px 20px rgba(2, 6, 23, 0.4);
         }
 
         .scroll-top.visible {
@@ -258,7 +272,10 @@
 
         .scroll-top:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(6, 182, 212, 0.5);
+            color: #081022;
+            border-color: rgba(6, 182, 212, 0.7);
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-violet));
+            box-shadow: 0 8px 30px var(--glow-violet);
         }
 
         /* ===== SECTIONS ===== */
@@ -300,44 +317,33 @@
             font-size: 1.1rem;
         }
 
-        .github-chart {
-            text-align: center;
-            margin-top: 3rem;
-            padding: 2rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            transition: all 0.3s;
-        }
-
-        .github-chart:hover {
-            border-color: var(--primary-cyan);
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
-        }
-
-        .github-chart h3 {
-            color: var(--primary-cyan);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-        }
-
-        .github-chart img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-
         /* ===== PROJECTS ===== */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+        .projects-carousel {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .projects-viewport {
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .projects-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .project-slide {
+            min-width: 100%;
+            padding: 0.25rem;
         }
 
         .project-card {
-            background: var(--bg-card);
+            background: linear-gradient(145deg, var(--bg-card), var(--bg-card-soft));
             border: 1px solid var(--border);
             border-radius: 15px;
-            padding: 2rem;
+            padding: 2.2rem;
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
@@ -350,7 +356,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary-cyan), var(--primary-blue));
+            background: linear-gradient(90deg, var(--primary-cyan), var(--primary-violet));
             transform: scaleX(0);
             transition: transform 0.3s;
         }
@@ -362,7 +368,7 @@
         .project-card:hover {
             transform: translateY(-10px);
             border-color: var(--primary-cyan);
-            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.2);
+            box-shadow: 0 16px 42px var(--glow-violet);
         }
 
         .project-card h3 {
@@ -375,6 +381,57 @@
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
             line-height: 1.7;
+        }
+
+        .project-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 1.4rem;
+        }
+
+        .project-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: rgba(15, 23, 42, 0.7);
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .project-btn:hover {
+            color: #081022;
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-violet));
+            box-shadow: 0 8px 20px var(--glow-violet);
+        }
+
+        .project-dots {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0 0.4rem;
+        }
+
+        .project-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            border: 1px solid var(--text-muted);
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .project-dot.active {
+            width: 26px;
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-violet));
         }
 
         .tech-tags {
@@ -412,7 +469,7 @@
             position: relative;
             margin-bottom: 3rem;
             padding: 2rem;
-            background: var(--bg-card);
+            background: linear-gradient(145deg, var(--bg-card), var(--bg-card-soft));
             border: 1px solid var(--border);
             border-radius: 15px;
             transition: all 0.3s;
@@ -468,7 +525,7 @@
         }
 
         .timeline-item li::before {
-            content: '▸';
+            content: '>';
             position: absolute;
             left: -1.5rem;
             color: var(--primary-cyan);
@@ -483,7 +540,7 @@
         }
 
         .skill-category {
-            background: var(--bg-card);
+            background: linear-gradient(145deg, var(--bg-card), var(--bg-card-soft));
             border: 1px solid var(--border);
             border-radius: 15px;
             padding: 2rem;
@@ -533,56 +590,77 @@
             font-size: 1.1rem;
         }
 
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            max-width: 900px;
+        .contact-panel {
+            max-width: 860px;
             margin: 0 auto;
-        }
-
-        .contact-item {
-            background: var(--bg-card);
+            background: linear-gradient(145deg, var(--bg-card), var(--bg-card-soft));
             border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.8rem;
+            border-radius: 16px;
+            padding: 1rem;
         }
 
-        .contact-item:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary-cyan);
-            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.25);
+        .contact-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-item + .contact-item {
+            border-top: 1px solid rgba(148, 163, 184, 0.12);
+        }
+
+        .contact-link {
+            display: grid;
+            grid-template-columns: 44px minmax(90px, 130px) 1fr auto;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.9rem 0.7rem;
+            text-decoration: none;
+            transition: background 0.25s ease;
+            border-radius: 12px;
+        }
+
+        .contact-link:hover {
+            background: rgba(6, 182, 212, 0.08);
         }
 
         .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
-            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.35);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 24px;
-        }
-
-        .contact-item h3 {
             color: var(--primary-cyan);
-            margin: 0;
-            font-size: 1.1rem;
+            font-size: 0.85rem;
+            font-weight: 800;
         }
 
-        .contact-item p {
+        .contact-label {
+            color: var(--text-muted);
+            margin: 0;
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+        .contact-value {
             color: var(--text-secondary);
             margin: 0;
             font-size: 0.95rem;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-arrow {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            transition: transform 0.25s ease, color 0.25s ease;
+        }
+
+        .contact-link:hover .contact-arrow {
+            color: var(--primary-cyan);
+            transform: translateX(2px);
         }
 
         /* ===== FOOTER ===== */
@@ -621,6 +699,19 @@
                 height: 45px;
                 bottom: 20px;
                 right: 20px;
+            }
+
+            .project-card {
+                padding: 1.7rem;
+            }
+
+            .contact-link {
+                grid-template-columns: 40px 1fr auto;
+                gap: 0.75rem;
+            }
+
+            .contact-label {
+                display: none;
             }
         }
     </style>
@@ -676,50 +767,20 @@
             <p>I'm an AI Engineer and Quality Assurance Specialist based in Amman, Jordan. I combine technical expertise in artificial intelligence with rigorous quality assurance practices to build reliable, intelligent systems.</p>
             
             <p>My journey spans machine learning, deep learning, and agentic AI workflows, complemented by hands-on QA experience in manual testing, API validation, and AI-assisted quality initiatives. I'm passionate about creating solutions that are not only innovative but also robust and production-ready.</p>
-            
-            <div class="github-chart">
-                <h3>GitHub Activity</h3>
-                <img src="https://ghchart.rshah.org/06b6d4/odaiayyad" alt="GitHub Contributions">
-                <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">Contributions over the past year</p>
-            </div>
         </div>
     </section>
 
     <!-- PROJECTS -->
     <section id="projects">
         <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>Real-Time Driver Monitoring System</h3>
-                <p>Built a real-time traffic safety system using YOLOv11, trained on 14,800+ images for driver behavior monitoring and traffic sign detection with integrated Text-to-Speech alerts. Achieved 94.7% mAP50 and ranked top 7 of 125 interns.</p>
-                <div class="tech-tags">
-                    <span class="tag">YOLOv11</span>
-                    <span class="tag">OpenCV</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">Deep Learning</span>
-                </div>
+        <div class="projects-carousel" aria-label="Project carousel">
+            <div class="projects-viewport">
+                <div class="projects-track" id="projectsTrack"></div>
             </div>
-
-            <div class="project-card">
-                <h3>YouTube AI Agent</h3>
-                <p>Built an autonomous multi-tool AI agent automating full YouTube content strategy: titles, descriptions, thumbnails, posting schedules, and visual analytics. Integrated GPT-4o, GPT-4o Mini, and GPT-3.5-Turbo with tool chaining and memory handling.</p>
-                <div class="tech-tags">
-                    <span class="tag">LangChain</span>
-                    <span class="tag">GPT-4o</span>
-                    <span class="tag">AI Agents</span>
-                    <span class="tag">Python</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h3>N8N JIRA Daily Summary</h3>
-                <p>Built a local n8n automation workflow integrating Jira Cloud API and Gmail to auto-generate and email daily QA work summaries, reducing manual timesheet effort.</p>
-                <div class="tech-tags">
-                    <span class="tag">N8N</span>
-                    <span class="tag">JIRA API</span>
-                    <span class="tag">Automation</span>
-                    <span class="tag">Gmail</span>
-                </div>
+            <div class="project-nav">
+                <button class="project-btn" id="projectPrev" aria-label="Previous project">&lt;</button>
+                <div class="project-dots" id="projectDots" aria-label="Project indicators"></div>
+                <button class="project-btn" id="projectNext" aria-label="Next project">&gt;</button>
             </div>
         </div>
     </section>
@@ -814,30 +875,41 @@
     <section id="contact">
         <h2 class="section-title">Get In Touch</h2>
         <p class="contact-intro">I'm always interested in new opportunities, collaborations, or connecting with fellow AI and QA professionals. Feel free to reach out!</p>
-        <div class="contact-grid">
-            <a href="mailto:odai.ayyad.work@gmail.com" class="contact-item">
-                <div class="contact-icon">✉</div>
-                <h3>Email</h3>
-                <p>odai.ayyad.work@gmail.com</p>
-            </a>
-
-            <a href="tel:+962782923077" class="contact-item">
-                <div class="contact-icon">📱</div>
-                <h3>Phone</h3>
-                <p>+962 782 923 077</p>
-            </a>
-
-            <a href="https://linkedin.com/in/odai-ayyad" target="_blank" class="contact-item">
-                <div class="contact-icon">in</div>
-                <h3>LinkedIn</h3>
-                <p>linkedin.com/in/odai-ayyad</p>
-            </a>
-
-            <a href="https://github.com/odaiayyad" target="_blank" class="contact-item">
-                <div class="contact-icon">⚡</div>
-                <h3>GitHub</h3>
-                <p>github.com/odaiayyad</p>
-            </a>
+        <div class="contact-panel">
+            <ul class="contact-list">
+                <li class="contact-item">
+                    <a href="mailto:odai.ayyad.work@gmail.com" class="contact-link">
+                        <span class="contact-icon">@</span>
+                        <span class="contact-label">Email</span>
+                        <span class="contact-value">odai.ayyad.work@gmail.com</span>
+                        <span class="contact-arrow">&gt;</span>
+                    </a>
+                </li>
+                <li class="contact-item">
+                    <a href="tel:+962782923077" class="contact-link">
+                        <span class="contact-icon">TEL</span>
+                        <span class="contact-label">Phone</span>
+                        <span class="contact-value">+962 782 923 077</span>
+                        <span class="contact-arrow">&gt;</span>
+                    </a>
+                </li>
+                <li class="contact-item">
+                    <a href="https://linkedin.com/in/odai-ayyad" target="_blank" class="contact-link">
+                        <span class="contact-icon">in</span>
+                        <span class="contact-label">LinkedIn</span>
+                        <span class="contact-value">linkedin.com/in/odai-ayyad</span>
+                        <span class="contact-arrow">&gt;</span>
+                    </a>
+                </li>
+                <li class="contact-item">
+                    <a href="https://github.com/odaiayyad" target="_blank" class="contact-link">
+                        <span class="contact-icon">GH</span>
+                        <span class="contact-label">GitHub</span>
+                        <span class="contact-value">github.com/odaiayyad</span>
+                        <span class="contact-arrow">&gt;</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </section>
 
@@ -848,10 +920,28 @@
     </footer>
 
     <!-- SCROLL TO TOP BUTTON -->
-    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">&uarr;</button>
 
     <!-- JAVASCRIPT -->
     <script>
+        const projectData = [
+            {
+                title: "Real-Time Driver Monitoring System",
+                description: "Built a real-time traffic safety system using YOLOv11, trained on 14,800+ images for driver behavior monitoring and traffic sign detection with integrated Text-to-Speech alerts. Achieved 94.7% mAP50 and ranked top 7 of 125 interns.",
+                tags: ["YOLOv11", "OpenCV", "Python", "Deep Learning"]
+            },
+            {
+                title: "YouTube AI Agent",
+                description: "Built an autonomous multi-tool AI agent automating full YouTube content strategy: titles, descriptions, thumbnails, posting schedules, and visual analytics. Integrated GPT-4o, GPT-4o Mini, and GPT-3.5-Turbo with tool chaining and memory handling.",
+                tags: ["LangChain", "GPT-4o", "AI Agents", "Python"]
+            },
+            {
+                title: "N8N JIRA Daily Summary",
+                description: "Built a local n8n automation workflow integrating Jira Cloud API and Gmail to auto-generate and email daily QA work summaries, reducing manual timesheet effort.",
+                tags: ["N8N", "JIRA API", "Automation", "Gmail"]
+            }
+        ];
+
         // Hide loader after page loads
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
@@ -859,6 +949,88 @@
                 loader.classList.add('hidden');
             }, 800);
         });
+
+        // Dynamic projects carousel
+        const projectsTrack = document.getElementById('projectsTrack');
+        const projectDots = document.getElementById('projectDots');
+        const projectPrev = document.getElementById('projectPrev');
+        const projectNext = document.getElementById('projectNext');
+        let projectIndex = 0;
+        let projectTimer;
+
+        function renderProjects() {
+            if (!projectsTrack || !projectDots) return;
+
+            projectsTrack.innerHTML = projectData.map((project) => {
+                const tags = project.tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
+                return `
+                    <article class="project-slide">
+                        <div class="project-card">
+                            <h3>${project.title}</h3>
+                            <p>${project.description}</p>
+                            <div class="tech-tags">${tags}</div>
+                        </div>
+                    </article>
+                `;
+            }).join("");
+
+            projectDots.innerHTML = projectData.map((_, index) =>
+                `<button class="project-dot${index === 0 ? " active" : ""}" data-index="${index}" aria-label="Go to project ${index + 1}"></button>`
+            ).join("");
+        }
+
+        function updateProjectCarousel(nextIndex) {
+            if (!projectsTrack) return;
+            projectIndex = (nextIndex + projectData.length) % projectData.length;
+            projectsTrack.style.transform = `translateX(-${projectIndex * 100}%)`;
+
+            document.querySelectorAll('.project-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === projectIndex);
+            });
+        }
+
+        function resetProjectTimer() {
+            clearInterval(projectTimer);
+            projectTimer = setInterval(() => updateProjectCarousel(projectIndex + 1), 5500);
+        }
+
+        renderProjects();
+        updateProjectCarousel(0);
+        resetProjectTimer();
+
+        if (projectPrev) {
+            projectPrev.addEventListener('click', () => {
+                updateProjectCarousel(projectIndex - 1);
+                resetProjectTimer();
+            });
+        }
+
+        if (projectNext) {
+            projectNext.addEventListener('click', () => {
+                updateProjectCarousel(projectIndex + 1);
+                resetProjectTimer();
+            });
+        }
+
+        if (projectDots) {
+            projectDots.addEventListener('click', (event) => {
+                const target = event.target;
+                if (!(target instanceof HTMLElement)) return;
+                const dot = target.closest('.project-dot');
+                if (!dot) return;
+                const targetIndex = Number(dot.dataset.index);
+                if (!Number.isNaN(targetIndex)) {
+                    updateProjectCarousel(targetIndex);
+                    resetProjectTimer();
+                }
+            });
+        }
+
+        const carouselRoot = document.querySelector('.projects-carousel');
+        if (carouselRoot) {
+            carouselRoot.addEventListener('mouseenter', () => clearInterval(projectTimer));
+            carouselRoot.addEventListener('mouseleave', resetProjectTimer);
+        }
 
         // Scroll to top button
         const scrollTopBtn = document.getElementById('scrollTop');
