@@ -47,6 +47,111 @@
             overflow: hidden;
             pointer-events: none;
             z-index: -1;
+            --cursor-x: 50%;
+            --cursor-y: 50%;
+            --parallax-a-x: 0px;
+            --parallax-a-y: 0px;
+            --parallax-b-x: 0px;
+            --parallax-b-y: 0px;
+            background:
+                radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(6, 182, 212, 0.12), transparent 22rem),
+                linear-gradient(115deg, rgba(6, 182, 212, 0.035) 1px, transparent 1px),
+                linear-gradient(65deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+            background-size: auto, 56px 56px, 72px 72px;
+        }
+
+        .bg-animation::before,
+        .bg-animation::after {
+            content: '';
+            position: absolute;
+            inset: -18%;
+            opacity: 0.55;
+        }
+
+        .bg-animation::before {
+            background:
+                linear-gradient(90deg, transparent 49.85%, rgba(6, 182, 212, 0.12) 50%, transparent 50.15%),
+                linear-gradient(0deg, transparent 49.85%, rgba(139, 92, 246, 0.08) 50%, transparent 50.15%);
+            background-size: 180px 180px;
+            transform: translate3d(var(--parallax-a-x), var(--parallax-a-y), 0) rotate(-8deg);
+            mask-image: radial-gradient(circle at center, black, transparent 72%);
+        }
+
+        .bg-animation::after {
+            background:
+                radial-gradient(circle at 18% 24%, rgba(6, 182, 212, 0.18), transparent 24rem),
+                radial-gradient(circle at 82% 38%, rgba(139, 92, 246, 0.16), transparent 26rem);
+            transform: translate3d(var(--parallax-b-x), var(--parallax-b-y), 0);
+        }
+
+        .bg-star,
+        .bg-node,
+        .bg-trace {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .bg-star {
+            width: var(--size);
+            height: var(--size);
+            border-radius: 999px;
+            background: var(--star-color);
+            box-shadow: 0 0 12px var(--star-glow);
+            animation: starPulse var(--duration) ease-in-out var(--delay) infinite;
+        }
+
+        .bg-node {
+            width: var(--size);
+            height: var(--size);
+            border: 1px solid rgba(6, 182, 212, 0.36);
+            border-radius: 999px;
+            background: rgba(8, 19, 40, 0.48);
+            box-shadow: 0 0 22px rgba(6, 182, 212, 0.13);
+            animation: nodeFloat var(--duration) ease-in-out var(--delay) infinite;
+        }
+
+        .bg-trace {
+            width: var(--width);
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.42), rgba(139, 92, 246, 0.24), transparent);
+            transform: rotate(var(--angle));
+            animation: traceDrift var(--duration) linear var(--delay) infinite;
+        }
+
+        @keyframes starPulse {
+            0%, 100% {
+                transform: translate3d(0, 0, 0) scale(0.85);
+                opacity: 0.2;
+            }
+            50% {
+                transform: translate3d(8px, -10px, 0) scale(1.15);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes nodeFloat {
+            0%, 100% {
+                transform: translate3d(0, 0, 0);
+                opacity: 0.24;
+            }
+            50% {
+                transform: translate3d(18px, -16px, 0);
+                opacity: 0.62;
+            }
+        }
+
+        @keyframes traceDrift {
+            0% {
+                transform: translate3d(-28vw, 0, 0) rotate(var(--angle));
+                opacity: 0;
+            }
+            18%, 72% {
+                opacity: 0.42;
+            }
+            100% {
+                transform: translate3d(128vw, -12vh, 0) rotate(var(--angle));
+                opacity: 0;
+            }
         }
 
         @keyframes float {
@@ -205,6 +310,17 @@
             position: relative;
         }
 
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-name {
+            position: relative;
+            display: inline-block;
+            outline: none;
+        }
+
         .hero h1 {
             font-family: 'Orbitron', sans-serif;
             font-size: clamp(3.5rem, 10vw, 7rem);
@@ -216,6 +332,84 @@
             background-size: 200% auto;
             animation: shimmer 3s linear infinite;
             letter-spacing: 4px;
+        }
+
+        .hero-label {
+            position: absolute;
+            display: inline-flex;
+            align-items: center;
+            min-height: 36px;
+            padding: 0 0.9rem;
+            border: 1px solid rgba(6, 182, 212, 0.42);
+            border-radius: 10px;
+            background: rgba(8, 19, 40, 0.76);
+            box-shadow: 0 12px 28px rgba(6, 182, 212, 0.16);
+            color: var(--text-primary);
+            font-size: 0.84rem;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            opacity: 0;
+            pointer-events: none;
+            transform: translate3d(var(--label-x, 0), var(--label-y, 0), 0) rotate(var(--label-r, 0deg)) scale(0.88);
+            transition: opacity 0.25s ease, transform 0.35s ease;
+            white-space: nowrap;
+        }
+
+        .hero-label::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            margin-right: 0.45rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-violet));
+            box-shadow: 0 0 12px var(--primary-cyan);
+        }
+
+        .hero-name:hover .hero-label,
+        .hero-name:focus .hero-label,
+        .hero-name.is-active .hero-label {
+            opacity: 1;
+            transform: translate3d(var(--label-active-x), var(--label-active-y), 0) rotate(var(--label-r, 0deg)) scale(1);
+        }
+
+        .label-ai {
+            top: 8%;
+            left: 52%;
+            --label-active-x: -18px;
+            --label-active-y: -70px;
+            --label-r: -4deg;
+        }
+
+        .label-qa {
+            top: 52%;
+            right: 5%;
+            --label-active-x: 112px;
+            --label-active-y: -16px;
+            --label-r: 5deg;
+        }
+
+        .label-rag {
+            bottom: 0;
+            left: 8%;
+            --label-active-x: -94px;
+            --label-active-y: 38px;
+            --label-r: -6deg;
+        }
+
+        .label-cv {
+            top: 68%;
+            left: 44%;
+            --label-active-x: 10px;
+            --label-active-y: 72px;
+            --label-r: 4deg;
+        }
+
+        .label-auto {
+            top: 18%;
+            left: 10%;
+            --label-active-x: -116px;
+            --label-active-y: -24px;
+            --label-r: 6deg;
         }
 
         @keyframes shimmer {
@@ -940,6 +1134,10 @@
 
             .hero h1 {
                 font-size: 3rem;
+            }
+
+            .hero-label {
+                display: none;
             }
 
             .scroll-top {

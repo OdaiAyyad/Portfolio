@@ -107,32 +107,65 @@
             const bgAnimation = document.getElementById('bgAnimation');
             if (!bgAnimation) return;
 
-            for (let i = 0; i < 36; i += 1) {
-                const particle = document.createElement('div');
-                particle.style.position = 'absolute';
-                const size = Math.random() * 2.6 + 1;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.borderRadius = '999px';
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                particle.style.background = Math.random() > 0.45 ? 'rgba(6, 182, 212, 0.35)' : 'rgba(139, 92, 246, 0.3)';
-                particle.style.animation = `float ${Math.random() * 14 + 10}s ease-in-out ${Math.random() * 4}s infinite`;
-                bgAnimation.appendChild(particle);
+            const fragment = document.createDocumentFragment();
+
+            for (let i = 0; i < 90; i += 1) {
+                const star = document.createElement('span');
+                const size = Math.random() * 2.4 + 1;
+                const isCyan = Math.random() > 0.38;
+
+                star.className = 'bg-star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.setProperty('--size', `${size}px`);
+                star.style.setProperty('--duration', `${Math.random() * 7 + 6}s`);
+                star.style.setProperty('--delay', `${Math.random() * -8}s`);
+                star.style.setProperty('--star-color', isCyan ? 'rgba(125, 249, 255, 0.82)' : 'rgba(167, 139, 250, 0.68)');
+                star.style.setProperty('--star-glow', isCyan ? 'rgba(6, 182, 212, 0.42)' : 'rgba(139, 92, 246, 0.34)');
+                fragment.appendChild(star);
             }
 
-            for (let i = 0; i < 5; i += 1) {
-                const line = document.createElement('div');
-                line.style.position = 'absolute';
-                line.style.width = `${Math.random() * 180 + 120}px`;
-                line.style.height = '1px';
-                line.style.left = `${Math.random() * 100}%`;
-                line.style.top = `${Math.random() * 100}%`;
-                line.style.background = 'linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.35), transparent)';
-                line.style.transform = `rotate(${Math.random() * 360}deg)`;
-                line.style.animation = `drift ${Math.random() * 12 + 12}s linear infinite`;
-                bgAnimation.appendChild(line);
+            for (let i = 0; i < 11; i += 1) {
+                const node = document.createElement('span');
+                const size = Math.random() * 24 + 18;
+
+                node.className = 'bg-node';
+                node.style.left = `${Math.random() * 100}%`;
+                node.style.top = `${Math.random() * 100}%`;
+                node.style.setProperty('--size', `${size}px`);
+                node.style.setProperty('--duration', `${Math.random() * 10 + 12}s`);
+                node.style.setProperty('--delay', `${Math.random() * -12}s`);
+                fragment.appendChild(node);
             }
+
+            for (let i = 0; i < 10; i += 1) {
+                const trace = document.createElement('span');
+
+                trace.className = 'bg-trace';
+                trace.style.left = `${Math.random() * 100}%`;
+                trace.style.top = `${Math.random() * 100}%`;
+                trace.style.setProperty('--width', `${Math.random() * 160 + 90}px`);
+                trace.style.setProperty('--angle', `${Math.random() * 28 - 14}deg`);
+                trace.style.setProperty('--duration', `${Math.random() * 10 + 14}s`);
+                trace.style.setProperty('--delay', `${Math.random() * -18}s`);
+                fragment.appendChild(trace);
+            }
+
+            bgAnimation.appendChild(fragment);
+
+            document.addEventListener('mousemove', (event) => {
+                const xPercent = (event.clientX / window.innerWidth) * 100;
+                const yPercent = (event.clientY / window.innerHeight) * 100;
+                const xOffset = event.clientX - window.innerWidth / 2;
+                const yOffset = event.clientY - window.innerHeight / 2;
+
+                bgAnimation.style.setProperty('--cursor-x', `${xPercent}%`);
+                bgAnimation.style.setProperty('--cursor-y', `${yPercent}%`);
+                bgAnimation.style.setProperty('--parallax-a-x', `${xOffset * -0.018}px`);
+                bgAnimation.style.setProperty('--parallax-a-y', `${yOffset * -0.018}px`);
+                bgAnimation.style.setProperty('--parallax-b-x', `${xOffset * 0.014}px`);
+                bgAnimation.style.setProperty('--parallax-b-y', `${yOffset * 0.014}px`);
+            });
         }
 
         function typeHeroSlogan() {
