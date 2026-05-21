@@ -56,6 +56,42 @@
             overflow-x: hidden;
         }
 
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0);
+                opacity: 0.18;
+            }
+            50% {
+                transform: translate(14px, -16px);
+                opacity: 0.45;
+            }
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translateX(-30vw) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.35;
+            }
+            100% {
+                transform: translateX(130vw) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         /* ===== LOADING SCREEN (From old version) ===== */
         .loader {
             position: fixed;
@@ -81,19 +117,38 @@
             text-align: center;
         }
 
-        .loader-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(6, 182, 212, 0.1);
-            border-top: 4px solid var(--primary-cyan);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .loader-prism {
+            width: 96px;
+            height: 96px;
+            position: relative;
             margin: 0 auto 20px;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .prism-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--primary-cyan);
+            border-radius: 8px;
+            transform-origin: center;
+            animation: prismRotate 2.2s linear infinite;
+        }
+
+        .prism-face:nth-child(2) {
+            transform: rotate(60deg);
+            animation-delay: 0.2s;
+            border-color: rgba(139, 92, 246, 0.75);
+        }
+
+        .prism-face:nth-child(3) {
+            transform: rotate(120deg);
+            animation-delay: 0.4s;
+        }
+
+        @keyframes prismRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.09); }
+            100% { transform: rotate(360deg) scale(1); }
         }
 
         .loader-text {
@@ -198,6 +253,35 @@
             font-size: 1.3rem;
             margin-bottom: 2.5rem;
             font-style: italic;
+        }
+
+        .hero-social {
+            display: flex;
+            gap: 0.9rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .social-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--primary-cyan);
+            background: rgba(6, 182, 212, 0.06);
+            border: 1px solid rgba(6, 182, 212, 0.35);
+            transition: all 0.25s ease;
+        }
+
+        .social-btn:hover {
+            color: #081022;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-violet));
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--glow-violet);
         }
 
         .hero-buttons {
@@ -315,77 +399,6 @@
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
-        }
-
-        .github-live {
-            margin-top: 2rem;
-            background: linear-gradient(145deg, var(--bg-card), var(--bg-card-soft));
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.2rem;
-        }
-
-        .github-live-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-bottom: 0.9rem;
-        }
-
-        .github-live-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: 0.2px;
-        }
-
-        .github-live-link {
-            font-size: 0.82rem;
-            color: var(--primary-cyan);
-            text-decoration: none;
-            border: 1px solid rgba(6, 182, 212, 0.35);
-            border-radius: 999px;
-            padding: 0.3rem 0.7rem;
-            transition: all 0.25s ease;
-        }
-
-        .github-live-link:hover {
-            background: rgba(6, 182, 212, 0.12);
-        }
-
-        .github-live-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 0.7rem;
-        }
-
-        .github-stat {
-            background: rgba(6, 182, 212, 0.06);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            border-radius: 10px;
-            padding: 0.75rem;
-        }
-
-        .github-stat-label {
-            display: block;
-            color: var(--text-muted);
-            font-size: 0.74rem;
-            margin-bottom: 0.25rem;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-        }
-
-        .github-stat-value {
-            color: var(--text-primary);
-            font-size: 1.05rem;
-            font-weight: 700;
-        }
-
-        .github-status {
-            margin-top: 0.8rem;
-            color: var(--text-muted);
-            font-size: 0.8rem;
         }
 
         /* ===== PROJECTS ===== */
@@ -661,77 +674,62 @@
             font-size: 1.1rem;
         }
 
-        .contact-panel {
-            max-width: 860px;
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+            max-width: 960px;
             margin: 0 auto;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
             background: linear-gradient(145deg, var(--bg-card), var(--bg-card-soft));
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1rem;
-        }
-
-        .contact-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .contact-item + .contact-item {
-            border-top: 1px solid rgba(148, 163, 184, 0.12);
-        }
-
-        .contact-link {
-            display: grid;
-            grid-template-columns: 44px minmax(90px, 130px) 1fr auto;
-            align-items: center;
-            gap: 0.85rem;
-            padding: 0.9rem 0.7rem;
-            text-decoration: none;
-            transition: background 0.25s ease;
             border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.25s ease;
         }
 
-        .contact-link:hover {
-            background: rgba(6, 182, 212, 0.08);
+        .contact-method:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 12px 28px var(--glow-cyan);
         }
 
-        .contact-icon {
-            width: 44px;
-            height: 44px;
-            background: rgba(6, 182, 212, 0.1);
-            border: 1px solid rgba(6, 182, 212, 0.35);
-            border-radius: 10px;
+        .method-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 999px;
+            background: rgba(6, 182, 212, 0.12);
+            border: 1px solid rgba(6, 182, 212, 0.38);
+            color: var(--primary-cyan);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary-cyan);
-            font-size: 0.85rem;
-            font-weight: 800;
+            flex-shrink: 0;
         }
 
-        .contact-label {
+        .method-details {
+            text-align: left;
+            flex: 1;
+        }
+
+        .method-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             color: var(--text-muted);
-            margin: 0;
-            font-size: 0.88rem;
-            font-weight: 700;
+            margin-bottom: 0.2rem;
         }
 
-        .contact-value {
+        .method-value {
+            font-size: 0.94rem;
             color: var(--text-secondary);
-            margin: 0;
-            font-size: 0.95rem;
             overflow-wrap: anywhere;
-        }
-
-        .contact-arrow {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            transition: transform 0.25s ease, color 0.25s ease;
-        }
-
-        .contact-link:hover .contact-arrow {
-            color: var(--primary-cyan);
-            transform: translateX(2px);
         }
 
         /* ===== FOOTER ===== */
@@ -776,17 +774,8 @@
                 padding: 1.7rem;
             }
 
-            .github-live-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .contact-link {
-                grid-template-columns: 40px 1fr auto;
-                gap: 0.75rem;
-            }
-
-            .contact-label {
-                display: none;
+            .contact-methods {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -796,7 +785,11 @@
     <!-- LOADING SCREEN -->
     <div class="loader" id="loader">
         <div class="loader-content">
-            <div class="loader-spinner"></div>
+            <div class="loader-prism">
+                <div class="prism-face"></div>
+                <div class="prism-face"></div>
+                <div class="prism-face"></div>
+            </div>
             <div class="loader-text">Loading Portfolio...</div>
         </div>
     </div>
@@ -815,12 +808,31 @@
         </nav>
     </header>
 
+    <div class="bg-animation" id="bgAnimation"></div>
+
     <!-- HERO -->
     <section class="hero" id="home">
         <div>
             <h1>ODAI AYYAD</h1>
             <h2>AI Engineer & QA Specialist</h2>
             <p>Engineering Intelligence, Ensuring Quality</p>
+            <div class="hero-social">
+                <a href="https://linkedin.com/in/odai-ayyad" target="_blank" class="social-btn" aria-label="LinkedIn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+                    </svg>
+                </a>
+                <a href="https://github.com/odaiayyad" target="_blank" class="social-btn" aria-label="GitHub">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                    </svg>
+                </a>
+                <a href="mailto:odai.ayyad.work@gmail.com" class="social-btn" aria-label="Email">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"></path>
+                    </svg>
+                </a>
+            </div>
             <div class="hero-buttons">
                 <a href="assets/Odai_Ayyad_Resume.pdf" download class="btn btn-primary">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -843,31 +855,6 @@
             
             <p>My journey spans machine learning, deep learning, and agentic AI workflows, complemented by hands-on QA experience in manual testing, API validation, and AI-assisted quality initiatives. I'm passionate about creating solutions that are not only innovative but also robust and production-ready.</p>
 
-            <div class="github-live" id="githubLive">
-                <div class="github-live-head">
-                    <div class="github-live-title">Live GitHub Snapshot</div>
-                    <a class="github-live-link" href="https://github.com/odaiayyad" target="_blank" rel="noopener">Open Profile</a>
-                </div>
-                <div class="github-live-grid">
-                    <div class="github-stat">
-                        <span class="github-stat-label">Public Repos</span>
-                        <span class="github-stat-value" id="ghRepos">--</span>
-                    </div>
-                    <div class="github-stat">
-                        <span class="github-stat-label">Followers</span>
-                        <span class="github-stat-value" id="ghFollowers">--</span>
-                    </div>
-                    <div class="github-stat">
-                        <span class="github-stat-label">Total Stars</span>
-                        <span class="github-stat-value" id="ghStars">--</span>
-                    </div>
-                    <div class="github-stat">
-                        <span class="github-stat-label">Updated</span>
-                        <span class="github-stat-value" id="ghUpdated">--</span>
-                    </div>
-                </div>
-                <p class="github-status" id="ghStatus">Loading live data...</p>
-            </div>
         </div>
     </section>
 
@@ -976,41 +963,54 @@
     <section id="contact">
         <h2 class="section-title">Get In Touch</h2>
         <p class="contact-intro">I'm always interested in new opportunities, collaborations, or connecting with fellow AI and QA professionals. Feel free to reach out!</p>
-        <div class="contact-panel">
-            <ul class="contact-list">
-                <li class="contact-item">
-                    <a href="mailto:odai.ayyad.work@gmail.com" class="contact-link">
-                        <span class="contact-icon">@</span>
-                        <span class="contact-label">Email</span>
-                        <span class="contact-value">odai.ayyad.work@gmail.com</span>
-                        <span class="contact-arrow">&gt;</span>
-                    </a>
-                </li>
-                <li class="contact-item">
-                    <a href="tel:+962782923077" class="contact-link">
-                        <span class="contact-icon">TEL</span>
-                        <span class="contact-label">Phone</span>
-                        <span class="contact-value">+962 782 923 077</span>
-                        <span class="contact-arrow">&gt;</span>
-                    </a>
-                </li>
-                <li class="contact-item">
-                    <a href="https://linkedin.com/in/odai-ayyad" target="_blank" class="contact-link">
-                        <span class="contact-icon">in</span>
-                        <span class="contact-label">LinkedIn</span>
-                        <span class="contact-value">linkedin.com/in/odai-ayyad</span>
-                        <span class="contact-arrow">&gt;</span>
-                    </a>
-                </li>
-                <li class="contact-item">
-                    <a href="https://github.com/odaiayyad" target="_blank" class="contact-link">
-                        <span class="contact-icon">GH</span>
-                        <span class="contact-label">GitHub</span>
-                        <span class="contact-value">github.com/odaiayyad</span>
-                        <span class="contact-arrow">&gt;</span>
-                    </a>
-                </li>
-            </ul>
+        <div class="contact-methods">
+            <a href="mailto:odai.ayyad.work@gmail.com" class="contact-method">
+                <div class="method-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"></path>
+                    </svg>
+                </div>
+                <div class="method-details">
+                    <div class="method-label">Email</div>
+                    <div class="method-value">odai.ayyad.work@gmail.com</div>
+                </div>
+            </a>
+
+            <a href="tel:+962782923077" class="contact-method">
+                <div class="method-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"></path>
+                    </svg>
+                </div>
+                <div class="method-details">
+                    <div class="method-label">Phone</div>
+                    <div class="method-value">+962 782 923 077</div>
+                </div>
+            </a>
+
+            <a href="https://linkedin.com/in/odai-ayyad" target="_blank" class="contact-method">
+                <div class="method-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+                    </svg>
+                </div>
+                <div class="method-details">
+                    <div class="method-label">LinkedIn</div>
+                    <div class="method-value">linkedin.com/in/odai-ayyad</div>
+                </div>
+            </a>
+
+            <a href="https://github.com/odaiayyad" target="_blank" class="contact-method">
+                <div class="method-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                    </svg>
+                </div>
+                <div class="method-details">
+                    <div class="method-label">GitHub</div>
+                    <div class="method-value">github.com/odaiayyad</div>
+                </div>
+            </a>
         </div>
     </section>
 
@@ -1043,47 +1043,61 @@
             }
         ];
 
-        async function loadGitHubSnapshot() {
-            const username = "odaiayyad";
-            const reposEl = document.getElementById("ghRepos");
-            const followersEl = document.getElementById("ghFollowers");
-            const starsEl = document.getElementById("ghStars");
-            const updatedEl = document.getElementById("ghUpdated");
-            const statusEl = document.getElementById("ghStatus");
-            if (!reposEl || !followersEl || !starsEl || !updatedEl || !statusEl) return;
+        function initBackgroundAnimation() {
+            const bgAnimation = document.getElementById('bgAnimation');
+            if (!bgAnimation) return;
 
-            try {
-                const userRes = await fetch(`https://api.github.com/users/${username}`);
-                const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
-                if (!userRes.ok || !reposRes.ok) throw new Error("GitHub API request failed");
+            for (let i = 0; i < 36; i += 1) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                const size = Math.random() * 2.6 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.borderRadius = '999px';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.background = Math.random() > 0.45 ? 'rgba(6, 182, 212, 0.35)' : 'rgba(139, 92, 246, 0.3)';
+                particle.style.animation = `float ${Math.random() * 14 + 10}s ease-in-out ${Math.random() * 4}s infinite`;
+                bgAnimation.appendChild(particle);
+            }
 
-                const user = await userRes.json();
-                const repos = await reposRes.json();
-                const stars = Array.isArray(repos) ? repos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0) : 0;
-                const updated = user.updated_at ? new Date(user.updated_at) : null;
-
-                reposEl.textContent = String(user.public_repos ?? "--");
-                followersEl.textContent = String(user.followers ?? "--");
-                starsEl.textContent = String(stars);
-                updatedEl.textContent = updated ? updated.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "--";
-                statusEl.textContent = "Live data from GitHub API";
-            } catch (error) {
-                reposEl.textContent = "--";
-                followersEl.textContent = "--";
-                starsEl.textContent = "--";
-                updatedEl.textContent = "--";
-                statusEl.textContent = "GitHub live data is temporarily unavailable.";
+            for (let i = 0; i < 5; i += 1) {
+                const line = document.createElement('div');
+                line.style.position = 'absolute';
+                line.style.width = `${Math.random() * 180 + 120}px`;
+                line.style.height = '1px';
+                line.style.left = `${Math.random() * 100}%`;
+                line.style.top = `${Math.random() * 100}%`;
+                line.style.background = 'linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.35), transparent)';
+                line.style.transform = `rotate(${Math.random() * 360}deg)`;
+                line.style.animation = `drift ${Math.random() * 12 + 12}s linear infinite`;
+                bgAnimation.appendChild(line);
             }
         }
 
-        loadGitHubSnapshot();
+        function typeHeroSlogan() {
+            const slogan = document.querySelector('.hero p');
+            if (!slogan) return;
+            const text = slogan.textContent.trim();
+            slogan.textContent = '';
+            slogan.style.minHeight = '2.2rem';
+            let index = 0;
+
+            const timer = setInterval(() => {
+                slogan.textContent = text.slice(0, index + 1);
+                index += 1;
+                if (index >= text.length) clearInterval(timer);
+            }, 35);
+        }
 
         // Hide loader after page loads
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             setTimeout(() => {
                 loader.classList.add('hidden');
-            }, 800);
+                initBackgroundAnimation();
+                typeHeroSlogan();
+            }, 900);
         });
 
         // Dynamic projects carousel
