@@ -711,27 +711,27 @@
         }
 
         .contact-panel {
-            max-width: 760px;
+            max-width: 940px;
             margin: 0 auto;
             background: linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(17, 28, 51, 0.92));
             border: 1px solid var(--border);
             border-radius: 14px;
-            padding: 0.85rem;
+            padding: 0.72rem;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.62rem;
         }
 
         .contact-row {
-            display: flex;
+            display: grid;
+            grid-template-columns: 36px minmax(0, max-content) auto;
             align-items: center;
-            gap: 0.8rem;
+            column-gap: 0.7rem;
             padding: 0.72rem 0.78rem;
             background: rgba(8, 19, 40, 0.78);
             border: 1px solid rgba(30, 90, 160, 0.35);
             border-radius: 12px;
             transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-        }
-
-        .contact-row + .contact-row {
-            margin-top: 0.62rem;
         }
 
         .contact-row:hover {
@@ -755,7 +755,7 @@
 
         .method-details {
             text-align: left;
-            flex: 1;
+            min-width: 0;
         }
 
         .method-label {
@@ -773,11 +773,10 @@
         }
 
         .contact-actions {
-            margin-left: auto;
             display: inline-flex;
             gap: 0.38rem;
             flex-wrap: wrap;
-            justify-content: flex-end;
+            justify-content: flex-start;
         }
 
         .contact-action {
@@ -805,8 +804,9 @@
             color: var(--text-muted);
             font-size: 0.72rem;
             text-align: right;
-            margin-top: 0.48rem;
+            margin: 0.15rem 0 0;
             min-height: 1rem;
+            grid-column: 1 / -1;
         }
 
         .cursor-ring,
@@ -856,13 +856,17 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
+            .contact-panel {
+                grid-template-columns: 1fr;
+            }
+
             .contact-row {
-                flex-wrap: wrap;
+                grid-template-columns: 36px minmax(0, 1fr);
+                row-gap: 0.35rem;
             }
 
             .contact-actions {
-                width: 100%;
-                margin-left: 0;
+                grid-column: 2;
                 justify-content: flex-start;
             }
 
