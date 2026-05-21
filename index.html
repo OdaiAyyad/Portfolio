@@ -676,7 +676,7 @@
 
         .contact-methods {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1.2rem;
             max-width: 960px;
             margin: 0 auto;
@@ -746,6 +746,12 @@
         }
 
         /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -774,9 +780,6 @@
                 padding: 1.7rem;
             }
 
-            .contact-methods {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
