@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Driver monitoring project visual</title>
+  <desc id="desc">A dark tech dashboard with road lanes, detection boxes, and AI safety signals.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06334a"/>
+      <stop offset="0.58" stop-color="#081328"/>
+      <stop offset="1" stop-color="#241354"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#06b6d4"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" rx="32" fill="url(#bg)"/>
+  <g opacity=".18" stroke="#7dd3fc" stroke-width="1">
+    <path d="M0 108h960M0 216h960M0 324h960M0 432h960M160 0v540M320 0v540M480 0v540M640 0v540M800 0v540"/>
+  </g>
+  <path d="M344 540 470 270 596 540" fill="none" stroke="#e2e8f0" stroke-width="8" opacity=".18"/>
+  <path d="M438 540 480 290 522 540" fill="none" stroke="#06b6d4" stroke-width="5" stroke-dasharray="26 24"/>
+  <rect x="170" y="138" width="238" height="150" rx="22" fill="#06101f" stroke="#06b6d4" stroke-width="4"/>
+  <rect x="552" y="116" width="212" height="124" rx="20" fill="#06101f" stroke="#8b5cf6" stroke-width="4"/>
+  <rect x="604" y="305" width="160" height="88" rx="18" fill="#06101f" stroke="#06b6d4" stroke-width="4"/>
+  <text x="196" y="196" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="34" font-weight="700">DROWSY</text>
+  <text x="196" y="242" fill="#06b6d4" font-family="Arial, sans-serif" font-size="24">TTS alert ready</text>
+  <text x="580" y="168" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="30" font-weight="700">STOP SIGN</text>
+  <text x="628" y="360" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="26" font-weight="700">YOLOv11</text>
+  <circle cx="480" cy="268" r="68" fill="none" stroke="url(#accent)" stroke-width="8"/>
+  <text x="405" y="282" fill="#f8fafc" font-family="Arial, sans-serif" font-size="38" font-weight="800">94.7%</text>
+</svg>

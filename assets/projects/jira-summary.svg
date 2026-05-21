@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Jira daily summary automation visual</title>
+  <desc id="desc">A workflow automation board connecting Jira tickets to an email report.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#06283a"/><stop offset=".6" stop-color="#081328"/><stop offset="1" stop-color="#1f1a55"/></linearGradient>
+  </defs>
+  <rect width="960" height="540" rx="32" fill="url(#bg)"/>
+  <g stroke="#1e5aa0" opacity=".5"><path d="M80 116h800M80 424h800M170 62v416M790 62v416"/></g>
+  <rect x="116" y="130" width="190" height="92" rx="18" fill="#071225" stroke="#06b6d4" stroke-width="3"/>
+  <rect x="116" y="250" width="190" height="92" rx="18" fill="#071225" stroke="#06b6d4" stroke-width="3"/>
+  <rect x="390" y="190" width="180" height="118" rx="24" fill="#111c33" stroke="#8b5cf6" stroke-width="4"/>
+  <rect x="654" y="164" width="190" height="152" rx="22" fill="#071225" stroke="#06b6d4" stroke-width="3"/>
+  <path d="M306 176h84M306 296h84M570 249h84" stroke="#7dd3fc" stroke-width="5" stroke-dasharray="12 12"/>
+  <text x="152" y="184" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="28" font-weight="700">Jira</text>
+  <text x="146" y="304" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="28" font-weight="700">Gmail</text>
+  <text x="426" y="258" fill="#f8fafc" font-family="Arial, sans-serif" font-size="30" font-weight="800">n8n</text>
+  <text x="688" y="226" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="26" font-weight="700">Daily QA</text>
+  <text x="688" y="262" fill="#93c5fd" font-family="Arial, sans-serif" font-size="22">summary</text>
+</svg>

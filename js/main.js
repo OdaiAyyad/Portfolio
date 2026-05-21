@@ -4,6 +4,7 @@
                 category: "Computer Vision",
                 visual: "DM",
                 accent: "#06b6d4",
+                image: "assets/projects/driver-monitoring.svg",
                 description: "Built a real-time traffic safety system using YOLOv11 for driver behavior monitoring and traffic sign detection, trained on 14,000+ images with webcam testing and Text-to-Speech alerts.",
                 tags: ["YOLOv11", "OpenCV", "Python", "TTS"],
                 link: "https://github.com/OdaiAyyad/YOLOv11-Powered-Real-Time-Driver-Monitoring-and-Traffic-Sign-Detection-System"
@@ -13,6 +14,7 @@
                 category: "Agentic AI",
                 visual: "YA",
                 accent: "#8b5cf6",
+                image: "assets/projects/youtube-agent.svg",
                 description: "Created a Streamlit dashboard that uses LangChain, LangGraph, GPT models, and the YouTube Data API to analyze channels, generate video ideas, create titles/descriptions, and show visual insights.",
                 tags: ["LangChain", "LangGraph", "Streamlit", "GPT"],
                 link: "https://github.com/OdaiAyyad/YouTube-AI-Agent"
@@ -22,6 +24,7 @@
                 category: "Workflow Automation",
                 visual: "JS",
                 accent: "#22d3ee",
+                image: "assets/projects/jira-summary.svg",
                 description: "Designed an n8n workflow that combines Jira tickets assigned, reported, and commented on, then sends a daily Gmail summary for QA reporting and timesheet updates.",
                 tags: ["n8n", "Jira API", "Gmail", "Docker"],
                 link: "https://github.com/OdaiAyyad/n8n-JIRA-Daily-Summary"
@@ -31,6 +34,7 @@
                 category: "Generative AI",
                 visual: "RG",
                 accent: "#38bdf8",
+                image: "assets/projects/rag-exam.svg",
                 description: "Notebook project exploring Retrieval-Augmented Generation for creating exam-style questions from source material, focused on practical LLM-assisted education workflows.",
                 tags: ["RAG", "LLM", "Python", "Notebook"],
                 link: "https://github.com/OdaiAyyad/Exam-Generator-based-on-RAG"
@@ -40,6 +44,7 @@
                 category: "Natural Language Processing",
                 visual: "SQL",
                 accent: "#7c3aed",
+                image: "assets/projects/nlp-sql.svg",
                 description: "Built a notebook-based NLP experiment for translating natural language questions into SQL-style queries, connecting language understanding with structured data access.",
                 tags: ["NLP", "SQL", "Python", "Notebook"],
                 link: "https://github.com/OdaiAyyad/NLP-to-SQL"
@@ -49,6 +54,7 @@
                 category: "Machine Learning",
                 visual: "BR",
                 accent: "#0ea5e9",
+                image: "assets/projects/book-recommender.svg",
                 description: "Created a recommendation-system notebook for suggesting books based on user or item patterns, practicing data preprocessing, similarity logic, and recommendation workflows.",
                 tags: ["Recommenders", "ML", "Python", "Data"],
                 link: "https://github.com/OdaiAyyad/Books-Recommendation-System"
@@ -58,6 +64,7 @@
                 category: "AI Productivity",
                 visual: "YS",
                 accent: "#0891b2",
+                image: "assets/projects/youtube-summary.svg",
                 description: "Notebook project for summarizing YouTube video content, turning long-form video material into concise notes and useful extracted information.",
                 tags: ["Summarization", "NLP", "Python", "Notebook"],
                 link: "https://github.com/OdaiAyyad/YouTube-Video-Summary"
@@ -67,6 +74,7 @@
                 category: "Conversational AI",
                 visual: "CB",
                 accent: "#a78bfa",
+                image: "assets/projects/chatbot.svg",
                 description: "Built a simple ChatGPT-powered chatbot notebook as a hands-on experiment with prompt flow, chat interactions, and practical LLM application structure.",
                 tags: ["ChatGPT", "LLM", "Python", "Notebook"],
                 link: "https://github.com/OdaiAyyad/Simple-Chatbot-over-ChatGPT"
@@ -76,6 +84,7 @@
                 category: "Computer Vision",
                 visual: "Y8",
                 accent: "#06b6d4",
+                image: "assets/projects/traffic-yolov8.svg",
                 description: "Trained a YOLOv8 real-time detection model for traffic signs, using a custom annotated dataset, webcam testing, augmentation, and performance tuning for fast inference.",
                 tags: ["YOLOv8", "Computer Vision", "Python", "Realtime"],
                 link: "https://github.com/OdaiAyyad/YOLOv8-Real-Time-Traffic-Signs-Detection-Project"
@@ -252,8 +261,8 @@
                 return `
                     <article class="project-card" style="--project-accent: ${project.accent};">
                         <div class="project-visual" aria-hidden="true">
+                            <img src="${project.image}" alt="" loading="lazy">
                             <span class="project-category-badge">${project.category}</span>
-                            <span class="project-visual-code">${project.visual}</span>
                         </div>
                         <div class="project-body">
                             <div class="project-kicker">${project.category}</div>

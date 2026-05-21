@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">YouTube AI agent project visual</title>
+  <desc id="desc">An agentic AI dashboard with channel analytics cards and generation flow nodes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#12143a"/><stop offset=".55" stop-color="#081328"/><stop offset="1" stop-color="#3b1768"/></linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#06b6d4"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient>
+  </defs>
+  <rect width="960" height="540" rx="32" fill="url(#bg)"/>
+  <rect x="110" y="98" width="740" height="344" rx="28" fill="#071225" stroke="#1e5aa0" stroke-width="2"/>
+  <circle cx="205" cy="178" r="44" fill="#ef4444"/>
+  <polygon points="194,154 194,202 235,178" fill="#fff"/>
+  <text x="276" y="170" fill="#f8fafc" font-family="Arial, sans-serif" font-size="34" font-weight="800">YouTube AI Agent</text>
+  <text x="276" y="214" fill="#93c5fd" font-family="Arial, sans-serif" font-size="24">ideas - titles - thumbnails - insights</text>
+  <g fill="none" stroke="url(#line)" stroke-width="4">
+    <path d="M190 302h140c36 0 36-58 72-58h88"/>
+    <path d="M490 244h86c48 0 48 72 96 72h86"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-weight="700">
+    <rect x="146" y="284" width="132" height="70" rx="18" fill="#0f1b33" stroke="#06b6d4"/>
+    <text x="178" y="327" fill="#e2e8f0" font-size="22">Input</text>
+    <rect x="414" y="206" width="136" height="78" rx="18" fill="#0f1b33" stroke="#8b5cf6"/>
+    <text x="445" y="254" fill="#e2e8f0" font-size="22">Agent</text>
+    <rect x="668" y="282" width="146" height="78" rx="18" fill="#0f1b33" stroke="#06b6d4"/>
+    <text x="704" y="331" fill="#e2e8f0" font-size="22">Output</text>
+  </g>
+</svg>

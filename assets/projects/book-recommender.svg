@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Books recommendation system visual</title>
+  <desc id="desc">A recommendation graph connecting books and users.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#06344c"/><stop offset=".6" stop-color="#081328"/><stop offset="1" stop-color="#1f1a55"/></linearGradient></defs>
+  <rect width="960" height="540" rx="32" fill="url(#bg)"/>
+  <g stroke="#7dd3fc" stroke-width="3" opacity=".65">
+    <path d="M292 270 480 150 668 270 480 390z"/>
+    <path d="M292 270h376M480 150v240"/>
+  </g>
+  <g fill="#071225" stroke="#06b6d4" stroke-width="3">
+    <rect x="188" y="214" width="120" height="150" rx="14"/>
+    <rect x="420" y="90" width="120" height="150" rx="14"/>
+    <rect x="652" y="214" width="120" height="150" rx="14"/>
+    <rect x="420" y="310" width="120" height="150" rx="14"/>
+  </g>
+  <text x="218" y="292" fill="#f8fafc" font-family="Arial" font-size="28" font-weight="800">B1</text>
+  <text x="450" y="168" fill="#f8fafc" font-family="Arial" font-size="28" font-weight="800">B2</text>
+  <text x="682" y="292" fill="#f8fafc" font-family="Arial" font-size="28" font-weight="800">B3</text>
+  <text x="450" y="390" fill="#f8fafc" font-family="Arial" font-size="28" font-weight="800">B4</text>
+  <circle cx="480" cy="270" r="58" fill="#111c33" stroke="#8b5cf6" stroke-width="5"/>
+  <text x="438" y="282" fill="#06b6d4" font-family="Arial" font-size="28" font-weight="800">SIM</text>
+</svg>

@@ -809,7 +809,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.2rem;
+            padding: 0;
             isolation: isolate;
             background:
                 radial-gradient(circle at 24% 16%, var(--project-accent), transparent 24%),
@@ -817,39 +817,18 @@
                 rgba(8, 19, 40, 0.86);
         }
 
-        .project-visual::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(90deg, rgba(255, 255, 255, 0.09) 1px, transparent 1px),
-                linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-            background-size: 28px 28px;
-            mask-image: linear-gradient(180deg, black, transparent 80%);
-            z-index: -1;
+        .project-visual img {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease, filter 0.35s ease;
         }
 
-        .project-visual::after {
-            content: '';
-            position: absolute;
-            right: -26px;
-            bottom: -38px;
-            width: 150px;
-            height: 150px;
-            border-radius: 40px;
-            border: 1px solid rgba(6, 182, 212, 0.24);
-            transform: rotate(20deg);
-            background: rgba(6, 182, 212, 0.05);
-            z-index: -1;
-        }
-
-        .project-visual-code {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2.6rem, 5vw, 4rem);
-            line-height: 0.9;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 0 14px 34px rgba(0, 0, 0, 0.34);
+        .project-card:hover .project-visual img {
+            transform: scale(1.04);
+            filter: saturate(1.08) brightness(1.05);
         }
 
         .project-category-badge {
