@@ -614,9 +614,10 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 5rem 2rem;
+            scroll-margin-top: 5.8rem;
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.8s, transform 0.8s;
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         section.visible {
@@ -653,6 +654,7 @@
             max-width: 100%;
             padding-top: 2rem;
             padding-bottom: 4rem;
+            scroll-margin-top: 4.8rem;
             overflow: hidden;
         }
 

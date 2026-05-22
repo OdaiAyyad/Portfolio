@@ -244,6 +244,10 @@
                 initBackgroundAnimation();
                 typeHeroSlogan();
                 initCustomCursor();
+                const initialSection = window.location.hash ? document.querySelector(window.location.hash) : null;
+                if (initialSection) {
+                    initialSection.scrollIntoView({ block: 'start' });
+                }
             }, 900);
         });
 
@@ -340,10 +344,10 @@
             if (!navTargets.length) return;
 
             let activeId = '';
-            const activationLine = window.innerHeight * 0.36;
+            const activationLine = window.scrollY + Math.min(window.innerHeight * 0.38, 340);
 
             navTargets.forEach(({ section }) => {
-                if (section.getBoundingClientRect().top <= activationLine) {
+                if (section.offsetTop <= activationLine) {
                     activeId = section.id;
                 }
             });
@@ -381,29 +385,34 @@
             });
         }
 
-        // Reveal sections on scroll
+        // Reveal sections without extra scroll-time layout work
         const sections = document.querySelectorAll('section');
-        const revealSection = () => {
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                if (sectionTop < windowHeight * 0.75) {
-                    section.classList.add('visible');
-                }
+
+        if ('IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                });
+            }, {
+                rootMargin: '0px 0px -18% 0px',
+                threshold: 0.08
             });
-        };
+
+            sections.forEach((section) => revealObserver.observe(section));
+        } else {
+            sections.forEach((section) => section.classList.add('visible'));
+        }
 
         let scrollFrame = null;
         function scheduleScrollWork() {
             if (scrollFrame) return;
             scrollFrame = requestAnimationFrame(() => {
                 updateScrollControls();
-                revealSection();
                 scrollFrame = null;
             });
         }
 
         window.addEventListener('scroll', scheduleScrollWork, { passive: true });
         updateScrollControls();
-        revealSection(); // Initial check
-
