@@ -47,17 +47,12 @@
             overflow: hidden;
             pointer-events: none;
             z-index: -1;
-            --cursor-x: 50%;
-            --cursor-y: 50%;
-            --parallax-a-x: 0px;
-            --parallax-a-y: 0px;
-            --parallax-b-x: 0px;
-            --parallax-b-y: 0px;
             background:
-                radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(6, 182, 212, 0.12), transparent 22rem),
+                radial-gradient(circle at 16% 14%, rgba(6, 182, 212, 0.09), transparent 24rem),
+                radial-gradient(circle at 84% 18%, rgba(139, 92, 246, 0.08), transparent 25rem),
                 linear-gradient(115deg, rgba(6, 182, 212, 0.035) 1px, transparent 1px),
                 linear-gradient(65deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
-            background-size: auto, 56px 56px, 72px 72px;
+            background-size: auto, auto, 56px 56px, 72px 72px;
         }
 
         .bg-animation::before,
@@ -73,7 +68,7 @@
                 linear-gradient(90deg, transparent 49.85%, rgba(6, 182, 212, 0.12) 50%, transparent 50.15%),
                 linear-gradient(0deg, transparent 49.85%, rgba(139, 92, 246, 0.08) 50%, transparent 50.15%);
             background-size: 180px 180px;
-            transform: translate3d(var(--parallax-a-x), var(--parallax-a-y), 0) rotate(-8deg);
+            transform: rotate(-8deg);
             mask-image: radial-gradient(circle at center, black, transparent 72%);
         }
 
@@ -81,7 +76,6 @@
             background:
                 radial-gradient(circle at 18% 24%, rgba(6, 182, 212, 0.18), transparent 24rem),
                 radial-gradient(circle at 82% 38%, rgba(139, 92, 246, 0.16), transparent 26rem);
-            transform: translate3d(var(--parallax-b-x), var(--parallax-b-y), 0);
         }
 
         .bg-star,
@@ -1630,25 +1624,36 @@
             transform: translateY(0);
         }
 
-        .cursor-ring {
+        .cursor-ring,
+        .cursor-dot {
             position: fixed;
             left: 0;
             top: 0;
             pointer-events: none;
             z-index: 20000;
             opacity: 0;
-            width: 40px;
-            height: 40px;
+            transition: opacity 0.2s ease;
+        }
+
+        .cursor-ring {
+            width: 30px;
+            height: 30px;
             border-radius: 999px;
-            border: 1px solid rgba(6, 182, 212, 0.46);
-            background: rgba(6, 182, 212, 0.04);
-            transition: opacity 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+            border: 1px solid rgba(6, 182, 212, 0.8);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.25);
+        }
+
+        .cursor-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-violet));
+            box-shadow: 0 0 12px rgba(6, 182, 212, 0.5);
         }
 
         .cursor-ring.active {
-            opacity: 1;
-            border-color: rgba(139, 92, 246, 0.72);
-            background: rgba(6, 182, 212, 0.07);
+            border-color: rgba(139, 92, 246, 0.85);
+            box-shadow: 0 0 24px rgba(6, 182, 212, 0.35);
         }
 
         /* ===== FOOTER ===== */
@@ -1724,7 +1729,8 @@
                 width: 100%;
             }
 
-            .cursor-ring {
+            .cursor-ring,
+            .cursor-dot {
                 display: none;
             }
         }

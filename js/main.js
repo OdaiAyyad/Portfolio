@@ -161,31 +161,6 @@
             }
 
             bgAnimation.appendChild(fragment);
-
-            let backgroundFrame = null;
-            let lastPointerEvent = null;
-
-            document.addEventListener('mousemove', (event) => {
-                lastPointerEvent = event;
-                if (backgroundFrame) return;
-
-                backgroundFrame = requestAnimationFrame(() => {
-                    if (!lastPointerEvent) return;
-                    const { clientX, clientY } = lastPointerEvent;
-                    const xPercent = (clientX / window.innerWidth) * 100;
-                    const yPercent = (clientY / window.innerHeight) * 100;
-                    const xOffset = clientX - window.innerWidth / 2;
-                    const yOffset = clientY - window.innerHeight / 2;
-
-                    bgAnimation.style.setProperty('--cursor-x', `${xPercent}%`);
-                    bgAnimation.style.setProperty('--cursor-y', `${yPercent}%`);
-                    bgAnimation.style.setProperty('--parallax-a-x', `${xOffset * -0.012}px`);
-                    bgAnimation.style.setProperty('--parallax-a-y', `${yOffset * -0.012}px`);
-                    bgAnimation.style.setProperty('--parallax-b-x', `${xOffset * 0.01}px`);
-                    bgAnimation.style.setProperty('--parallax-b-y', `${yOffset * 0.01}px`);
-                    backgroundFrame = null;
-                });
-            });
         }
 
         function typeHeroSlogan() {
@@ -209,36 +184,56 @@
 
             const ring = document.createElement('div');
             ring.className = 'cursor-ring';
+            const dot = document.createElement('div');
+            dot.className = 'cursor-dot';
             document.body.appendChild(ring);
+            document.body.appendChild(dot);
 
-            function moveRing(event) {
-                ring.style.transform = `translate(${event.clientX - 20}px, ${event.clientY - 20}px)`;
+            let currentX = window.innerWidth / 2;
+            let currentY = window.innerHeight / 2;
+            let targetX = currentX;
+            let targetY = currentY;
+            let cursorFrame = null;
+
+            function renderCursor() {
+                currentX += (targetX - currentX) * 0.18;
+                currentY += (targetY - currentY) * 0.18;
+                ring.style.transform = `translate(${currentX - 15}px, ${currentY - 15}px)`;
+                dot.style.transform = `translate(${targetX - 3.5}px, ${targetY - 3.5}px)`;
+                cursorFrame = requestAnimationFrame(renderCursor);
             }
 
-            const hoverSelector = '.timeline-item, .project-card, .skill-category, .skill-tag, .contact-row, .learning-item, .location-card, .tech-pill';
-            let activeHoverTarget = null;
-
             document.addEventListener('mousemove', (event) => {
-                const eventTarget = event.target instanceof Element ? event.target : null;
-                const hoverTarget = eventTarget ? eventTarget.closest(hoverSelector) : null;
-
-                if (hoverTarget) {
-                    moveRing(event);
-                    activeHoverTarget = hoverTarget;
-                    ring.classList.add('active');
-                    return;
-                }
-
-                if (activeHoverTarget) {
-                    activeHoverTarget = null;
-                    ring.classList.remove('active');
-                }
+                targetX = event.clientX;
+                targetY = event.clientY;
+                ring.style.opacity = '1';
+                dot.style.opacity = '1';
             }, { passive: true });
 
             document.addEventListener('mouseleave', () => {
-                activeHoverTarget = null;
-                ring.classList.remove('active');
+                ring.style.opacity = '0';
+                dot.style.opacity = '0';
             });
+
+            const interactiveSelector = 'a, button, .timeline-item, .project-card, .skill-category, .skill-tag, .contact-row, .learning-item, .location-card, .tech-pill';
+
+            document.addEventListener('mouseover', (event) => {
+                const eventTarget = event.target instanceof Element ? event.target : null;
+                if (eventTarget?.closest(interactiveSelector)) {
+                    ring.classList.add('active');
+                }
+            });
+
+            document.addEventListener('mouseout', (event) => {
+                const eventTarget = event.target instanceof Element ? event.target : null;
+                if (eventTarget?.closest(interactiveSelector)) {
+                    ring.classList.remove('active');
+                }
+            });
+
+            if (!cursorFrame) {
+                renderCursor();
+            }
         }
 
         // Hide loader after page loads
