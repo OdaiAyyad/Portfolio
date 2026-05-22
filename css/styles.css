@@ -297,15 +297,41 @@
         }
 
         .nav-links a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            min-height: 30px;
             color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.25s ease;
             font-size: 0.95rem;
             font-weight: 500;
         }
 
-        .nav-links a:hover {
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -0.25rem;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--primary-cyan), var(--primary-violet));
+            opacity: 0;
+            transform: scaleX(0.35);
+            transform-origin: center;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.is-active {
             color: var(--primary-cyan);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.is-active::after {
+            opacity: 1;
+            transform: scaleX(1);
         }
 
         /* ===== HERO (Enhanced from old version) ===== */

@@ -326,10 +326,43 @@
         // Scroll-based controls
         const header = document.querySelector('.header');
         const scrollTopBtn = document.getElementById('scrollTop');
+        const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+        const navTargets = navLinks
+            .map((link) => {
+                const targetId = link.getAttribute('href');
+                if (!targetId || targetId === '#') return null;
+                const section = document.querySelector(targetId);
+                return section ? { link, section } : null;
+            })
+            .filter(Boolean);
+
+        function updateActiveNav() {
+            if (!navTargets.length) return;
+
+            let activeId = '';
+            const activationLine = window.innerHeight * 0.36;
+
+            navTargets.forEach(({ section }) => {
+                if (section.getBoundingClientRect().top <= activationLine) {
+                    activeId = section.id;
+                }
+            });
+
+            navTargets.forEach(({ link, section }) => {
+                const isActive = section.id === activeId;
+                link.classList.toggle('is-active', isActive);
+                if (isActive) {
+                    link.setAttribute('aria-current', 'page');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
+            });
+        }
 
         function updateScrollControls() {
             const isScrolled = window.pageYOffset > 90;
             if (header) header.classList.toggle('is-scrolled', isScrolled);
+            updateActiveNav();
 
             if (!scrollTopBtn) return;
             if (window.pageYOffset > 300) {
