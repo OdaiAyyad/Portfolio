@@ -118,7 +118,7 @@
 
             const fragment = document.createDocumentFragment();
 
-            for (let i = 0; i < 90; i += 1) {
+            for (let i = 0; i < 64; i += 1) {
                 const star = document.createElement('span');
                 const size = Math.random() * 2.4 + 1;
                 const isCyan = Math.random() > 0.38;
@@ -134,7 +134,7 @@
                 fragment.appendChild(star);
             }
 
-            for (let i = 0; i < 11; i += 1) {
+            for (let i = 0; i < 8; i += 1) {
                 const node = document.createElement('span');
                 const size = Math.random() * 24 + 18;
 
@@ -147,7 +147,7 @@
                 fragment.appendChild(node);
             }
 
-            for (let i = 0; i < 10; i += 1) {
+            for (let i = 0; i < 7; i += 1) {
                 const trace = document.createElement('span');
 
                 trace.className = 'bg-trace';
@@ -162,18 +162,29 @@
 
             bgAnimation.appendChild(fragment);
 
-            document.addEventListener('mousemove', (event) => {
-                const xPercent = (event.clientX / window.innerWidth) * 100;
-                const yPercent = (event.clientY / window.innerHeight) * 100;
-                const xOffset = event.clientX - window.innerWidth / 2;
-                const yOffset = event.clientY - window.innerHeight / 2;
+            let backgroundFrame = null;
+            let lastPointerEvent = null;
 
-                bgAnimation.style.setProperty('--cursor-x', `${xPercent}%`);
-                bgAnimation.style.setProperty('--cursor-y', `${yPercent}%`);
-                bgAnimation.style.setProperty('--parallax-a-x', `${xOffset * -0.018}px`);
-                bgAnimation.style.setProperty('--parallax-a-y', `${yOffset * -0.018}px`);
-                bgAnimation.style.setProperty('--parallax-b-x', `${xOffset * 0.014}px`);
-                bgAnimation.style.setProperty('--parallax-b-y', `${yOffset * 0.014}px`);
+            document.addEventListener('mousemove', (event) => {
+                lastPointerEvent = event;
+                if (backgroundFrame) return;
+
+                backgroundFrame = requestAnimationFrame(() => {
+                    if (!lastPointerEvent) return;
+                    const { clientX, clientY } = lastPointerEvent;
+                    const xPercent = (clientX / window.innerWidth) * 100;
+                    const yPercent = (clientY / window.innerHeight) * 100;
+                    const xOffset = clientX - window.innerWidth / 2;
+                    const yOffset = clientY - window.innerHeight / 2;
+
+                    bgAnimation.style.setProperty('--cursor-x', `${xPercent}%`);
+                    bgAnimation.style.setProperty('--cursor-y', `${yPercent}%`);
+                    bgAnimation.style.setProperty('--parallax-a-x', `${xOffset * -0.012}px`);
+                    bgAnimation.style.setProperty('--parallax-a-y', `${yOffset * -0.012}px`);
+                    bgAnimation.style.setProperty('--parallax-b-x', `${xOffset * 0.01}px`);
+                    bgAnimation.style.setProperty('--parallax-b-y', `${yOffset * 0.01}px`);
+                    backgroundFrame = null;
+                });
             });
         }
 
@@ -194,46 +205,40 @@
 
         function initCustomCursor() {
             if (window.matchMedia('(max-width: 900px)').matches) return;
+            if (document.querySelector('.cursor-ring')) return;
 
             const ring = document.createElement('div');
             ring.className = 'cursor-ring';
-            const dot = document.createElement('div');
-            dot.className = 'cursor-dot';
             document.body.appendChild(ring);
-            document.body.appendChild(dot);
 
-            let currentX = window.innerWidth / 2;
-            let currentY = window.innerHeight / 2;
-            let targetX = currentX;
-            let targetY = currentY;
-
-            function tick() {
-                currentX += (targetX - currentX) * 0.18;
-                currentY += (targetY - currentY) * 0.18;
-                ring.style.transform = `translate(${currentX - 15}px, ${currentY - 15}px)`;
-                dot.style.transform = `translate(${targetX - 3.5}px, ${targetY - 3.5}px)`;
-                requestAnimationFrame(tick);
+            function moveRing(event) {
+                ring.style.transform = `translate(${event.clientX - 20}px, ${event.clientY - 20}px)`;
             }
 
+            const hoverSelector = '.timeline-item, .project-card, .skill-category, .skill-tag, .contact-row, .learning-item, .location-card, .tech-pill';
+            let activeHoverTarget = null;
+
             document.addEventListener('mousemove', (event) => {
-                targetX = event.clientX;
-                targetY = event.clientY;
-                ring.style.opacity = '1';
-                dot.style.opacity = '1';
-            });
+                const eventTarget = event.target instanceof Element ? event.target : null;
+                const hoverTarget = eventTarget ? eventTarget.closest(hoverSelector) : null;
+
+                if (hoverTarget) {
+                    moveRing(event);
+                    activeHoverTarget = hoverTarget;
+                    ring.classList.add('active');
+                    return;
+                }
+
+                if (activeHoverTarget) {
+                    activeHoverTarget = null;
+                    ring.classList.remove('active');
+                }
+            }, { passive: true });
 
             document.addEventListener('mouseleave', () => {
-                ring.style.opacity = '0';
-                dot.style.opacity = '0';
+                activeHoverTarget = null;
+                ring.classList.remove('active');
             });
-
-            const interactiveSelector = 'a, button, .project-card, .skill-tag, .contact-row';
-            document.querySelectorAll(interactiveSelector).forEach((element) => {
-                element.addEventListener('mouseenter', () => ring.classList.add('active'));
-                element.addEventListener('mouseleave', () => ring.classList.remove('active'));
-            });
-
-            tick();
         }
 
         // Hide loader after page loads
@@ -372,9 +377,6 @@
             }
         }
 
-        window.addEventListener('scroll', updateScrollControls);
-        updateScrollControls();
-
         if (scrollTopBtn) {
             scrollTopBtn.addEventListener('click', () => {
                 window.scrollTo({
@@ -396,6 +398,17 @@
             });
         };
 
-        window.addEventListener('scroll', revealSection);
+        let scrollFrame = null;
+        function scheduleScrollWork() {
+            if (scrollFrame) return;
+            scrollFrame = requestAnimationFrame(() => {
+                updateScrollControls();
+                revealSection();
+                scrollFrame = null;
+            });
+        }
+
+        window.addEventListener('scroll', scheduleScrollWork, { passive: true });
+        updateScrollControls();
         revealSection(); // Initial check
 
