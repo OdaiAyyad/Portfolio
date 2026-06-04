@@ -713,19 +713,11 @@
         }
 
         /* ===== TECH STACK ===== */
-        .tech-stack-section {
-            max-width: 100%;
-            padding-top: 2rem;
+        .developer-dashboard {
+            max-width: 1200px;
+            padding-top: 2.5rem;
             padding-bottom: 4rem;
             scroll-margin-top: 4.8rem;
-            overflow: hidden;
-        }
-
-        .tech-stack-heading {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            text-align: center;
         }
 
         .section-kicker {
@@ -745,76 +737,136 @@
             text-transform: uppercase;
         }
 
-        .tech-stack-heading .section-title {
-            margin-bottom: 1.7rem;
-        }
-
-        .tech-marquee {
-            width: 100%;
-            display: flex;
-            gap: 1rem;
-            padding: 1rem 0;
+        .dashboard-card {
+            position: relative;
             overflow: hidden;
-            border-block: 1px solid rgba(6, 182, 212, 0.16);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 18px;
             background:
-                linear-gradient(90deg, var(--bg-dark), transparent 12%, transparent 88%, var(--bg-dark)),
-                rgba(8, 19, 40, 0.26);
-            mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+                radial-gradient(circle at 100% 0, rgba(139, 92, 246, 0.12), transparent 32%),
+                linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(12, 22, 43, 0.9));
+            box-shadow: 0 18px 42px rgba(6, 182, 212, 0.07);
         }
 
-        .tech-track {
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 36px 36px;
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        .dashboard-card-head {
+            position: relative;
+            z-index: 2;
             display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 1rem;
-            min-width: max-content;
-            animation: techMarquee 32s linear infinite;
+            padding: 1rem 1.15rem 0;
         }
 
-        .tech-marquee:hover .tech-track {
-            animation-play-state: paused;
-        }
-
-        .tech-pill {
+        .dashboard-label {
             display: inline-flex;
             align-items: center;
-            gap: 0.65rem;
-            min-height: 48px;
-            padding: 0 1rem;
-            border: 1px solid rgba(6, 182, 212, 0.24);
+            gap: 0.55rem;
+            min-height: 36px;
+            padding: 0 0.9rem;
+            border: 1px solid rgba(6, 182, 212, 0.22);
             border-radius: 999px;
-            background: linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(17, 28, 51, 0.74));
+            background: rgba(8, 19, 40, 0.58);
             color: var(--text-secondary);
+            font-size: 0.85rem;
             font-weight: 700;
-            white-space: nowrap;
-            box-shadow: 0 10px 26px rgba(6, 182, 212, 0.08);
-            transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .tech-pill:hover {
-            transform: translateY(-3px);
-            border-color: rgba(6, 182, 212, 0.7);
-            color: var(--text-primary);
-            box-shadow: 0 12px 30px rgba(139, 92, 246, 0.18);
-        }
-
-        .tech-pill i,
-        .tech-initial {
-            width: 24px;
-            height: 24px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 1.35rem;
-        }
-
-        .tech-initial {
-            border-radius: 8px;
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.22), rgba(139, 92, 246, 0.22));
+        .dashboard-label span,
+        .dashboard-label i {
             color: var(--primary-cyan);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.66rem;
-            font-weight: 900;
-            letter-spacing: 0.04em;
+            font-size: 1rem;
+        }
+
+        .dashboard-meta {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-decoration: none;
+        }
+
+        .tech-dashboard-card {
+            min-height: 250px;
+            padding-bottom: 1.35rem;
+        }
+
+        .dashboard-tech-rail {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(11, minmax(44px, 1fr));
+            align-items: center;
+            gap: 0.7rem;
+            padding: 2rem 1.5rem 1.6rem;
+        }
+
+        .dashboard-tech-icon {
+            display: grid;
+            place-items: center;
+            min-width: 44px;
+            height: 48px;
+            color: rgba(148, 163, 184, 0.38);
+            filter: grayscale(1);
+            opacity: 0.58;
+            transition: color 0.25s ease, filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .dashboard-tech-icon i {
+            font-size: 2.3rem;
+        }
+
+        .dashboard-tech-icon .brand-icon {
+            width: 34px;
+            height: 34px;
+            opacity: 0.64;
+            filter: invert(72%) sepia(27%) saturate(712%) hue-rotate(145deg) brightness(88%) contrast(88%);
+        }
+
+        .dashboard-tech-icon:hover {
+            color: var(--primary-cyan);
+            filter: none;
+            opacity: 1;
+            transform: translateY(-4px);
+        }
+
+        .dashboard-copy {
+            position: relative;
+            z-index: 1;
+            padding: 0 1.5rem;
+        }
+
+        .dashboard-copy h2 {
+            margin-bottom: 0.45rem;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+        }
+
+        .dashboard-copy p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .dashboard-lower-grid {
+            display: grid;
+            grid-template-columns: minmax(300px, 0.85fr) minmax(0, 1.65fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .location-dashboard-card,
+        .contributions-card {
+            min-height: 350px;
         }
 
         .brand-icon {
@@ -823,11 +875,6 @@
             width: 20px;
             height: 20px;
             object-fit: contain;
-        }
-
-        .tech-pill .brand-icon {
-            width: 24px;
-            height: 24px;
         }
 
         .experience-tech .brand-icon {
@@ -843,13 +890,152 @@
             filter: drop-shadow(0 0 7px rgba(6, 182, 212, 0.2));
         }
 
-        @keyframes techMarquee {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(calc(-100% - 1rem));
-            }
+        .dashboard-map {
+            position: absolute;
+            inset: 4.2rem 1rem 1rem;
+            overflow: hidden;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 14px;
+            background: #07111d;
+        }
+
+        .dashboard-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: invert(92%) hue-rotate(145deg) brightness(0.48) saturate(1.5) contrast(1.2);
+            opacity: 0.78;
+        }
+
+        .dashboard-map::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(7, 10, 26, 0.04), rgba(7, 10, 26, 0.22));
+            pointer-events: none;
+        }
+
+        .map-city-label {
+            position: absolute;
+            z-index: 2;
+            left: 50%;
+            top: 54%;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            transform: translate(-50%, -50%);
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            font-weight: 800;
+            text-shadow: 0 2px 9px #020617;
+            pointer-events: none;
+        }
+
+        .map-city-label span {
+            width: 9px;
+            height: 9px;
+            border: 2px solid var(--bg-dark);
+            border-radius: 999px;
+            background: var(--primary-cyan);
+            box-shadow: 0 0 0 6px rgba(6, 182, 212, 0.16), 0 0 18px var(--primary-cyan);
+        }
+
+        .contributions-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contribution-total {
+            color: var(--text-secondary);
+            font-weight: 700;
+            white-space: nowrap;
+            transition: color 0.25s ease;
+        }
+
+        .contribution-total:hover {
+            color: var(--primary-cyan);
+        }
+
+        .contribution-calendar {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-rows: repeat(7, 10px);
+            grid-auto-flow: column;
+            grid-auto-columns: 10px;
+            gap: 3px;
+            margin: 1.5rem 1.15rem 1rem;
+            padding-bottom: 0.45rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .contribution-calendar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .contribution-day {
+            width: 10px;
+            height: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.11);
+            border-radius: 3px;
+            background: rgba(30, 41, 59, 0.42);
+            cursor: default;
+            transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .contribution-day:hover {
+            z-index: 2;
+            transform: scale(1.35);
+            border-color: rgba(241, 245, 249, 0.7);
+            box-shadow: 0 0 12px rgba(6, 182, 212, 0.42);
+        }
+
+        .contribution-day.level-1 {
+            background: rgba(8, 145, 178, 0.34);
+        }
+
+        .contribution-day.level-2 {
+            background: rgba(14, 165, 233, 0.58);
+        }
+
+        .contribution-day.level-3 {
+            background: rgba(6, 182, 212, 0.85);
+        }
+
+        .contribution-day.level-4 {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-violet));
+        }
+
+        .contribution-loading,
+        .contribution-error {
+            grid-row: 1 / -1;
+            align-self: center;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            white-space: nowrap;
+        }
+
+        .contribution-caption {
+            position: relative;
+            z-index: 1;
+            margin: auto 1.15rem 1.35rem;
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .contribution-tooltip {
+            position: fixed;
+            z-index: 30000;
+            padding: 0.45rem 0.65rem;
+            border: 1px solid rgba(6, 182, 212, 0.34);
+            border-radius: 8px;
+            background: rgba(7, 10, 26, 0.94);
+            color: var(--text-primary);
+            font-size: 0.76rem;
+            box-shadow: 0 8px 24px rgba(2, 6, 23, 0.45);
+            pointer-events: none;
         }
 
         /* ===== PROJECTS ===== */
@@ -1495,132 +1681,9 @@
         }
 
         .contact-layout {
-            max-width: 980px;
+            max-width: 780px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: minmax(280px, 0.85fr) minmax(320px, 1fr);
-            gap: 1.2rem;
-            align-items: stretch;
-        }
-
-        .location-card {
-            min-height: 260px;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            border: 1px solid rgba(6, 182, 212, 0.24);
-            border-radius: 16px;
-            background:
-                radial-gradient(circle at 38% 35%, rgba(6, 182, 212, 0.18), transparent 20%),
-                radial-gradient(circle at 70% 72%, rgba(139, 92, 246, 0.12), transparent 26%),
-                linear-gradient(145deg, rgba(8, 19, 40, 0.96), rgba(16, 24, 55, 0.9));
-            box-shadow: 0 18px 42px rgba(6, 182, 212, 0.08);
-        }
-
-        .location-map {
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(90deg, rgba(6, 182, 212, 0.09) 1px, transparent 1px),
-                linear-gradient(rgba(139, 92, 246, 0.07) 1px, transparent 1px);
-            background-size: 34px 34px;
-            opacity: 0.78;
-        }
-
-        .location-map::before,
-        .location-map::after {
-            content: '';
-            position: absolute;
-            inset: 18% 10%;
-            border: 1px solid rgba(6, 182, 212, 0.16);
-            border-radius: 42% 58% 44% 56%;
-            transform: rotate(-14deg);
-        }
-
-        .location-map::after {
-            inset: 28% 18%;
-            border-color: rgba(139, 92, 246, 0.16);
-            transform: rotate(18deg);
-        }
-
-        .map-ring,
-        .map-pin,
-        .map-route {
-            position: absolute;
             display: block;
-        }
-
-        .map-ring {
-            width: 138px;
-            height: 138px;
-            border: 1px solid rgba(6, 182, 212, 0.18);
-            border-radius: 999px;
-        }
-
-        .ring-one {
-            left: 12%;
-            top: 18%;
-        }
-
-        .ring-two {
-            right: 8%;
-            bottom: 12%;
-            border-color: rgba(139, 92, 246, 0.18);
-        }
-
-        .map-pin {
-            left: 47%;
-            top: 42%;
-            width: 18px;
-            height: 18px;
-            border-radius: 999px;
-            background: var(--primary-cyan);
-            box-shadow: 0 0 0 8px rgba(6, 182, 212, 0.14), 0 0 28px rgba(6, 182, 212, 0.65);
-        }
-
-        .map-route {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.75), transparent);
-            transform-origin: left center;
-        }
-
-        .route-one {
-            left: 20%;
-            top: 42%;
-            width: 48%;
-            transform: rotate(-18deg);
-        }
-
-        .route-two {
-            left: 38%;
-            top: 56%;
-            width: 46%;
-            transform: rotate(23deg);
-            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.7), transparent);
-        }
-
-        .location-details {
-            position: relative;
-            z-index: 1;
-            padding: 1.25rem;
-            background: linear-gradient(180deg, transparent, rgba(8, 19, 40, 0.95));
-        }
-
-        .location-details .section-kicker {
-            margin-bottom: 0.65rem;
-        }
-
-        .location-details h3 {
-            color: var(--text-primary);
-            font-size: 1.35rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .location-details p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
         }
 
         .contact-panel {
@@ -1809,11 +1872,17 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
+            .dashboard-tech-rail {
+                grid-template-columns: repeat(6, minmax(44px, 1fr));
+            }
         }
 
         @media (max-width: 900px) {
-            .contact-layout {
+            .dashboard-lower-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .contact-layout {
                 max-width: 620px;
             }
 
@@ -1917,19 +1986,35 @@
                 display: none;
             }
 
-            .tech-stack-section {
+            .developer-dashboard {
                 padding-top: 1rem;
                 padding-bottom: 3rem;
             }
 
-            .tech-marquee {
-                mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+            .dashboard-tech-rail {
+                display: flex;
+                gap: 0.55rem;
+                padding: 1.5rem 1rem 1.2rem;
+                overflow-x: auto;
+                scrollbar-width: thin;
+                scrollbar-color: rgba(6, 182, 212, 0.35) transparent;
             }
 
-            .tech-pill {
-                min-height: 42px;
-                padding: 0 0.85rem;
-                font-size: 0.88rem;
+            .dashboard-tech-icon {
+                flex: 0 0 48px;
+            }
+
+            .dashboard-card-head {
+                flex-wrap: wrap;
+            }
+
+            .location-dashboard-card,
+            .contributions-card {
+                min-height: 330px;
+            }
+
+            .contribution-calendar {
+                margin-inline: 1rem;
             }
 
             .learning-list {

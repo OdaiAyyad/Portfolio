@@ -113,40 +113,71 @@
     </section>
 
     <!-- TECH STACK -->
-    <section id="tech-stack" class="tech-stack-section" aria-label="Technology stack">
-        <div class="tech-stack-heading">
-            <span class="section-kicker">Core Toolkit</span>
-            <h2 class="section-title">Technologies I Use</h2>
-        </div>
-        <div class="tech-marquee" aria-label="Moving technology list">
-            <div class="tech-track">
-                <span class="tech-pill"><i class="devicon-python-plain colored"></i>Python</span>
-                <span class="tech-pill"><i class="devicon-tensorflow-original colored"></i>TensorFlow</span>
-                <span class="tech-pill"><i class="devicon-pytorch-original colored"></i>PyTorch</span>
-                <span class="tech-pill"><i class="devicon-opencv-plain colored"></i>OpenCV</span>
-                <span class="tech-pill"><i class="devicon-jupyter-plain colored"></i>Jupyter</span>
-                <span class="tech-pill"><img class="brand-icon icon-cyan" src="assets/icons/openai.svg" alt="">OpenAI</span>
-                <span class="tech-pill"><img class="brand-icon icon-cyan" src="assets/icons/langchain.svg" alt="">LangChain</span>
-                <span class="tech-pill"><img class="brand-icon icon-cyan" src="assets/icons/langgraph.svg" alt="">LangGraph</span>
-                <span class="tech-pill"><i class="devicon-postman-plain colored"></i>Postman</span>
-                <span class="tech-pill"><i class="devicon-jira-plain colored"></i>Jira</span>
-                <span class="tech-pill"><i class="devicon-docker-plain colored"></i>Docker</span>
-                <span class="tech-pill"><i class="devicon-git-plain colored"></i>Git</span>
+    <section id="tech-stack" class="developer-dashboard" aria-label="Developer dashboard">
+        <article class="dashboard-card tech-dashboard-card">
+            <div class="dashboard-card-head">
+                <span class="dashboard-label">
+                    <span aria-hidden="true">{ }</span>
+                    Tech Stack
+                </span>
             </div>
-            <div class="tech-track" aria-hidden="true">
-                <span class="tech-pill"><i class="devicon-python-plain colored"></i>Python</span>
-                <span class="tech-pill"><i class="devicon-tensorflow-original colored"></i>TensorFlow</span>
-                <span class="tech-pill"><i class="devicon-pytorch-original colored"></i>PyTorch</span>
-                <span class="tech-pill"><i class="devicon-opencv-plain colored"></i>OpenCV</span>
-                <span class="tech-pill"><i class="devicon-jupyter-plain colored"></i>Jupyter</span>
-                <span class="tech-pill"><img class="brand-icon icon-cyan" src="assets/icons/openai.svg" alt="">OpenAI</span>
-                <span class="tech-pill"><img class="brand-icon icon-cyan" src="assets/icons/langchain.svg" alt="">LangChain</span>
-                <span class="tech-pill"><img class="brand-icon icon-cyan" src="assets/icons/langgraph.svg" alt="">LangGraph</span>
-                <span class="tech-pill"><i class="devicon-postman-plain colored"></i>Postman</span>
-                <span class="tech-pill"><i class="devicon-jira-plain colored"></i>Jira</span>
-                <span class="tech-pill"><i class="devicon-docker-plain colored"></i>Docker</span>
-                <span class="tech-pill"><i class="devicon-git-plain colored"></i>Git</span>
+            <div class="dashboard-tech-rail" aria-label="Primary technologies">
+                <span class="dashboard-tech-icon" title="Python"><i class="devicon-python-plain"></i></span>
+                <span class="dashboard-tech-icon" title="TensorFlow"><i class="devicon-tensorflow-original"></i></span>
+                <span class="dashboard-tech-icon" title="PyTorch"><i class="devicon-pytorch-original"></i></span>
+                <span class="dashboard-tech-icon" title="OpenCV"><i class="devicon-opencv-plain"></i></span>
+                <span class="dashboard-tech-icon" title="OpenAI"><img class="brand-icon" src="assets/icons/openai.svg" alt=""></span>
+                <span class="dashboard-tech-icon" title="LangChain"><img class="brand-icon" src="assets/icons/langchain.svg" alt=""></span>
+                <span class="dashboard-tech-icon" title="LangGraph"><img class="brand-icon" src="assets/icons/langgraph.svg" alt=""></span>
+                <span class="dashboard-tech-icon" title="Postman"><i class="devicon-postman-plain"></i></span>
+                <span class="dashboard-tech-icon" title="Jira"><i class="devicon-jira-plain"></i></span>
+                <span class="dashboard-tech-icon" title="Docker"><i class="devicon-docker-plain"></i></span>
+                <span class="dashboard-tech-icon" title="Git"><i class="devicon-git-plain"></i></span>
             </div>
+            <div class="dashboard-copy">
+                <h2>Tech stack I mainly use</h2>
+                <p>Focused on Python, computer vision, agentic AI, workflow automation, and reliable quality engineering.</p>
+            </div>
+        </article>
+
+        <div class="dashboard-lower-grid">
+            <article class="dashboard-card location-dashboard-card">
+                <div class="dashboard-card-head">
+                    <span class="dashboard-label">
+                        <span aria-hidden="true">&#8982;</span>
+                        Location
+                    </span>
+                    <span class="dashboard-meta">Amman, Jordan</span>
+                </div>
+                <div class="dashboard-map">
+                    <iframe
+                        title="Map showing Amman, Jordan"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=35.7900%2C31.8700%2C36.0350%2C32.0550&amp;layer=mapnik&amp;marker=31.9539%2C35.9106"
+                        loading="lazy">
+                    </iframe>
+                    <div class="map-city-label" aria-hidden="true">
+                        <span></span>
+                        Amman
+                    </div>
+                </div>
+            </article>
+
+            <article class="dashboard-card contributions-card">
+                <div class="dashboard-card-head">
+                    <span class="dashboard-label">
+                        <i class="devicon-github-original" aria-hidden="true"></i>
+                        GitHub Contributions
+                    </span>
+                    <a class="dashboard-meta contribution-total" id="contributionTotal" href="https://github.com/OdaiAyyad" target="_blank" rel="noopener">
+                        Loading...
+                    </a>
+                </div>
+                <div class="contribution-calendar" id="contributionCalendar" aria-label="GitHub contribution calendar">
+                    <div class="contribution-loading">Loading contribution activity...</div>
+                </div>
+                <p class="contribution-caption">Build, test, automate, repeat.</p>
+                <div class="contribution-tooltip" id="contributionTooltip" role="tooltip" hidden></div>
+            </article>
         </div>
     </section>
 
@@ -475,21 +506,6 @@
         <h2 class="section-title">Get In Touch</h2>
         <p class="contact-intro">Have a question or want to work together? Reach out directly. You can copy contact details instantly.</p>
         <div class="contact-layout">
-            <div class="location-card" aria-label="Location: Amman, Jordan">
-                <div class="location-map" aria-hidden="true">
-                    <span class="map-ring ring-one"></span>
-                    <span class="map-ring ring-two"></span>
-                    <span class="map-pin"></span>
-                    <span class="map-route route-one"></span>
-                    <span class="map-route route-two"></span>
-                </div>
-                <div class="location-details">
-                    <span class="section-kicker">Location</span>
-                    <h3>Amman, Jordan</h3>
-                    <p>Open to AI, QA, automation, and collaboration opportunities.</p>
-                </div>
-            </div>
-
             <div class="contact-panel">
                 <button type="button" class="contact-row contact-copy-row" data-copy="odai.ayyad.work@gmail.com">
                     <div class="method-icon">

@@ -112,6 +112,67 @@
             }
         }
 
+        async function initContributionCalendar() {
+            const calendar = document.getElementById('contributionCalendar');
+            const totalLabel = document.getElementById('contributionTotal');
+            const tooltip = document.getElementById('contributionTooltip');
+            if (!calendar || !totalLabel || !tooltip) return;
+
+            const positionTooltip = (event) => {
+                const x = Math.min(event.clientX + 14, window.innerWidth - tooltip.offsetWidth - 12);
+                const y = Math.max(10, event.clientY - tooltip.offsetHeight - 12);
+                tooltip.style.left = `${x}px`;
+                tooltip.style.top = `${y}px`;
+            };
+
+            try {
+                const response = await fetch('https://github-contributions-api.jogruber.de/v4/OdaiAyyad?y=last');
+                if (!response.ok) throw new Error('Contribution request failed');
+
+                const data = await response.json();
+                const contributions = Array.isArray(data.contributions) ? data.contributions : [];
+                const total = data.total?.lastYear ?? contributions.reduce((sum, day) => sum + day.count, 0);
+                const fragment = document.createDocumentFragment();
+
+                contributions.forEach((day) => {
+                    const cell = document.createElement('span');
+                    const countLabel = `${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}`;
+                    cell.className = `contribution-day level-${Math.min(Number(day.level) || 0, 4)}`;
+                    cell.setAttribute('aria-label', countLabel);
+                    cell.tabIndex = 0;
+
+                    const showTooltip = (event) => {
+                        tooltip.textContent = countLabel;
+                        tooltip.hidden = false;
+                        positionTooltip(event);
+                    };
+
+                    cell.addEventListener('mouseenter', showTooltip);
+                    cell.addEventListener('mousemove', positionTooltip);
+                    cell.addEventListener('mouseleave', () => {
+                        tooltip.hidden = true;
+                    });
+                    cell.addEventListener('focus', () => {
+                        tooltip.textContent = countLabel;
+                        tooltip.hidden = false;
+                        const rect = cell.getBoundingClientRect();
+                        tooltip.style.left = `${Math.min(rect.left, window.innerWidth - tooltip.offsetWidth - 12)}px`;
+                        tooltip.style.top = `${Math.max(10, rect.top - tooltip.offsetHeight - 10)}px`;
+                    });
+                    cell.addEventListener('blur', () => {
+                        tooltip.hidden = true;
+                    });
+                    fragment.appendChild(cell);
+                });
+
+                calendar.replaceChildren(fragment);
+                totalLabel.textContent = `${total.toLocaleString()} contributions`;
+            } catch (error) {
+                calendar.innerHTML = '<div class="contribution-error">Contribution activity is temporarily unavailable.</div>';
+                totalLabel.textContent = 'View GitHub';
+            }
+        }
+
         function initBackgroundAnimation() {
             const bgAnimation = document.getElementById('bgAnimation');
             if (!bgAnimation) return;
@@ -215,7 +276,7 @@
                 dot.style.opacity = '0';
             });
 
-            const interactiveSelector = 'a, button, .timeline-item, .project-card, .skill-category, .skill-tag, .contact-row, .learning-item, .location-card, .tech-pill';
+            const interactiveSelector = 'a, button, .timeline-item, .project-card, .skill-category, .skill-tag, .contact-row, .learning-item, .dashboard-card, .dashboard-tech-icon';
 
             document.addEventListener('mouseover', (event) => {
                 const eventTarget = event.target instanceof Element ? event.target : null;
@@ -295,6 +356,7 @@
         }
 
         renderProjects();
+        initContributionCalendar();
 
         if (projectViewToggle) {
             projectViewToggle.addEventListener('click', () => {
