@@ -118,9 +118,10 @@
             const tooltip = document.getElementById('contributionTooltip');
             if (!calendar || !totalLabel || !tooltip) return;
 
-            const positionTooltip = (event) => {
-                const x = Math.min(event.clientX + 14, window.innerWidth - tooltip.offsetWidth - 12);
-                const y = Math.max(10, event.clientY - tooltip.offsetHeight - 12);
+            const positionTooltip = (cell) => {
+                const rect = cell.getBoundingClientRect();
+                const x = Math.min(rect.left + rect.width + 12, window.innerWidth - tooltip.offsetWidth - 12);
+                const y = Math.max(10, rect.top - tooltip.offsetHeight - 10);
                 tooltip.style.left = `${x}px`;
                 tooltip.style.top = `${y}px`;
             };
@@ -140,37 +141,46 @@
                     const countLabel = `${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}`;
                     cell.className = `contribution-day level-${Math.min(Number(day.level) || 0, 4)}`;
                     cell.setAttribute('aria-label', countLabel);
+                    cell.dataset.contributionLabel = countLabel;
                     cell.tabIndex = 0;
-
-                    const showTooltip = (event) => {
-                        tooltip.textContent = countLabel;
-                        totalLabel.textContent = countLabel;
-                        tooltip.hidden = false;
-                        positionTooltip(event);
-                    };
-
-                    const hideTooltip = () => {
-                        tooltip.hidden = true;
-                        totalLabel.textContent = defaultTotalLabel;
-                    };
-
-                    cell.addEventListener('mouseenter', showTooltip);
-                    cell.addEventListener('mousemove', positionTooltip);
-                    cell.addEventListener('mouseleave', hideTooltip);
-                    cell.addEventListener('focus', () => {
-                        tooltip.textContent = countLabel;
-                        totalLabel.textContent = countLabel;
-                        tooltip.hidden = false;
-                        const rect = cell.getBoundingClientRect();
-                        tooltip.style.left = `${Math.min(rect.left, window.innerWidth - tooltip.offsetWidth - 12)}px`;
-                        tooltip.style.top = `${Math.max(10, rect.top - tooltip.offsetHeight - 10)}px`;
-                    });
-                    cell.addEventListener('blur', hideTooltip);
                     fragment.appendChild(cell);
                 });
 
                 calendar.replaceChildren(fragment);
                 totalLabel.textContent = defaultTotalLabel;
+
+                const showContributionDetail = (cell) => {
+                    const label = cell.dataset.contributionLabel;
+                    if (!label) return;
+                    tooltip.textContent = label;
+                    totalLabel.textContent = label;
+                    tooltip.hidden = false;
+                    positionTooltip(cell);
+                };
+
+                const hideContributionDetail = () => {
+                    tooltip.hidden = true;
+                    totalLabel.textContent = defaultTotalLabel;
+                };
+
+                calendar.addEventListener('mouseover', (event) => {
+                    const cell = event.target instanceof Element ? event.target.closest('.contribution-day') : null;
+                    if (cell) showContributionDetail(cell);
+                });
+
+                calendar.addEventListener('mouseout', (event) => {
+                    if (!(event.target instanceof Element)) return;
+                    const leavingCell = event.target.closest('.contribution-day');
+                    const enteringCell = event.relatedTarget instanceof Element ? event.relatedTarget.closest('.contribution-day') : null;
+                    if (leavingCell && leavingCell !== enteringCell) hideContributionDetail();
+                });
+
+                calendar.addEventListener('focusin', (event) => {
+                    const cell = event.target instanceof Element ? event.target.closest('.contribution-day') : null;
+                    if (cell) showContributionDetail(cell);
+                });
+
+                calendar.addEventListener('focusout', hideContributionDetail);
             } catch (error) {
                 calendar.innerHTML = '<div class="contribution-error">Contribution activity is temporarily unavailable.</div>';
                 totalLabel.textContent = 'View GitHub';
@@ -243,64 +253,6 @@
             }, 35);
         }
 
-        function initCustomCursor() {
-            if (window.matchMedia('(max-width: 900px)').matches) return;
-            if (document.querySelector('.cursor-ring')) return;
-
-            const ring = document.createElement('div');
-            ring.className = 'cursor-ring';
-            const dot = document.createElement('div');
-            dot.className = 'cursor-dot';
-            document.body.appendChild(ring);
-            document.body.appendChild(dot);
-
-            let currentX = window.innerWidth / 2;
-            let currentY = window.innerHeight / 2;
-            let targetX = currentX;
-            let targetY = currentY;
-            let cursorFrame = null;
-
-            function renderCursor() {
-                currentX += (targetX - currentX) * 0.18;
-                currentY += (targetY - currentY) * 0.18;
-                ring.style.transform = `translate(${currentX - 15}px, ${currentY - 15}px)`;
-                dot.style.transform = `translate(${targetX - 3.5}px, ${targetY - 3.5}px)`;
-                cursorFrame = requestAnimationFrame(renderCursor);
-            }
-
-            document.addEventListener('mousemove', (event) => {
-                targetX = event.clientX;
-                targetY = event.clientY;
-                ring.style.opacity = '1';
-                dot.style.opacity = '1';
-            }, { passive: true });
-
-            document.addEventListener('mouseleave', () => {
-                ring.style.opacity = '0';
-                dot.style.opacity = '0';
-            });
-
-            const interactiveSelector = 'a, button, .timeline-item, .project-card, .skill-category, .skill-tag, .contact-row, .learning-item, .dashboard-card, .dashboard-tech-icon';
-
-            document.addEventListener('mouseover', (event) => {
-                const eventTarget = event.target instanceof Element ? event.target : null;
-                if (eventTarget?.closest(interactiveSelector)) {
-                    ring.classList.add('active');
-                }
-            });
-
-            document.addEventListener('mouseout', (event) => {
-                const eventTarget = event.target instanceof Element ? event.target : null;
-                if (eventTarget?.closest(interactiveSelector)) {
-                    ring.classList.remove('active');
-                }
-            });
-
-            if (!cursorFrame) {
-                renderCursor();
-            }
-        }
-
         function initClickBursts() {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
@@ -323,7 +275,6 @@
                 loader.classList.add('hidden');
                 initBackgroundAnimation();
                 typeHeroSlogan();
-                initCustomCursor();
                 initClickBursts();
                 const initialSection = window.location.hash ? document.querySelector(window.location.hash) : null;
                 if (initialSection) {

@@ -927,8 +927,8 @@
             inset: 0;
             z-index: 1;
             background:
-                radial-gradient(circle at 50% 54%, transparent 0 18%, rgba(7, 10, 26, 0.18) 42%, rgba(7, 10, 26, 0.42) 100%),
-                linear-gradient(135deg, rgba(6, 182, 212, 0.22), transparent 35%, rgba(139, 92, 246, 0.2));
+                radial-gradient(circle at 50% 54%, transparent 0 18%, rgba(7, 10, 26, 0.2) 42%, rgba(7, 10, 26, 0.44) 100%),
+                linear-gradient(135deg, rgba(6, 182, 212, 0.24), transparent 35%, rgba(139, 92, 246, 0.18));
             mix-blend-mode: screen;
             pointer-events: none;
         }
@@ -944,15 +944,26 @@
             pointer-events: none;
         }
 
-        .dashboard-map iframe {
+        .map-tile-layer {
             position: absolute;
-            inset: -24px -18px -58px -18px;
-            width: calc(100% + 36px);
-            height: calc(100% + 82px);
-            border: 0;
-            filter: invert(92%) hue-rotate(155deg) brightness(0.5) saturate(1.8) contrast(1.18);
-            opacity: 0.84;
+            left: 50%;
+            top: 50%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            width: 150%;
+            height: 150%;
+            transform: translate(-50%, -50%) scale(1.06);
+            filter: hue-rotate(118deg) saturate(1.35) brightness(0.78) contrast(1.18);
+            opacity: 0.88;
             pointer-events: none;
+        }
+
+        .map-tile-layer img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .map-city-label {
@@ -978,6 +989,17 @@
             border-radius: 999px;
             background: var(--primary-cyan);
             box-shadow: 0 0 0 6px rgba(6, 182, 212, 0.16), 0 0 18px var(--primary-cyan);
+        }
+
+        .map-attribution {
+            position: absolute;
+            right: 0.5rem;
+            bottom: 0.4rem;
+            z-index: 3;
+            color: rgba(203, 213, 225, 0.38);
+            font-size: 0.58rem;
+            letter-spacing: 0.04em;
+            pointer-events: none;
         }
 
         .contributions-card {
@@ -1838,38 +1860,6 @@
             transform: translateY(0);
         }
 
-        .cursor-ring,
-        .cursor-dot {
-            position: fixed;
-            left: 0;
-            top: 0;
-            pointer-events: none;
-            z-index: 20000;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        .cursor-ring {
-            width: 30px;
-            height: 30px;
-            border-radius: 999px;
-            border: 1px solid rgba(6, 182, 212, 0.8);
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.25);
-        }
-
-        .cursor-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-violet));
-            box-shadow: 0 0 12px rgba(6, 182, 212, 0.5);
-        }
-
-        .cursor-ring.active {
-            border-color: rgba(139, 92, 246, 0.85);
-            box-shadow: 0 0 24px rgba(6, 182, 212, 0.35);
-        }
-
         .click-burst {
             position: fixed;
             z-index: 30001;
@@ -1973,10 +1963,6 @@
                 width: 100%;
             }
 
-            .cursor-ring,
-            .cursor-dot {
-                display: none;
-            }
         }
 
         @media (max-width: 768px) {
