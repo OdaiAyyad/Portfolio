@@ -735,7 +735,7 @@
 
         /* ===== TECH STACK ===== */
         .developer-dashboard {
-            max-width: 1200px;
+            max-width: 1380px;
             padding-top: 2.5rem;
             padding-bottom: 4rem;
             scroll-margin-top: 4.8rem;
@@ -896,14 +896,14 @@
 
         .dashboard-lower-grid {
             display: grid;
-            grid-template-columns: minmax(300px, 0.85fr) minmax(0, 1.65fr);
+            grid-template-columns: minmax(280px, 0.55fr) minmax(0, 1.45fr);
             gap: 1rem;
             margin-top: 1rem;
         }
 
         .location-dashboard-card,
         .contributions-card {
-            min-height: 275px;
+            min-height: 240px;
         }
 
         .brand-icon {
@@ -933,23 +933,98 @@
             overflow: hidden;
             border: 1px solid rgba(6, 182, 212, 0.2);
             border-radius: 14px;
-            background: #07111d;
+            background:
+                radial-gradient(circle at 50% 52%, rgba(6, 182, 212, 0.2), transparent 16%),
+                radial-gradient(circle at 44% 48%, rgba(139, 92, 246, 0.18), transparent 30%),
+                linear-gradient(145deg, rgba(3, 12, 25, 0.96), rgba(9, 18, 40, 0.92));
         }
 
-        .dashboard-map iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            filter: invert(92%) hue-rotate(145deg) brightness(0.48) saturate(1.5) contrast(1.2);
-            opacity: 0.78;
+        .dashboard-map::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(120deg, transparent 17%, rgba(6, 182, 212, 0.28) 17.3%, transparent 17.8%),
+                linear-gradient(32deg, transparent 27%, rgba(139, 92, 246, 0.26) 27.3%, transparent 28%),
+                linear-gradient(158deg, transparent 54%, rgba(6, 182, 212, 0.2) 54.3%, transparent 55%),
+                linear-gradient(18deg, transparent 68%, rgba(6, 182, 212, 0.18) 68.3%, transparent 69%);
+            opacity: 0.72;
         }
 
         .dashboard-map::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(7, 10, 26, 0.04), rgba(7, 10, 26, 0.22));
+            background:
+                radial-gradient(circle at 50% 54%, transparent 0 20%, rgba(7, 10, 26, 0.32) 48%, rgba(7, 10, 26, 0.72) 100%),
+                linear-gradient(180deg, rgba(7, 10, 26, 0.04), rgba(7, 10, 26, 0.2));
             pointer-events: none;
+        }
+
+        .map-grid,
+        .map-road,
+        .map-pulse {
+            position: absolute;
+            display: block;
+            pointer-events: none;
+        }
+
+        .map-grid {
+            inset: -20%;
+            background:
+                linear-gradient(90deg, rgba(6, 182, 212, 0.08) 1px, transparent 1px),
+                linear-gradient(rgba(139, 92, 246, 0.07) 1px, transparent 1px);
+            background-size: 36px 36px;
+            transform: rotate(-9deg);
+            opacity: 0.42;
+        }
+
+        .map-road {
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.55), rgba(139, 92, 246, 0.34), transparent);
+            transform-origin: center;
+            opacity: 0.78;
+        }
+
+        .road-one {
+            left: 8%;
+            top: 33%;
+            width: 86%;
+            transform: rotate(-17deg);
+        }
+
+        .road-two {
+            left: 2%;
+            top: 62%;
+            width: 92%;
+            transform: rotate(14deg);
+        }
+
+        .road-three {
+            left: 22%;
+            top: 18%;
+            width: 68%;
+            transform: rotate(48deg);
+        }
+
+        .road-four {
+            left: 12%;
+            top: 77%;
+            width: 58%;
+            transform: rotate(-38deg);
+        }
+
+        .map-pulse {
+            z-index: 1;
+            left: 50%;
+            top: 54%;
+            width: 112px;
+            height: 112px;
+            border: 1px solid rgba(6, 182, 212, 0.24);
+            border-radius: 999px;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 45px rgba(6, 182, 212, 0.16);
         }
 
         .map-city-label {
@@ -994,16 +1069,16 @@
         }
 
         .contribution-calendar {
-            --contribution-day-size: clamp(10px, 0.75vw, 12px);
+            --contribution-day-size: clamp(12px, 0.86vw, 14px);
             position: relative;
             z-index: 1;
             display: grid;
             grid-template-rows: repeat(7, var(--contribution-day-size));
             grid-auto-flow: column;
             grid-auto-columns: var(--contribution-day-size);
-            gap: 2px;
-            margin: 1.3rem 1.15rem 0.8rem;
-            padding-bottom: 0.25rem;
+            gap: 3px;
+            margin: 1.1rem 1.15rem 0.35rem;
+            padding-bottom: 0;
             overflow-x: auto;
             scrollbar-width: none;
         }
@@ -1057,7 +1132,7 @@
         .contribution-caption {
             position: relative;
             z-index: 1;
-            margin: 0.7rem 1.15rem 1.1rem;
+            margin: 0.35rem 1.15rem 0.9rem;
             color: var(--text-muted);
             font-size: 0.9rem;
             font-weight: 700;
@@ -2052,7 +2127,7 @@
 
             .location-dashboard-card,
             .contributions-card {
-                min-height: 270px;
+                min-height: 255px;
             }
 
             .contribution-calendar {
