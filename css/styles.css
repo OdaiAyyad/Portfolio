@@ -927,9 +927,9 @@
             inset: 0;
             z-index: 1;
             background:
-                radial-gradient(circle at 50% 54%, transparent 0 24%, rgba(3, 10, 24, 0.22) 56%, rgba(3, 10, 24, 0.5) 100%),
-                linear-gradient(135deg, rgba(6, 182, 212, 0.18), transparent 38%, rgba(139, 92, 246, 0.16));
-            mix-blend-mode: soft-light;
+                radial-gradient(circle at 50% 54%, transparent 0 25%, rgba(3, 10, 24, 0.18) 54%, rgba(3, 10, 24, 0.52) 100%),
+                linear-gradient(135deg, rgba(6, 182, 212, 0.22), transparent 40%, rgba(139, 92, 246, 0.16));
+            mix-blend-mode: screen;
             pointer-events: none;
         }
 
@@ -939,31 +939,21 @@
             inset: 0;
             z-index: 2;
             background:
-                linear-gradient(180deg, rgba(7, 10, 26, 0.08), rgba(7, 10, 26, 0.24)),
-                radial-gradient(circle at 50% 54%, transparent 0 28%, rgba(7, 10, 26, 0.2) 78%);
+                linear-gradient(180deg, rgba(7, 10, 26, 0.08), rgba(7, 10, 26, 0.22)),
+                radial-gradient(circle at 50% 54%, transparent 0 32%, rgba(7, 10, 26, 0.18) 78%);
             pointer-events: none;
         }
 
-        .map-tile-layer {
+        .location-map-image {
             position: absolute;
-            left: 50%;
-            top: 50%;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            width: 136%;
-            height: 136%;
-            transform: translate(-50%, -50%) scale(1.08);
-            filter: invert(0.92) hue-rotate(150deg) saturate(1.65) brightness(0.58) contrast(1.25);
-            opacity: 0.96;
-            pointer-events: none;
-        }
-
-        .map-tile-layer img {
-            display: block;
+            inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+            filter: invert(1) hue-rotate(155deg) saturate(1.55) brightness(0.58) contrast(1.18);
+            opacity: 0.92;
+            pointer-events: none;
         }
 
         .map-city-label {
@@ -989,17 +979,6 @@
             border-radius: 999px;
             background: var(--primary-cyan);
             box-shadow: 0 0 0 6px rgba(6, 182, 212, 0.16), 0 0 18px var(--primary-cyan);
-        }
-
-        .map-attribution {
-            position: absolute;
-            right: 0.5rem;
-            bottom: 0.4rem;
-            z-index: 3;
-            color: rgba(203, 213, 225, 0.38);
-            font-size: 0.58rem;
-            letter-spacing: 0.04em;
-            pointer-events: none;
         }
 
         .contributions-card {
