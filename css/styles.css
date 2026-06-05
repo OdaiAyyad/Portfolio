@@ -25,27 +25,12 @@
         /* ===== BASE ===== */
         html {
             scroll-behavior: smooth;
-            scrollbar-color: rgba(6, 182, 212, 0.72) #070a1a;
-            scrollbar-width: thin;
+            scrollbar-width: none;
         }
 
         ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #070a1a;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            border: 2px solid #070a1a;
-            border-radius: 999px;
-            background: linear-gradient(180deg, var(--primary-cyan), var(--primary-violet));
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #22d3ee, #a78bfa);
+            width: 0;
+            height: 0;
         }
 
         body {
@@ -933,103 +918,46 @@
             overflow: hidden;
             border: 1px solid rgba(6, 182, 212, 0.2);
             border-radius: 14px;
-            background:
-                radial-gradient(circle at 50% 52%, rgba(6, 182, 212, 0.2), transparent 16%),
-                radial-gradient(circle at 44% 48%, rgba(139, 92, 246, 0.18), transparent 30%),
-                linear-gradient(145deg, rgba(3, 12, 25, 0.96), rgba(9, 18, 40, 0.92));
+            background: #07111d;
         }
 
         .dashboard-map::before {
             content: '';
             position: absolute;
             inset: 0;
+            z-index: 1;
             background:
-                linear-gradient(120deg, transparent 17%, rgba(6, 182, 212, 0.28) 17.3%, transparent 17.8%),
-                linear-gradient(32deg, transparent 27%, rgba(139, 92, 246, 0.26) 27.3%, transparent 28%),
-                linear-gradient(158deg, transparent 54%, rgba(6, 182, 212, 0.2) 54.3%, transparent 55%),
-                linear-gradient(18deg, transparent 68%, rgba(6, 182, 212, 0.18) 68.3%, transparent 69%);
-            opacity: 0.72;
+                radial-gradient(circle at 50% 54%, transparent 0 18%, rgba(7, 10, 26, 0.18) 42%, rgba(7, 10, 26, 0.42) 100%),
+                linear-gradient(135deg, rgba(6, 182, 212, 0.22), transparent 35%, rgba(139, 92, 246, 0.2));
+            mix-blend-mode: screen;
+            pointer-events: none;
         }
 
         .dashboard-map::after {
             content: '';
             position: absolute;
             inset: 0;
+            z-index: 2;
             background:
-                radial-gradient(circle at 50% 54%, transparent 0 20%, rgba(7, 10, 26, 0.32) 48%, rgba(7, 10, 26, 0.72) 100%),
-                linear-gradient(180deg, rgba(7, 10, 26, 0.04), rgba(7, 10, 26, 0.2));
+                linear-gradient(180deg, rgba(7, 10, 26, 0.02), rgba(7, 10, 26, 0.18)),
+                radial-gradient(circle at 50% 54%, transparent 0 22%, rgba(7, 10, 26, 0.3) 72%);
             pointer-events: none;
         }
 
-        .map-grid,
-        .map-road,
-        .map-pulse {
+        .dashboard-map iframe {
             position: absolute;
-            display: block;
+            inset: -24px -18px -58px -18px;
+            width: calc(100% + 36px);
+            height: calc(100% + 82px);
+            border: 0;
+            filter: invert(92%) hue-rotate(155deg) brightness(0.5) saturate(1.8) contrast(1.18);
+            opacity: 0.84;
             pointer-events: none;
-        }
-
-        .map-grid {
-            inset: -20%;
-            background:
-                linear-gradient(90deg, rgba(6, 182, 212, 0.08) 1px, transparent 1px),
-                linear-gradient(rgba(139, 92, 246, 0.07) 1px, transparent 1px);
-            background-size: 36px 36px;
-            transform: rotate(-9deg);
-            opacity: 0.42;
-        }
-
-        .map-road {
-            height: 2px;
-            border-radius: 999px;
-            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.55), rgba(139, 92, 246, 0.34), transparent);
-            transform-origin: center;
-            opacity: 0.78;
-        }
-
-        .road-one {
-            left: 8%;
-            top: 33%;
-            width: 86%;
-            transform: rotate(-17deg);
-        }
-
-        .road-two {
-            left: 2%;
-            top: 62%;
-            width: 92%;
-            transform: rotate(14deg);
-        }
-
-        .road-three {
-            left: 22%;
-            top: 18%;
-            width: 68%;
-            transform: rotate(48deg);
-        }
-
-        .road-four {
-            left: 12%;
-            top: 77%;
-            width: 58%;
-            transform: rotate(-38deg);
-        }
-
-        .map-pulse {
-            z-index: 1;
-            left: 50%;
-            top: 54%;
-            width: 112px;
-            height: 112px;
-            border: 1px solid rgba(6, 182, 212, 0.24);
-            border-radius: 999px;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 45px rgba(6, 182, 212, 0.16);
         }
 
         .map-city-label {
             position: absolute;
-            z-index: 2;
+            z-index: 3;
             left: 50%;
             top: 54%;
             display: inline-flex;
@@ -1093,7 +1021,7 @@
             border: 1px solid rgba(148, 163, 184, 0.11);
             border-radius: 3px;
             background: rgba(30, 41, 59, 0.42);
-            cursor: default;
+            cursor: pointer;
             transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
         }
 
@@ -1940,6 +1868,33 @@
         .cursor-ring.active {
             border-color: rgba(139, 92, 246, 0.85);
             box-shadow: 0 0 24px rgba(6, 182, 212, 0.35);
+        }
+
+        .click-burst {
+            position: fixed;
+            z-index: 30001;
+            width: 10px;
+            height: 10px;
+            border: 1px solid rgba(6, 182, 212, 0.8);
+            border-radius: 999px;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0.45);
+            animation: clickBurst 520ms ease-out forwards;
+        }
+
+        .click-burst::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: inherit;
+            border: 1px solid rgba(139, 92, 246, 0.45);
+        }
+
+        @keyframes clickBurst {
+            to {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(4.4);
+            }
         }
 
         /* ===== FOOTER ===== */

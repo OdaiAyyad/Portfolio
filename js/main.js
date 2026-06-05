@@ -132,6 +132,7 @@
                 const data = await response.json();
                 const contributions = Array.isArray(data.contributions) ? data.contributions : [];
                 const total = data.total?.lastYear ?? contributions.reduce((sum, day) => sum + day.count, 0);
+                const defaultTotalLabel = `${total.toLocaleString()} contributions`;
                 const fragment = document.createDocumentFragment();
 
                 contributions.forEach((day) => {
@@ -143,30 +144,33 @@
 
                     const showTooltip = (event) => {
                         tooltip.textContent = countLabel;
+                        totalLabel.textContent = countLabel;
                         tooltip.hidden = false;
                         positionTooltip(event);
                     };
 
+                    const hideTooltip = () => {
+                        tooltip.hidden = true;
+                        totalLabel.textContent = defaultTotalLabel;
+                    };
+
                     cell.addEventListener('mouseenter', showTooltip);
                     cell.addEventListener('mousemove', positionTooltip);
-                    cell.addEventListener('mouseleave', () => {
-                        tooltip.hidden = true;
-                    });
+                    cell.addEventListener('mouseleave', hideTooltip);
                     cell.addEventListener('focus', () => {
                         tooltip.textContent = countLabel;
+                        totalLabel.textContent = countLabel;
                         tooltip.hidden = false;
                         const rect = cell.getBoundingClientRect();
                         tooltip.style.left = `${Math.min(rect.left, window.innerWidth - tooltip.offsetWidth - 12)}px`;
                         tooltip.style.top = `${Math.max(10, rect.top - tooltip.offsetHeight - 10)}px`;
                     });
-                    cell.addEventListener('blur', () => {
-                        tooltip.hidden = true;
-                    });
+                    cell.addEventListener('blur', hideTooltip);
                     fragment.appendChild(cell);
                 });
 
                 calendar.replaceChildren(fragment);
-                totalLabel.textContent = `${total.toLocaleString()} contributions`;
+                totalLabel.textContent = defaultTotalLabel;
             } catch (error) {
                 calendar.innerHTML = '<div class="contribution-error">Contribution activity is temporarily unavailable.</div>';
                 totalLabel.textContent = 'View GitHub';
@@ -297,6 +301,21 @@
             }
         }
 
+        function initClickBursts() {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            document.addEventListener('pointerdown', (event) => {
+                if (event.button && event.button !== 0) return;
+
+                const burst = document.createElement('span');
+                burst.className = 'click-burst';
+                burst.style.left = `${event.clientX}px`;
+                burst.style.top = `${event.clientY}px`;
+                document.body.appendChild(burst);
+                burst.addEventListener('animationend', () => burst.remove(), { once: true });
+            });
+        }
+
         // Hide loader after page loads
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
@@ -305,6 +324,7 @@
                 initBackgroundAnimation();
                 typeHeroSlogan();
                 initCustomCursor();
+                initClickBursts();
                 const initialSection = window.location.hash ? document.querySelector(window.location.hash) : null;
                 if (initialSection) {
                     initialSection.scrollIntoView({ block: 'start' });
