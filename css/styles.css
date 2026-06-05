@@ -804,13 +804,13 @@
 
         .dashboard-main-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+            grid-template-columns: minmax(0, 1.7fr) minmax(250px, 0.42fr);
             gap: 1rem;
             align-items: start;
         }
 
         .tech-dashboard-card {
-            min-height: 340px;
+            min-height: 360px;
             padding-bottom: 1rem;
         }
 
@@ -887,7 +887,9 @@
         }
 
         .location-dashboard-card {
-            min-height: 255px;
+            justify-self: end;
+            width: min(100%, 520px);
+            min-height: 225px;
         }
 
         .brand-icon {
@@ -1006,23 +1008,24 @@
             margin-bottom: 0;
         }
 
-        .project-carousel-controls {
-            display: flex;
+        .projects-carousel {
+            display: grid;
+            grid-template-columns: 58px minmax(0, 1fr) 58px;
             align-items: center;
-            gap: 0.65rem;
+            gap: 0.9rem;
         }
 
         .project-scroll-btn {
             display: grid;
             place-items: center;
-            width: 44px;
-            height: 44px;
+            width: 58px;
+            min-height: 100%;
             border: 1px solid rgba(6, 182, 212, 0.48);
-            border-radius: 999px;
+            border-radius: 16px;
             background: rgba(8, 19, 40, 0.62);
             color: var(--primary-cyan);
             font: inherit;
-            font-size: 1.1rem;
+            font-size: 1.45rem;
             font-weight: 800;
             cursor: pointer;
             transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
@@ -1037,6 +1040,7 @@
 
         .projects-grid {
             display: flex;
+            align-items: flex-start;
             gap: 1.4rem;
             overflow-x: auto;
             overflow-y: hidden;
@@ -1051,8 +1055,8 @@
         }
 
         .project-card {
-            flex: 0 0 clamp(320px, 32vw, 430px);
-            min-height: 100%;
+            flex: 0 0 clamp(320px, 30vw, 390px);
+            min-height: 0;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -1130,7 +1134,6 @@
         }
 
         .project-body {
-            flex: 1;
             display: flex;
             flex-direction: column;
             padding: 1.25rem;
@@ -1156,10 +1159,14 @@
             color: var(--text-secondary);
             margin-bottom: 1.2rem;
             line-height: 1.7;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .project-actions {
-            margin-top: auto;
+            margin-top: 1rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -1848,7 +1855,7 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .project-card {
-                flex-basis: clamp(300px, 44vw, 390px);
+                flex-basis: clamp(300px, 42vw, 370px);
             }
 
         }
@@ -1856,6 +1863,11 @@
         @media (max-width: 900px) {
             .dashboard-main-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .location-dashboard-card {
+                justify-self: stretch;
+                width: 100%;
             }
 
             .contact-layout {
@@ -2001,6 +2013,16 @@
 
             .project-card {
                 flex-basis: min(86vw, 360px);
+            }
+
+            .projects-carousel {
+                grid-template-columns: 44px minmax(0, 1fr) 44px;
+                gap: 0.55rem;
+            }
+
+            .project-scroll-btn {
+                width: 44px;
+                border-radius: 12px;
             }
 
             .project-visual {
