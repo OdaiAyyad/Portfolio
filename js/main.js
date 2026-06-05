@@ -210,14 +210,13 @@
 
         // Dynamic projects grid
         const projectsGrid = document.getElementById('projectsGrid');
-        const projectViewToggle = document.getElementById('projectViewToggle');
-        let projectsExpanded = false;
+        const projectScrollPrev = document.getElementById('projectScrollPrev');
+        const projectScrollNext = document.getElementById('projectScrollNext');
 
         function renderProjects() {
             if (!projectsGrid) return;
 
-            const visibleProjects = projectsExpanded ? projectData : projectData.slice(0, 3);
-            projectsGrid.innerHTML = visibleProjects.map((project) => {
+            projectsGrid.innerHTML = projectData.map((project) => {
                 const tags = project.tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
                 return `
                     <article class="project-card" style="--project-accent: ${project.accent};">
@@ -242,22 +241,23 @@
                     </article>
                 `;
             }).join("");
-
-            if (projectViewToggle) {
-                projectViewToggle.setAttribute('aria-expanded', String(projectsExpanded));
-                projectViewToggle.innerHTML = projectsExpanded
-                    ? 'Show Less <span aria-hidden="true">-&gt;</span>'
-                    : 'View All <span aria-hidden="true">-&gt;</span>';
-            }
         }
 
         renderProjects();
 
-        if (projectViewToggle) {
-            projectViewToggle.addEventListener('click', () => {
-                projectsExpanded = !projectsExpanded;
-                renderProjects();
+        const scrollProjects = (direction) => {
+            if (!projectsGrid) return;
+            const firstCard = projectsGrid.querySelector('.project-card');
+            const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : projectsGrid.clientWidth * 0.85;
+            projectsGrid.scrollBy({
+                left: direction * (cardWidth + 22),
+                behavior: 'smooth'
             });
+        };
+
+        if (projectScrollPrev && projectScrollNext) {
+            projectScrollPrev.addEventListener('click', () => scrollProjects(-1));
+            projectScrollNext.addEventListener('click', () => scrollProjects(1));
         }
 
         const volunteerToggle = document.getElementById('volunteerToggle');

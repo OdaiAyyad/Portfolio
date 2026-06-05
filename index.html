@@ -180,14 +180,15 @@
     <!-- PROJECTS -->
     <section id="projects">
         <div class="projects-heading">
-            <div>
-                <span class="section-kicker">Selected Work</span>
-                <h2 class="section-title">Featured Projects</h2>
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="project-carousel-controls" aria-label="Project carousel controls">
+                <button class="project-scroll-btn" id="projectScrollPrev" type="button" aria-label="Scroll projects left">
+                    <span aria-hidden="true">&lt;</span>
+                </button>
+                <button class="project-scroll-btn" id="projectScrollNext" type="button" aria-label="Scroll projects right">
+                    <span aria-hidden="true">&gt;</span>
+                </button>
             </div>
-            <button class="project-view-toggle" id="projectViewToggle" type="button" aria-expanded="false">
-                View All
-                <span aria-hidden="true">-&gt;</span>
-            </button>
         </div>
         <div class="projects-grid" id="projectsGrid" aria-live="polite"></div>
     </section>
