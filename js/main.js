@@ -112,117 +112,6 @@
             }
         }
 
-        async function initContributionCalendar() {
-            const calendar = document.getElementById('contributionCalendar');
-            const totalLabel = document.getElementById('contributionTotal');
-            const tooltip = document.getElementById('contributionTooltip');
-            if (!calendar || !totalLabel || !tooltip) return;
-
-            const contributionStartDate = '2025-12-01';
-            const toDateKey = (date) => {
-                const year = date.getFullYear();
-                const month = String(date.getMonth() + 1).padStart(2, '0');
-                const day = String(date.getDate()).padStart(2, '0');
-                return `${year}-${month}-${day}`;
-            };
-            const toUtcDate = (dateKey) => {
-                const [year, month, day] = dateKey.split('-').map(Number);
-                return new Date(Date.UTC(year, month - 1, day));
-            };
-            const todayDate = toDateKey(new Date());
-            const formatRangeLabel = (dateKey) => toUtcDate(dateKey).toLocaleDateString('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-                timeZone: 'UTC'
-            });
-
-            const buildVisibleContributionRange = (contributions) => {
-                const contributionByDate = new Map(contributions.map((day) => [day.date, day]));
-                const dates = [];
-                const cursor = toUtcDate(contributionStartDate);
-                const end = toUtcDate(todayDate);
-
-                while (cursor <= end) {
-                    const date = cursor.toISOString().slice(0, 10);
-                    const day = contributionByDate.get(date);
-                    dates.push(day || { date, count: 0, level: 0 });
-                    cursor.setUTCDate(cursor.getUTCDate() + 1);
-                }
-
-                return dates;
-            };
-
-            const positionTooltip = (cell) => {
-                const rect = cell.getBoundingClientRect();
-                const x = Math.min(rect.left + rect.width + 12, window.innerWidth - tooltip.offsetWidth - 12);
-                const y = Math.max(10, rect.top - tooltip.offsetHeight - 10);
-                tooltip.style.left = `${x}px`;
-                tooltip.style.top = `${y}px`;
-            };
-
-            try {
-                const response = await fetch('https://github-contributions-api.jogruber.de/v4/OdaiAyyad?y=last');
-                if (!response.ok) throw new Error('Contribution request failed');
-
-                const data = await response.json();
-                const contributions = Array.isArray(data.contributions) ? data.contributions : [];
-                const visibleContributions = buildVisibleContributionRange(contributions);
-                const total = visibleContributions.reduce((sum, day) => sum + day.count, 0);
-                const defaultTotalLabel = `${total.toLocaleString()} since ${formatRangeLabel(contributionStartDate)}`;
-                const fragment = document.createDocumentFragment();
-
-                visibleContributions.forEach((day) => {
-                    const cell = document.createElement('span');
-                    const countLabel = `${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}`;
-                    cell.className = `contribution-day level-${Math.min(Number(day.level) || 0, 4)}`;
-                    cell.setAttribute('aria-label', countLabel);
-                    cell.dataset.contributionLabel = countLabel;
-                    cell.tabIndex = 0;
-                    fragment.appendChild(cell);
-                });
-
-                calendar.replaceChildren(fragment);
-                totalLabel.textContent = defaultTotalLabel;
-
-                const showContributionDetail = (cell) => {
-                    const label = cell.dataset.contributionLabel;
-                    if (!label) return;
-                    tooltip.textContent = label;
-                    totalLabel.textContent = label;
-                    tooltip.hidden = false;
-                    positionTooltip(cell);
-                };
-
-                const hideContributionDetail = () => {
-                    tooltip.hidden = true;
-                    totalLabel.textContent = defaultTotalLabel;
-                };
-
-                calendar.addEventListener('mouseover', (event) => {
-                    const cell = event.target instanceof Element ? event.target.closest('.contribution-day') : null;
-                    if (cell) showContributionDetail(cell);
-                });
-
-                calendar.addEventListener('mouseout', (event) => {
-                    if (!(event.target instanceof Element)) return;
-                    const leavingCell = event.target.closest('.contribution-day');
-                    const enteringCell = event.relatedTarget instanceof Element ? event.relatedTarget.closest('.contribution-day') : null;
-                    if (leavingCell && leavingCell !== enteringCell) hideContributionDetail();
-                });
-
-                calendar.addEventListener('focusin', (event) => {
-                    const cell = event.target instanceof Element ? event.target.closest('.contribution-day') : null;
-                    if (cell) showContributionDetail(cell);
-                });
-
-                calendar.addEventListener('focusout', hideContributionDetail);
-            } catch (error) {
-                calendar.innerHTML = '<div class="contribution-error">Contribution activity is temporarily unavailable.</div>';
-                totalLabel.textContent = 'View GitHub';
-            }
-        }
-
         function initBackgroundAnimation() {
             const bgAnimation = document.getElementById('bgAnimation');
             if (!bgAnimation) return;
@@ -363,7 +252,6 @@
         }
 
         renderProjects();
-        initContributionCalendar();
 
         if (projectViewToggle) {
             projectViewToggle.addEventListener('click', () => {
