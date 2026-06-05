@@ -118,6 +118,41 @@
             const tooltip = document.getElementById('contributionTooltip');
             if (!calendar || !totalLabel || !tooltip) return;
 
+            const contributionStartDate = '2025-12-01';
+            const toDateKey = (date) => {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            };
+            const toUtcDate = (dateKey) => {
+                const [year, month, day] = dateKey.split('-').map(Number);
+                return new Date(Date.UTC(year, month - 1, day));
+            };
+            const todayDate = toDateKey(new Date());
+            const formatRangeLabel = (dateKey) => toUtcDate(dateKey).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                timeZone: 'UTC'
+            });
+
+            const buildVisibleContributionRange = (contributions) => {
+                const contributionByDate = new Map(contributions.map((day) => [day.date, day]));
+                const dates = [];
+                const cursor = toUtcDate(contributionStartDate);
+                const end = toUtcDate(todayDate);
+
+                while (cursor <= end) {
+                    const date = cursor.toISOString().slice(0, 10);
+                    const day = contributionByDate.get(date);
+                    dates.push(day || { date, count: 0, level: 0 });
+                    cursor.setUTCDate(cursor.getUTCDate() + 1);
+                }
+
+                return dates;
+            };
+
             const positionTooltip = (cell) => {
                 const rect = cell.getBoundingClientRect();
                 const x = Math.min(rect.left + rect.width + 12, window.innerWidth - tooltip.offsetWidth - 12);
@@ -132,11 +167,12 @@
 
                 const data = await response.json();
                 const contributions = Array.isArray(data.contributions) ? data.contributions : [];
-                const total = data.total?.lastYear ?? contributions.reduce((sum, day) => sum + day.count, 0);
-                const defaultTotalLabel = `${total.toLocaleString()} contributions`;
+                const visibleContributions = buildVisibleContributionRange(contributions);
+                const total = visibleContributions.reduce((sum, day) => sum + day.count, 0);
+                const defaultTotalLabel = `${total.toLocaleString()} since ${formatRangeLabel(contributionStartDate)}`;
                 const fragment = document.createDocumentFragment();
 
-                contributions.forEach((day) => {
+                visibleContributions.forEach((day) => {
                     const cell = document.createElement('span');
                     const countLabel = `${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}`;
                     cell.className = `contribution-day level-${Math.min(Number(day.level) || 0, 4)}`;
