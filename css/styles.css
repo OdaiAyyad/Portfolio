@@ -804,13 +804,13 @@
 
         .dashboard-main-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+            grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
             gap: 1rem;
-            align-items: stretch;
+            align-items: start;
         }
 
         .tech-dashboard-card {
-            min-height: 320px;
+            min-height: 340px;
             padding-bottom: 1rem;
         }
 
@@ -887,7 +887,7 @@
         }
 
         .location-dashboard-card {
-            min-height: 320px;
+            min-height: 255px;
         }
 
         .brand-icon {
