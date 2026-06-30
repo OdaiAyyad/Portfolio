@@ -810,15 +810,15 @@
         }
 
         .tech-dashboard-card {
-            min-height: 310px;
-            padding-bottom: 0.6rem;
+            min-height: 285px;
+            padding-bottom: 0.35rem;
         }
 
         .dashboard-tech-rail {
             position: relative;
             z-index: 1;
             overflow: hidden;
-            padding: 1.7rem 0 1.15rem;
+            padding: 1.25rem 0 0.8rem;
             mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
         }
 
@@ -872,7 +872,7 @@
         .dashboard-copy {
             position: relative;
             z-index: 1;
-            padding: 0 1.25rem 0.95rem;
+            padding: 0 1.25rem 0.65rem;
         }
 
         .dashboard-copy h2 {
