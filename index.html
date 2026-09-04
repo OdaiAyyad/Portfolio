@@ -181,15 +181,17 @@
     <section id="projects">
         <div class="projects-heading">
             <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-controls" aria-label="Project carousel controls">
+                <button class="project-scroll-btn project-scroll-btn-prev" id="projectScrollPrev" type="button" aria-label="Scroll projects left">
+                    <span aria-hidden="true">&lt;</span>
+                </button>
+                <button class="project-scroll-btn project-scroll-btn-next" id="projectScrollNext" type="button" aria-label="Scroll projects right">
+                    <span aria-hidden="true">&gt;</span>
+                </button>
+            </div>
         </div>
         <div class="projects-carousel">
-            <button class="project-scroll-btn project-scroll-btn-prev" id="projectScrollPrev" type="button" aria-label="Scroll projects left">
-                <span aria-hidden="true">&lt;</span>
-            </button>
             <div class="projects-grid" id="projectsGrid" aria-live="polite"></div>
-            <button class="project-scroll-btn project-scroll-btn-next" id="projectScrollNext" type="button" aria-label="Scroll projects right">
-                <span aria-hidden="true">&gt;</span>
-            </button>
         </div>
     </section>
 
